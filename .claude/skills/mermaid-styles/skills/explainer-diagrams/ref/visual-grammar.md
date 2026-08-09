@@ -2,7 +2,7 @@
 
 ## 1. What This File Is
 
-This is the shared layer underneath every pattern in this library. Shape, emoji, direction, arrow, color, and complexity are defined here once, and every `ref/<pattern>.md` file inherits them rather than restating them. A pattern file may narrow a rule, for example by allowing only three of the eight shapes. A pattern file may never widen one.
+This is the shared layer underneath every pattern in this library. Shape, emoji, direction, arrow, color, and complexity are defined here once, and every `ref/patterns/<name>.md` file inherits them rather than restating them. A pattern file may narrow a rule, for example by allowing only three of the eight shapes. It may also override one outright when the pattern has a reason, in which case the pattern file says so and the pattern file wins. What a pattern file may never do is widen a rule silently.
 
 The vocabulary below is closed. There are eight shapes, six emoji, three directions, four arrow forms, and four color classes, and that is the entire alphabet. The point of a closed alphabet is that a reader who has seen a dozen of these diagrams can decode the thirteenth without a legend. Every shape added for the sake of one diagram costs the reader that ability across all the others.
 
@@ -285,7 +285,7 @@ These are hard numbers, not guidelines. They exist because the most common failu
 | Meanings per node | 1 |
 | Words per node label | 4 |
 
-The horizontal chain limit is about page width. Beyond roughly seven nodes the renderer shrinks the labels to fit, and on a phone the reader scrolls sideways looking for the end. A pattern may raise this cap for a vertical layout, where height is cheap, and `step-flow.md` does exactly that by allowing 12 nodes when the chain runs `TD`. The ceiling of 12 nodes per diagram binds everywhere and is never raised.
+The horizontal chain limit is about page width. Beyond roughly seven nodes the renderer shrinks the labels to fit, and on a phone the reader scrolls sideways looking for the end. A pattern may raise this cap for a vertical layout, where height is cheap, and `patterns/step-flow.md` does exactly that by allowing 12 nodes when the chain runs `TD`. The ceiling of 12 nodes per diagram binds everywhere and is never raised.
 
 Here is what breaking the limit looks like.
 
