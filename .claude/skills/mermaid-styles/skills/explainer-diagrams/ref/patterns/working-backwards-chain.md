@@ -28,6 +28,7 @@ Typical fits are a skill plan derived from a target role, a launch derived from 
 | Branching, where the next step depends on an answer | `decision-tree.md` |
 | Named artifacts handed from each step to the next | `io-pipeline.md` |
 | Dated events rather than derived stages | `timeline.md` |
+| A record of what already happened | `timeline.md` |
 
 A goal that decomposes into several independent lines of work is not one chain. Pick the line that actually binds and draw that, or draw one pair per line. Merging them produces a graph where no path is readable.
 
