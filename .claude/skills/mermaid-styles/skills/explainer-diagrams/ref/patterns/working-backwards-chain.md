@@ -12,9 +12,9 @@ The pair is the unit. One diagram alone is half the argument: the derivation wit
 
 The content is a plan whose credibility rests on where it came from. The reader's objection is "why these steps and not five others", not "what order do they go in".
 
-The test is that you can say `X requires Y` out loud for every link and have it stay true when you also say it the other way as `Y then X`. If a link only survives in one direction, it is not a requirement, it is a habit.
+The test is that you can say `X requires Y` out loud for every link and have it stay true said the other way as `Y then X`. A link that survives in only one direction is not a requirement, it is a habit.
 
-Typical fits are a career or skill plan derived from a target role, a launch derived from a launch date, a system design derived from a service level objective, a curriculum derived from an exam.
+Typical fits are a skill plan derived from a target role, a launch derived from a date, a design derived from a service level objective, a curriculum derived from an exam.
 
 ---
 
@@ -53,13 +53,13 @@ Both diagrams are one horizontal row, so the spine has to stay short. Section 8 
 
 The goal carries 🎯, the ground carries 🔑 in the derivation only, materials carry 📄. No other emoji.
 
-The ground is where the derivation stops, and it stops when the answer to `requires what` is something you already have or can start this week. A chain that bottoms out on something you cannot start is not finished, and that is the most useful thing this pattern tells you.
+The derivation stops at the ground, which is the first answer to `requires what` that you already have or can start this week. A chain bottoming out on something you cannot start is not finished, and saying so is the most useful thing this pattern does.
 
-Materials hang off the spine rather than sitting in it. They are things you possess or can fetch, not stages you pass through, and they are what keeps a five node spine from swelling to eight.
+Materials hang off the spine instead of sitting in it. They are things you possess or can fetch rather than stages you pass through, and keeping them off the spine is what stops five nodes becoming eight.
 
 No diamonds. A requirement is not a question. No hexagons, because a derivation has no gates.
 
-Labels change form between the two diagrams and this is deliberate. The derivation names states, so `Training Project Designed`. The execution names actions, so `Design Training Project`. Same node, and the grammatical flip is what stops a reader from mistaking one diagram for the other.
+Labels change form between the two diagrams. The derivation names states, so `Training Project Designed`. The execution names actions, so `Design Training Project`. The grammatical flip is what stops a reader mistaking one diagram for the other.
 
 Below Mermaid v11.3 substitute `G((("🎯 Goal")))`, `B[/"🔑 Ground"/]`, `S(["Ground"])`, `A("Stage")`, and a plain `P["📄 Material"]`, keeping the quotes.
 
@@ -81,9 +81,9 @@ classDef materialNode fill:#EEF1F5,stroke:#8A94A6,color:#2C3440
 
 Copy all three properties or none. Dropping `color` leaves the text to the theme, so a diagram that reads in GitHub light mode turns pale on pale in dark mode.
 
-Two colored nodes only, and they are the two ends. Nothing in the middle of the spine ever gets a color, because the middle is derived and no stage in it is more important than the link that produced it.
+Two colored nodes only, and they are the two ends. The middle of the spine is never colored, because it is derived and no stage in it outranks the link that produced it. Grey materials are background and cost no budget.
 
-The amber ground is the hinge. It is the same node in both diagrams, it is the last node of the derivation and the first node of the plan, and the repeated color is what tells the reader the two pictures are one story. Grey materials are background and cost no budget.
+The amber ground is the hinge: last node of the derivation, first node of the plan, and the repeated color is what tells the reader the two pictures are one story.
 
 ---
 
@@ -109,7 +109,7 @@ Above 6 the row stops reading, and there is no vertical escape hatch here becaus
 
 ## 9. Canonical Example, The Derivation
 
-Read right to left, and check every arrow by asking whether the thing on the left is genuinely required rather than merely helpful.
+Someone holds a resume, a write up of each past role, and a private note on what they want and what they will not do. They are aiming at three job descriptions whose bar they do not currently clear, and they want to know what actually stands between the two.
 
 ```mermaid
 flowchart RL
@@ -132,13 +132,22 @@ flowchart RL
     class P materialNode
 ```
 
-The chain stops at the amber node because naming the gap needs only the job descriptions and the record of your own experience, both of which are already on your disk. The grey document hangs off the project stage rather than sitting in the spine, because how real practitioners built the skill is something you go and read, not a stage you pass through.
+Read right to left, one arrow at a time. Each line below asserts the requirement and says why the thing on the left is genuinely required rather than merely helpful.
+
+- **Meeting the three JDs requires the missing skills drilled to standard.** An interviewer checks performance against a bar, so having read about a skill scores zero.
+- **Drilling to standard requires the practice setup to exist first.** Reps need a tutorial, source material, and an environment that runs, and without them the drilling stalls in the first week.
+- **The practice setup requires a project to be built around.** Materials gathered with no target are a reading list, and a reading list produces no reps.
+- **Designing that project requires knowing how practitioners actually got the skill.** Designed from imagination it trains the wrong thing convincingly, which is worse than not training at all.
+- **Designing that project also requires knowing which skills are missing.** A project aimed at everything in the JD is a career, not a project.
+- **Naming the gap requires nothing that is not already on hand.** The three JDs on one side, the resume and role write ups and career note on the other, so the chain stops here and this is where the work starts.
+
+The grey document hangs off the project stage rather than sitting in the spine, because how practitioners learned is something to go and read, not a stage to pass through.
 
 ---
 
 ## 10. Canonical Example, The Execution
 
-The same six nodes, reversed. The ground has become a stadium and the states have become imperatives.
+The same six nodes, reversed. Nothing new is introduced here and nothing is dropped, which is the whole claim: this plan was not chosen, it was forced. The ground has become a stadium and the states have become imperatives.
 
 ```mermaid
 flowchart LR
@@ -161,7 +170,15 @@ flowchart LR
     class P materialNode
 ```
 
-The takeaway from this pair is that reaching the target roles is four moves from where you already stand, and the reason there are four rather than fourteen is that each one was forced by the goal instead of chosen from a list of good habits.
+Each step, and what finishing it looks like.
+
+- **Name my skill gap.** Read the three JDs against your own documents and produce one list of what is required and not yet held, split into skills that can be demonstrated and judgement that has to be shown.
+- **Read how practitioners learned.** For each gap item, find how people who have it actually got it, and keep the account rather than the conclusion.
+- **Design the training project.** One project, scoped to the top few gap items, shaped like the accounts you just read.
+- **Build the practice setup.** Tutorial, source material, and a running environment, assembled until nothing stands between you and the first rep.
+- **Drill to standard.** Reps against the bar from the JDs, until the gap list is empty.
+
+The takeaway from this pair is that reaching the target roles is five moves from where you already stand, and the reason there are five rather than fifty is that every one of them was forced by the goal rather than picked off a list of good habits.
 
 ---
 
@@ -208,9 +225,17 @@ Three targets means no target, and the derivation cannot be checked because each
 
 ---
 
-## 12. Caption Convention
+## 12. Prose Convention
 
-The pair takes one sentence, placed under the execution diagram, beginning "The takeaway from this pair is". It has to say why the plan is short, or why it is longer than expected, rather than describing the boxes. If that sentence cannot be written, the derivation did not actually constrain anything and the diagram is decoration.
+The pair never ships bare. Four word labels cannot hold a reason, and a derivation whose reasons are invisible is just a chain of boxes the reader has to take on faith. Three pieces of prose, always in this order.
+
+**A scenario sentence above the derivation.** It names where the reader stands and what they are aiming at, in that order, in one or two sentences. The diagram assumes a starting position, and stating it is what stops the goal from reading as a fantasy.
+
+**A bullet under the derivation, one per arrow.** Each begins by asserting the requirement in the form `A requires B`, then gives the reason B is genuinely required and not merely helpful. The last bullet is the one that earns the diagram: it says what the ground node consists of and why nothing further is needed. Writing these is also how the derivation gets checked, and an arrow whose bullet will not write is an arrow that was wishful.
+
+**A takeaway sentence under the execution diagram**, beginning "The takeaway from this pair is". It says why the plan is as short as it is, or as long, rather than describing the boxes.
+
+A bullet per step under the execution diagram is optional. Add it when finishing a step is ambiguous, and say what done looks like rather than restating the label.
 
 ---
 
@@ -228,5 +253,7 @@ The pair takes one sentence, placed under the execution diagram, beginning "The 
 - Every `classDef` carries `fill`, `stroke`, and `color`.
 - No diamonds, no hexagons, no dotted or thick arrows.
 - Every label is four words or fewer.
-- The caption sentence is written and states a conclusion.
+- A scenario sentence sits above the derivation, naming the starting position and the goal.
+- Every derivation arrow has its own bullet asserting the requirement and giving the reason.
+- The takeaway sentence is written and states a conclusion.
 - Both diagrams parse.
