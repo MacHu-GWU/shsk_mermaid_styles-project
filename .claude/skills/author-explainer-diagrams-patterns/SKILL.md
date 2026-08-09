@@ -1,0 +1,118 @@
+---
+name: author-explainer-diagrams-patterns
+description: Author or revise the diagram pattern files shipped by the mermaid-styles plugin, under explainer-diagrams/ref/patterns/. Use when adding a new pattern, revising an existing one, or changing the shared visual grammar those patterns are projected from.
+argument-hint: "[pattern-name]"
+allowed-tools: Bash(mise run check-mermaid*) Bash(mise tasks*)
+---
+
+Target pattern: $ARGUMENTS
+
+If no target is given, ask which pattern to author or revise, and check `ref/visual-grammar.md` section 10 for which patterns already exist.
+
+---
+
+## 1. What This Skill Maintains
+
+Two locations, and the split between them is the whole point.
+
+| Location | Role |
+| :--- | :--- |
+| `.claude/skills/author-explainer-diagrams-patterns/ref/visual-grammar.md` | The shared alphabet. Author time only. Never ships, never loads at draw time |
+| `.claude/skills/mermaid-styles/skills/explainer-diagrams/ref/patterns/*.md` | The shipped patterns. Each one fully self contained |
+
+Think of it as compile time and run time. `visual-grammar.md` is the source of truth you consult while writing a pattern file. The pattern file is the compiled output. Once a hex value is written into `step-flow.md`, the consistency is baked in, and the agent that later reads `step-flow.md` to draw a diagram has no reason to know where that value came from.
+
+This is why patterns do not inherit. At draw time an agent needs exactly one pattern file. Handing it the full grammar means handing it five shapes it must not use, four arrow forms it must not use, and two directions it must not use, right before telling it not to use them. The shared vocabulary is not a runtime dependency, it is an authoring discipline, and this skill is where that discipline lives.
+
+---
+
+## 2. The Self Containment Contract
+
+This is the rule set that makes a pattern file shippable. Every one of these is checkable.
+
+A pattern file never mentions the visual grammar. Not by filename, not as "the baseline", not as "the global rules", not as "inherited", not as "this overrides". A reader who has never heard of `visual-grammar.md` must be able to follow the file start to finish and produce a conforming diagram.
+
+Every shape the pattern uses is written out in full, with its `@{ shape: ... }` syntax, in the pattern file. Shapes the pattern does not use go unmentioned, with one exception: when a ban is load bearing, state the ban as this pattern's own rule. `Step Flow has no diamonds` is correct. `The baseline diamond rule applies here too` is not, because it points at a document the reader does not have.
+
+Every color the pattern uses is written out as a complete `classDef` line with literal hex values, all three of `fill`, `stroke`, and `color`. Never write "use the accent color". The agent is going to copy that line into a diagram, so the line has to be there.
+
+State rules, do not argue them. `Green marks the start, red marks the end` is an instruction. `Green normally means goal, but here it is re-bound to the start because a procedure has no goal` is a design discussion, and it belongs in section 4 of `visual-grammar.md` where the author will read it. The consumer does not need to be persuaded, only to comply. This is where most of the length savings come from.
+
+References to other pattern files are allowed and wanted. `Use Decision Tree instead (decision-tree.md)` sends the agent to a different self contained file rather than asking it to hold two files at once. That is routing, not inheritance, and the When Not To Use table should be generous with it.
+
+Keep the file under roughly 150 lines. This is a smell test, not a hard gate. A pattern file that runs long is usually doing one of three things: arguing instead of instructing, describing two patterns that should be split, or restating rules that the shapes and colors already make obvious.
+
+---
+
+## 3. The Pattern File Skeleton
+
+Every pattern file uses these sections in this order, numbered as H2 with `---` between them, so an agent that has read one pattern file can navigate any other one without looking.
+
+```markdown
+# <Pattern Name>
+
+## 1. What It Is            one paragraph, what the shape of the diagram says
+## 2. When To Use           the test that identifies this content
+## 3. When Not To Use       table routing to sibling patterns
+## 4. Direction             LR, TD, or RL, and the rule for choosing
+## 5. Shapes                only the shapes this pattern uses, with syntax
+## 6. Color                 full classDef lines, and the highlight budget
+## 7. Arrows                which arrow forms are legal here
+## 8. Length                the floor, and where to split
+## 9. Canonical Example     copyable, correct, with its caption sentence
+## 10. Bad Examples         2 to 4, each with one line on what breaks
+## 11. Caption Convention   the sentence that goes under the diagram
+## 12. Checklist            what to verify before shipping a diagram
+```
+
+Sections 4 through 8 are the rules and should be tight. Two to five lines each is normal. If one of them needs a long paragraph, the reason usually belongs in the visual grammar instead.
+
+A pattern with two distinct forms (a short horizontal one and a long vertical one, for instance) gets two canonical examples. Otherwise one is enough.
+
+---
+
+## 4. Authoring A New Pattern
+
+Read `ref/visual-grammar.md` first, in full. You are about to project from it, and you cannot project from something you have skimmed.
+
+Decide what the pattern narrows. Pick the shapes it uses from the eight, the arrow forms from the four, the direction from the three, the colors from the four. A pattern that uses all of everything is not a pattern, it is the grammar with a title.
+
+Decide what it deviates on, and be honest about it. A deviation is any place the pattern uses a piece of the vocabulary to mean something the grammar assigns elsewhere, or loosens a limit the grammar sets. Deviations are allowed when the pattern has a real reason. They are not allowed silently, because the next pattern you write needs to know that red is already spoken for in a Step Flow.
+
+Write the file to the skeleton, obeying section 2 throughout.
+
+Record the deviation in `ref/visual-grammar.md` section 10, one row per deviation, with the reason. That table is the only place the whole picture exists once the pattern files stop referencing anything.
+
+Validate before calling it done:
+
+```bash
+mise run check-mermaid .claude/skills/mermaid-styles
+```
+
+Every fenced mermaid block in the file must parse, including the bad examples. A bad example demonstrates a style violation, never a syntax error. If a bad example fails to parse, it is teaching the wrong lesson and the reader will blame the parser instead of the style.
+
+---
+
+## 5. Changing The Visual Grammar
+
+This is the expensive direction, and it is expensive on purpose.
+
+Nothing propagates. Pattern files hold literal copies, so editing a hex value or a shape name in `visual-grammar.md` changes nothing that ships until you go and edit every pattern file that used it. Treat a grammar edit as a two step operation, and never do the first step alone.
+
+```bash
+rg -n '#FFF3CD' .claude/skills/mermaid-styles/skills/explainer-diagrams/ref/patterns/
+```
+
+Grep for the literal value being changed, update every hit, then re-run `check-mermaid`. Then re-read the deviation register, because a grammar change can turn an existing deviation into agreement, or into a new conflict.
+
+The upside of paying this cost is that it forces the question of whether the change is worth making across ten files. Most cosmetic changes fail that test, which is the correct outcome for a library whose value is that it does not drift.
+
+---
+
+## 6. What Not To Put In A Pattern File
+
+Design rationale, alternatives considered, and the history of a decision. These are real and worth writing down, but they go in `ref/visual-grammar.md` or in the design notes at `explainer-diagrams/tmp/00-design-notes.md`.
+
+Anything about the plugin, the skill loading model, or how the files relate to each other. The pattern file is read by an agent mid task that has already decided what to draw.
+
+Hedges. `Usually`, `generally`, and `where appropriate` invite exactly the freelancing the closed library exists to prevent. Where a judgment call is genuinely required, say so explicitly and give the reader the test to apply, as in `if you are unsure, go vertical`.

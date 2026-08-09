@@ -2,11 +2,15 @@
 
 ## 1. What This File Is
 
-This is the shared layer underneath every pattern in this library. Shape, emoji, direction, arrow, color, and complexity are defined here once, and every `ref/patterns/<name>.md` file inherits them rather than restating them. A pattern file may narrow a rule, for example by allowing only three of the eight shapes. It may also override one outright when the pattern has a reason, in which case the pattern file says so and the pattern file wins. What a pattern file may never do is widen a rule silently.
+This is the shared alphabet that every pattern in the library is projected from. It is an author time document. It does not ship with the plugin, and it is never loaded when someone is actually drawing a diagram. The shipped pattern files under `explainer-diagrams/ref/patterns/` are self contained copies of the parts they use, and they reference nothing, including this file.
 
-The vocabulary below is closed. There are eight shapes, six emoji, three directions, four arrow forms, and four color classes, and that is the entire alphabet. The point of a closed alphabet is that a reader who has seen a dozen of these diagrams can decode the thirteenth without a legend. Every shape added for the sake of one diagram costs the reader that ability across all the others.
+The reason for that split is worth stating once. Consistency across patterns is settled the moment a pattern file is written, not the moment it is read. Once `step-flow.md` contains the literal string `fill:#D1F0DB`, the green is already correct, and an agent reading that file to draw one diagram gains nothing from knowing the value came from a shared table. What it would lose is real: handing it this document means handing it five shapes, four arrow forms, and two directions the pattern forbids, immediately before the pattern tells it not to use them.
 
-Read this file first, then read the pattern file for the diagram you are drawing.
+So this file has two jobs and neither is runtime. It fixes the vocabulary so ten pattern files agree with each other. And section 10 records where each pattern deliberately departs from that vocabulary, which is the only place the whole picture exists once the pattern files stop pointing at anything.
+
+The vocabulary is closed. Eight shapes, six emoji, three directions, four arrow forms, four color classes, and that is all of it. The point of a closed alphabet is that a reader who has seen a dozen of these diagrams can decode the thirteenth without a legend. Every shape added for the sake of one diagram costs the reader that ability across all the others.
+
+A pattern narrows this vocabulary by using only part of it, which needs no announcement. A pattern deviates when it binds a piece of the vocabulary to a different meaning or loosens a limit set here, and every deviation gets a row in section 10. The rule that has no exception is that a pattern never invents vocabulary. A ninth shape or a fifth color is a change to this file, applied across every pattern file, or it does not happen.
 
 ---
 
@@ -285,7 +289,7 @@ These are hard numbers, not guidelines. They exist because the most common failu
 | Meanings per node | 1 |
 | Words per node label | 4 |
 
-The horizontal chain limit is about page width. Beyond roughly seven nodes the renderer shrinks the labels to fit, and on a phone the reader scrolls sideways looking for the end. A pattern may raise this cap for a vertical layout, where height is cheap, and `patterns/step-flow.md` does exactly that by allowing 12 nodes when the chain runs `TD`. The ceiling of 12 nodes per diagram binds everywhere and is never raised.
+The horizontal chain limit is about page width. Beyond roughly seven nodes the renderer shrinks the labels to fit, and on a phone the reader scrolls sideways looking for the end. A pattern may loosen this cap for a vertical layout, where height is cheap, and Step Flow does exactly that. The ceiling of 12 nodes per diagram binds everywhere and is never raised.
 
 Here is what breaking the limit looks like.
 
@@ -365,9 +369,9 @@ That is the same diagram as the one in section 2, rendered entirely in classic s
 
 ---
 
-## 9. Authoring Checklist
+## 9. Grammar Checklist
 
-Run this before publishing any diagram in this library, whatever pattern it follows.
+Run this against any diagram drafted straight from the grammar, and against every example embedded in a pattern file.
 
 - Every shape is one of the eight, and it was chosen by meaning rather than by looks.
 - At most one `dbl-circ`, and it carries 🎯.
@@ -380,3 +384,22 @@ Run this before publishing any diagram in this library, whatever pattern it foll
 - No horizontal chain exceeds 7 nodes, and no diagram exceeds 12.
 - Every label is 4 words or fewer and holds exactly one idea.
 - The diagram still parses. Run it through a renderer before it ships.
+
+Two of these bend per pattern. The three node color budget and the seven node chain limit are both loosened by Step Flow, and section 10 says why. Check the pattern file's own rules before failing a diagram on either one.
+
+---
+
+## 10. Deviation Register
+
+Every place a shipped pattern departs from the vocabulary above, and the reason. This table exists because the pattern files are self contained and reference nothing, so nothing else in the library records that a color has already been spoken for somewhere. Read it before binding a color or loosening a limit in a new pattern.
+
+Narrowing is not a deviation and is not listed here. A pattern that uses three of the eight shapes is doing what patterns are for.
+
+| Pattern | Deviates on | What it does instead | Why |
+| :--- | :--- | :--- | :--- |
+| Step Flow | `goal` green, `risk` red | Green marks the start terminal, red marks the end terminal | A procedure has a beginning and an end rather than a goal, and a chain containing a hazard is not a Step Flow, so no red is competing for the meaning |
+| Step Flow | `TD` means hierarchy | `TD` is a layout choice, taken when a row would be too wide to read | The pattern is unbranching, so forward order is the only meaning available and direction is free to carry something else. Paid for by requiring the chain to be strictly linear, since a fan out under `TD` reads as containment |
+| Step Flow | 3 colored nodes per diagram | 4 allowed, being 2 terminals plus at most 2 key steps | The terminals appear in every diagram of the pattern and point at nothing, so they are structure rather than emphasis. The emphasis budget is the 2 key steps |
+| Step Flow | 7 node horizontal chain limit | No fixed count. Total label width decides `LR` against `TD` | The 7 is a proxy for a row running out of page width, and a vertical chain never hits it |
+
+Two things to watch when adding a row. If a new pattern wants to re-bind green or red, check what Step Flow already did with them, because two patterns binding the same color to two different meanings is exactly the drift a closed palette is supposed to prevent. And if a deviation cannot be written as a single row here, it is usually not a deviation but a new pattern.
