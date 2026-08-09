@@ -1,6 +1,6 @@
 {
   "name": "mermaid-styles",
-  "description": "",
+  "description": "My personal Mermaid visual grammar. A closed library of canonical diagram patterns with locked-in node shapes, flow directions, arrow semantics, and complexity limits, so that every diagram across his tutorials, explainers, blog posts, and design docs reads as one consistent, recognizable system.",
   "version": "0.1.1",
   "author": {
     "name": "Sanhe Hu",
