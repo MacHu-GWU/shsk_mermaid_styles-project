@@ -7,7 +7,7 @@ allowed-tools: Bash(mise run check-mermaid*) Bash(mise tasks*)
 
 Target pattern: $ARGUMENTS
 
-If no target is given, ask which pattern to author or revise, and check `ref/visual-grammar.md` section 10 for which patterns already exist.
+If no target is given, list `.claude/skills/mermaid-styles/skills/explainer-diagrams/ref/patterns/` to see what exists, then ask which pattern to author or revise.
 
 ---
 
@@ -40,7 +40,13 @@ State rules, do not argue them. `Green marks the start, red marks the end` is an
 
 References to other pattern files are allowed and wanted. `Use Decision Tree instead (decision-tree.md)` sends the agent to a different self contained file rather than asking it to hold two files at once. That is routing, not inheritance, and the When Not To Use table should be generous with it.
 
-Keep the file under roughly 150 lines. This is a smell test, not a hard gate. A pattern file that runs long is usually doing one of three things: arguing instead of instructing, describing two patterns that should be split, or restating rules that the shapes and colors already make obvious.
+Keep it short. The budget is roughly 1,400 words of prose, counted with the mermaid blocks excluded, which lands a finished file around 220 lines. `step-flow.md` sits at that size with two canonical examples and three bad ones, so treat it as the reference for how much room a pattern actually needs.
+
+```bash
+awk '/^```/{f=!f; next} !f' <file> | wc -w
+```
+
+This is a smell test rather than a gate. A pattern file that runs long is usually doing one of three things: arguing instead of instructing, describing two patterns that should be split, or spelling out what the shape and color tables already make obvious.
 
 ---
 
@@ -79,6 +85,8 @@ Decide what the pattern narrows. Pick the shapes it uses from the eight, the arr
 
 Decide what it deviates on, and be honest about it. A deviation is any place the pattern uses a piece of the vocabulary to mean something the grammar assigns elsewhere, or loosens a limit the grammar sets. Deviations are allowed when the pattern has a real reason. They are not allowed silently, because the next pattern you write needs to know that red is already spoken for in a Step Flow.
 
+Say every deviation out loud in the chat before writing it into the file. Name the grammar rule, name what the pattern wants instead, and say what it costs. `The grammar binds red to risk. This pattern wants red for the end terminal, which works only because a Step Flow never contains a risk node.` Then let the user decide. This is information, not a request for approval, so do not stall on it, but do not bury it in the file either. A deviation the user never saw is how a closed vocabulary quietly stops being closed.
+
 Write the file to the skeleton, obeying section 2 throughout.
 
 Record the deviation in `ref/visual-grammar.md` section 10, one row per deviation, with the reason. That table is the only place the whole picture exists once the pattern files stop referencing anything.
@@ -111,7 +119,7 @@ The upside of paying this cost is that it forces the question of whether the cha
 
 ## 6. What Not To Put In A Pattern File
 
-Design rationale, alternatives considered, and the history of a decision. These are real and worth writing down, but they go in `ref/visual-grammar.md` or in the design notes at `explainer-diagrams/tmp/00-design-notes.md`.
+Design rationale, alternatives considered, and the history of a decision. These are worth writing down, but they belong in `ref/visual-grammar.md`, where the next author will read them.
 
 Anything about the plugin, the skill loading model, or how the files relate to each other. The pattern file is read by an agent mid task that has already decided what to draw.
 
