@@ -4,9 +4,9 @@ This document guides AI assistants on how to navigate and work with this project
 
 ## Project Overview
 
-**What this project does:** Read `README.rst` for project description and purpose.
+**What this project does:** This repo defines my own opinionated Mermaid visual style guide — a closed library of canonical diagram patterns with locked-in node shapes, flow directions, arrow semantics, and complexity limits, so that every diagram across my tutorials, explainers, and design docs reads as one recognizable system rather than a pile of generic boxes and arrows. The spec ships as the `mermaid-styles` Claude Code plugin under `.claude/skills/mermaid-styles/`; the Python package is only supporting tooling.
 
-**Project type:** Python package
+**Project type:** Claude Code plugin (spec lives in `.claude/skills/`) + Python package
 
 ## Core Configuration Files
 
