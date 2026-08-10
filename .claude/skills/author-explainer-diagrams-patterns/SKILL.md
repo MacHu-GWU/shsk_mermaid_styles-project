@@ -66,14 +66,15 @@ Every pattern file uses these sections in this order, numbered as H2 with `---` 
 ## 7. Arrows                which arrow forms are legal here
 ## 8. Length                the floor, and where to split
 ## 9. Canonical Example     copyable, correct, with its caption sentence
-## 10. Bad Examples         2 to 4, each with one line on what breaks
-## 11. Caption Convention   the sentence that goes under the diagram
-## 12. Checklist            what to verify before shipping a diagram
+## 10. Reach                only when section 4 below calls for it
+## 11. Bad Examples         2 to 4, each with one line on what breaks
+## 12. Caption Convention   the sentence that goes under the diagram
+## 13. Checklist            what to verify before shipping a diagram
 ```
 
 Sections 4 through 8 are the rules and should be tight. Two to five lines each is normal. If one of them needs a long paragraph, the reason usually belongs in the visual grammar instead.
 
-A pattern with two distinct forms (a short horizontal one and a long vertical one, for instance) gets two canonical examples. Otherwise one is enough.
+A pattern with two distinct forms (a short horizontal one and a long vertical one, for instance) gets two canonical examples. Otherwise one is enough. Number the sections straight through whatever you end up with, so a pattern with two examples and no Reach section runs 1 to 13 with nothing skipped.
 
 ---
 
@@ -82,6 +83,12 @@ A pattern with two distinct forms (a short horizontal one and a long vertical on
 Read `ref/visual-grammar.md` first, in full. You are about to project from it, and you cannot project from something you have skimmed.
 
 Decide what the pattern narrows. Pick the shapes it uses from the eight, the arrow forms from the four, the direction from the three, the colors from the four. A pattern that uses all of everything is not a pattern, it is the grammar with a title.
+
+Separate the structure from the domain you found it in. Every pattern here was noticed in one real piece of writing, and the name usually keeps that origin: Value Chain sounds like commerce, Org Chart like companies, Timeline like a press release archive. None of them is. The pattern is the structural test in section 2, and the domain is an accident of where you saw it first. Leave the accident in and the pattern gets used in one field and skipped in nine.
+
+Write the When To Use test with no domain nouns in it. `Every item has a date you could cite` travels; `the content is a company's recent moves` does not. Then draw the canonical examples from two different fields and put the one furthest from the pattern's name first, since whichever comes first is what readers pattern match against.
+
+Add a Reach section when the name carries a domain, ten bullets, after the examples and before the bad ones. Each bullet names a field, says what the boxes are there, and fills the blank the test asks about, in one line. Close by pointing back at the test as the only thing that decides membership. Ten is deliberate: three reads as a list of your own work, ten forces you out of your own field. Skip the section when the name is already structural, as Step Flow and Decision Tree are, and let `Typical fits are ...` in section 2 carry it.
 
 Decide what it deviates on, and be honest about it. A deviation is any place the pattern uses a piece of the vocabulary to mean something the grammar assigns elsewhere, or loosens a limit the grammar sets. Deviations are allowed when the pattern has a real reason. They are not allowed silently, because the next pattern you write needs to know that red is already spoken for in a Step Flow.
 

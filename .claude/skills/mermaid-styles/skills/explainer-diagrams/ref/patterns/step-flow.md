@@ -57,7 +57,7 @@ No double circles. A Step Flow describes a process that runs again next week, no
 
 No emoji. Shape and color already say start, step, gate, and end.
 
-Labels are two to four words, noun phrase or imperative, consistent within one diagram. One step per box, and the tell is the word "and": `Build the pipeline and backfill history` is two boxes wearing one.
+Labels are four words at most, noun phrase or imperative, consistent within one diagram. One step per box, and the tell is the word "and": `Build the pipeline and backfill history` is two boxes wearing one.
 
 Below Mermaid v11.3 the `@{ shape: ... }` form is unavailable. Substitute `S(["Start"])`, `A("Step")`, and `B{{"Gate"}}`, keeping the quotes so punctuation survives the parser.
 

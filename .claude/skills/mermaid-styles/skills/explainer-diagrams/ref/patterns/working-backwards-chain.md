@@ -2,9 +2,9 @@
 
 ## 1. What It Is
 
-A pair of diagrams over the same nodes, drawn as mirror images. The first opens on the goal and walks outward, every arrow meaning `requires`, until it lands on what you already hold. The second runs over the identical nodes in the opposite order, every arrow meaning `then`, and that is the plan you execute.
+A pair of diagrams over the same nodes. The first opens on the goal and walks outward, every arrow meaning `requires`, until it lands on what you already hold. The second runs over the identical nodes in the opposite order, every arrow meaning `then`, and that is the plan you execute.
 
-The mirror is the point. The goal sits at the left end of the derivation, because it is where the thinking starts, and at the right end of the plan, because it is where the doing ends. Watching it change ends is what the reader takes away.
+They are mirror images, and that is the point. The goal sits at the left end of the derivation, because it is where the thinking starts, and at the right end of the plan, because it is where the doing ends. Watching it change ends is what the reader takes away.
 
 The pair is also the unit. One diagram alone is half the argument: the derivation with no plan tells the reader nothing to do on Monday, and the plan with no derivation looks like five steps someone made up.
 
@@ -40,9 +40,7 @@ Both diagrams are `LR`. Never `TD`, which would claim the goal contains its requ
 
 What separates them is which end the goal sits at. In the derivation the goal is the leftmost node and the arrows walk away from it, so the reader meets the goal first and every arrow after it answers "requires what". In the execution the goal is the rightmost node and the arrows walk toward it. Nothing else changes position, so the two diagrams read as one picture reflected.
 
-Both directions are the reader's own scan order, which is the whole reason for drawing it this way. Laying the derivation out right to left puts its conclusion under the reader's eye before its premise, and asks them to read every arrow backwards to recover the argument.
-
-Never put both meanings in one graph. A diagram holding some arrows that mean `requires` and some that mean `then` gives the reader no way to read any arrow, and splitting it into this pair is the fix. This is easier to do by accident now that both diagrams face the same way, so the `requires` label on every derivation arrow is not optional.
+Never put both meanings in one graph. A diagram holding some arrows that mean `requires` and some that mean `then` gives the reader no way to read any arrow, and splitting it into this pair is the fix. Since both diagrams face the same way, the `requires` label on every derivation arrow is what keeps them apart, and it is not optional.
 
 Both diagrams are one horizontal row, so the spine has to stay short. Section 8 sets the count.
 
@@ -62,9 +60,7 @@ The goal carries 🎯, the ground carries 🔑 in the derivation only, materials
 
 The derivation stops at the ground, which is the first answer to `requires what` that you already have or can start this week. A chain bottoming out on something you cannot start is not finished, and saying so is the most useful thing this pattern does.
 
-Materials are the documents, data, and access already in your possession, and they attach to the ground node and nowhere else. Clustered there they become the picture of your starting position, which is the one thing a goal-first diagram is otherwise silent about, and the reader can see the whole inventory in a glance without reading a word of prose.
-
-Attaching a material mid spine is the mistake to watch for. If a stage needs something you do not yet hold, obtaining it is a stage of its own, and drawing it as a material quietly claims you already have it.
+Materials are the documents, data, and access already in your possession, and they attach to the ground node and nowhere else, where they cluster into a picture of your starting position. If a stage needs something you do not yet hold, obtaining it is a stage of its own, because drawing it as a material quietly claims you already have it.
 
 No diamonds. A requirement is not a question. No hexagons, because a derivation has no gates.
 
@@ -98,9 +94,9 @@ The amber ground is the hinge: last node of the derivation, first node of the pl
 
 ## 7. Arrows
 
-In the derivation every arrow is `-->|requires|`, with no exceptions and no other label. The right to left direction alone does not tell a reader the arrow means requires, and without the label the pair reads as two diagrams that contradict each other.
+In the derivation every arrow is `-->|requires|`, with no exceptions and no other label. Both diagrams face the same way, so the label is the only thing separating them, and without it the pair reads as two diagrams that contradict each other.
 
-In the execution every arrow is a bare `-->` with no label. Order is already carried by the direction.
+In the execution every arrow is a bare `-->` with no label. Order is already carried by reading order.
 
 No dotted arrows and no thick arrows in either diagram.
 
@@ -112,7 +108,7 @@ The spine is 4 to 6 nodes counting the goal, plus 0 to 3 materials at the ground
 
 Below 4 the derivation is a single hop, which is a sentence rather than a diagram. Write the sentence.
 
-At 6 the row is full, so hold every label to three words. Above 6 it stops reading, and there is no vertical escape hatch here because `TD` would claim a hierarchy the chain does not have. Merge adjacent stages until it fits. If nothing merges, the goal is too far away, so cut a milestone out of the middle, make it the goal of a first pair, and make it the ground of a second.
+At 6 the row is full. What fills it is total label width rather than the node count, so keep the spine under about twenty words in all, and count them when it is close. Above 6 it stops reading, and there is no vertical escape hatch here because `TD` would claim a hierarchy the chain does not have. Merge adjacent stages until it fits. If nothing merges, the goal is too far away, so cut a milestone out of the middle, make it the goal of a first pair, and make it the ground of a second.
 
 ---
 
@@ -207,7 +203,7 @@ flowchart LR
     C["Meet 3 Target JDs"] -->|requires| B
 ```
 
-Two arrows land on the same node and they mean opposite things, one saying work flows in and the other saying it is a precondition. Relabelling the arrows does not fix it. Splitting into the pair does. Both diagrams facing the same way makes this the easiest mistake in the pattern to make.
+Two arrows land on the same node and they mean opposite things, one saying work flows in and the other saying it is a precondition. Relabelling the arrows does not fix it. Splitting into the pair does. This is the easiest mistake in the pattern to make.
 
 A goal nobody can check, on a chain that never lands.
 
@@ -262,7 +258,7 @@ The pair never ships bare. Four word labels cannot hold a reason, and a derivati
 
 **A scenario sentence above the derivation.** It names where the reader stands and what they are aiming at, in that order, in one or two sentences. The diagram assumes a starting position, and stating it is what stops the goal from reading as a fantasy.
 
-**A bullet under the derivation, one per arrow.** Each begins by asserting the requirement in the form `A requires B`, then gives the reason B is genuinely required and not merely helpful. The last bullet is the one that earns the diagram: it says what the ground node consists of and why nothing further is needed. Writing these is also how the derivation gets checked, and an arrow whose bullet will not write is an arrow that was wishful.
+**A bullet under the derivation, one per spine arrow.** Each begins by asserting the requirement in the form `A requires B`, then gives the reason B is genuinely required and not merely helpful. The arrows into the materials share a single closing bullet, since they make one claim between them: that the chain has landed on things already in hand. That closing bullet is the one that earns the diagram. Writing these is also how the derivation gets checked, and an arrow whose bullet will not write is an arrow that was wishful.
 
 **A takeaway sentence under the execution diagram**, beginning "The takeaway from this pair is". It says why the plan is as short as it is, or as long, rather than describing the boxes.
 
@@ -277,7 +273,7 @@ A bullet per step under the execution diagram is optional. Add it when finishing
 - Exactly one `dbl-circ` carrying 🎯, and someone other than you could tell whether it has been met.
 - Exactly one ground node, `lean-r` with 🔑 in the derivation and `stadium` in the execution.
 - The ground is something you already have or can start this week.
-- The spine is 4 to 6 nodes, and at 6 every label is three words.
+- The spine is 4 to 6 nodes, and under about twenty words of label in total.
 - Materials are 0 to 3 `doc` nodes, all attached to the ground, none mid spine, and every one is genuinely already in hand.
 - Derivation labels are states, execution labels are actions.
 - Every derivation arrow is `-->|requires|`, every execution arrow is a bare `-->`.
@@ -286,6 +282,6 @@ A bullet per step under the execution diagram is optional. Add it when finishing
 - No diamonds, no hexagons, no dotted or thick arrows.
 - Every label is four words or fewer.
 - A scenario sentence sits above the derivation, naming the starting position and the goal.
-- Every derivation arrow has its own bullet asserting the requirement and giving the reason.
+- Every spine arrow has its own bullet asserting the requirement and giving the reason, and the materials share a closing one.
 - The takeaway sentence is written and states a conclusion.
 - Both diagrams parse.
