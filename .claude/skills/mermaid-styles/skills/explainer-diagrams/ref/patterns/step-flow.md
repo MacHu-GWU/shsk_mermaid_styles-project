@@ -23,6 +23,7 @@ Typical fits are a release process, an onboarding sequence, a request lifecycle,
 | Named artifacts handed from each step to the next | `io-pipeline.md` |
 | Dated events rather than ordered stages | `timeline.md` |
 | A chain derived backwards from a goal | `working-backwards-chain.md` |
+| Two or more parties taking turns, with replies | `exchange.md` |
 
 The third row is the one that gets confused. If you can name what each step hands over (a spec, a dataset, a build), it is an IO Pipeline and those artifacts must be drawn. If the answer is only "it moves to the next step", it is a Step Flow.
 

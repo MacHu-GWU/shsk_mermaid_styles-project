@@ -23,6 +23,7 @@ Typical fits are a data pipeline, a hiring loop, a content production process, a
 | Steps that hand over nothing nameable | `step-flow.md` |
 | Branching, where the next step depends on an answer | `decision-tree.md` |
 | One question fanning out to responses | `triage-map.md` |
+| Parties taking turns, with messages flowing back | `exchange.md` |
 | Static positions something flows through, with no steps | `niche-map.md` |
 | A chain derived backwards from a goal | `working-backwards-chain.md` |
 
