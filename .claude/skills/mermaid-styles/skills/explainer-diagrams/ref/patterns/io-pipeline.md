@@ -2,15 +2,17 @@
 
 ## 1. What It Is
 
-A vertical chain of steps where the thing each step hands to the next is drawn as its own node. The spine alternates actions and documents: a step produces an artifact, and that same artifact node is what the next step consumes. Inputs arriving from outside hang beside the step that uses them, byproducts hang beside the step that makes them, and the solid line down the middle is the pipeline.
+A pipeline drawn one step per diagram. The unit is a set of diagrams: an overview showing the steps in order, then one block per step showing everything that step consumes on the left and everything it produces on the right.
+
+What connects the blocks is not arrows but names. Every step has an ID (`s1`, `s2`, ...), every artifact's label starts with the ID of the step that produced it, and when a later block consumes an earlier artifact it repeats the identical label. The wire that would have crossed the whole picture is replaced by a name the reader can match in one glance.
 
 ---
 
 ## 2. When To Use
 
-The content is a sequence of steps and every handover has a noun. A spec, a dataset, a shortlist, a build. The test is whether you can finish the sentence "this step hands over ___" for every step, and whether those nouns are the interesting part: what gets produced, who consumes it, what has to arrive from outside.
+The content is a sequence of steps where every handover has a noun (a dataset, a shortlist, a draft) and the interesting questions are "what does this step need" and "where did that come from". The tell is fan: some step consumes several things, produces several things, or consumes something made two steps ago. One picture holding all of that is wires crossing wires, which is exactly what this pattern exists to avoid.
 
-Typical fits are a data pipeline, a hiring loop, a content production process, a build and release chain, or any workflow where "where does that file come from" is the question readers actually ask.
+Typical fits are a data pipeline, a hiring loop, a content production process, a paper from data collection to submission, or a month end close.
 
 ---
 
@@ -30,39 +32,41 @@ The first row is the mirror of Step Flow's routing here. If the answer to "what 
 
 ## 4. Direction
 
-Always `TD`. The spine alternates steps and artifacts, so even three steps put six nodes in a line, which is past what one row holds at readable size.
+Every diagram in the unit is `LR`. The overview reads left to right as time order. Each block reads left to right as flow through the step: inputs, then the step, then outputs.
 
-Never `LR`, `RL`, or `BT`.
+Never `TD`, `RL`, or `BT`.
 
 ---
 
 ## 5. Shapes
 
-| Role | Shape | Syntax | Count |
+| Role | Shape | Syntax | Where |
 | :--- | :--- | :--- | :--- |
-| Step | Rounded rectangle | `@{ shape: rounded }` | 2 to 4 |
-| Handover artifact | Document | `@{ shape: doc }` | 1 between each step pair |
-| Final deliverable | Document | `@{ shape: doc }` | Exactly 1, last node |
-| External input | Lean right | `@{ shape: lean-r }` | 0 to 3, beside its consumer |
-| Byproduct | Document | `@{ shape: doc }` | 0 to 2, beside its producer |
+| Step | Rounded rectangle | `@{ shape: rounded }` | Overview, and center of its own block |
+| Artifact | Document | `@{ shape: doc }` | Right side of the block that makes it, left side of every block that uses it |
+| External input | Lean right | `@{ shape: lean-r }` | Left side of the block that uses it |
 
-Two rules carry the whole pattern.
+The ID convention is the load bearing rule, so here it is in full.
 
-Every step to step transition passes through a document node. A bare arrow between two steps means the handover has no name, and a handover with no name means the content is a Step Flow.
+- A step's label is `s<n>: <name>`, as in `s2: Draft`. The same label appears in the overview and in the step's own block.
+- An artifact's label is `s<n>: <name>` where `<n>` is the step that produced it, as in `s1: Outline`. The label is written once and repeated character for character everywhere the artifact appears.
+- An external input, meaning anything no step in this pipeline produced, has no prefix at all, as in `Style Guide`.
 
-An artifact is drawn exactly once. If a later step consumes an earlier artifact, draw a second arrow out of the same node, never a copy of the node.
+So on the left side of any block, the reader sorts provenance without moving their eyes: a lean right node with a bare label came from outside, and a document carrying `s1:` was made by step 1. Shape and prefix say the same thing twice, which is what makes it one glance.
 
-No plain rectangles anywhere, so nothing hanging beside a step can be misread as something the step owns. No diamonds, since a pipeline that branches is a Decision Tree. No stadiums, because the entry points are the external inputs and the lean-right shape already marks them. No double circles, because a pipeline ends in a deliverable and runs again next week, not in a goal reached once. No hexagons, because a pipeline long enough to need milestones is two pipelines, and section 8 says where to cut.
+The `<name>` part obeys the four word limit; the prefix rides on top and does not count.
 
-Emoji: 📄 on the final deliverable only, and 🔑 on at most one external input, the one whose absence stalls everything. Every other node stays bare.
+No diamonds, since a pipeline that branches is a Decision Tree. No stadiums, hexagons, double circles, or plain rectangles.
 
-Below Mermaid v11.3 the `@{ shape: ... }` form is unavailable. Substitute `S("Step")` and `I[/"Input"/]`, and write artifacts as plain `A["📄 Name"]` rectangles with the emoji in front of every artifact label, since the document shape has no classic form and the emoji must then do its job.
+Emoji: 📄 on the final deliverable only, in the last block. Nothing else carries one.
+
+Below Mermaid v11.3 the `@{ shape: ... }` form is unavailable. Substitute `S("s1: Research")`, `I[/"Style Guide"/]`, and plain `A["s1: Outline"]` rectangles for artifacts, keeping the quotes.
 
 ---
 
 ## 6. Color
 
-The default is no color at all. The budget is one node: the `accent` class may mark the single artifact the surrounding writing centers on, which is usually the one consumed more than once.
+Steps are never colored, and there is no such thing as a per step color. The palette here is fixed at one class, and the only permitted use is marking one artifact the surrounding writing centers on, in every block where that artifact appears. The repeated amber is what ties the blocks into one story.
 
 ```text
 classDef accent fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
@@ -70,143 +74,198 @@ classDef accent fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
 
 Copy all three properties or none. Dropping `color` leaves the text color to the theme, so a diagram that reads in GitHub light mode turns pale on pale in dark mode.
 
-Steps are never colored. In this pattern the steps are plumbing and the artifacts are the content, so a highlighted step points the reader at the wrong half of the diagram.
+Provenance is carried by the ID prefix, never by color. Section 11 shows what happens when color tries to do this job.
 
 ---
 
 ## 7. Arrows
 
-Solid `-->` on the spine and nowhere else. Every arrow that touches the spine from the side is dotted: external inputs in, byproducts out, and reuse of an earlier artifact by a later step. One glance separates the pipeline from its traffic.
+Every arrow in every diagram is a bare solid `-->`. In the overview it means "then". In a block it means "goes in" on the left of the step and "comes out" on the right, and position already says which.
 
-Everything drawn is required. An optional input does not get a dotted arrow, it gets left out of the diagram and mentioned in the prose.
-
-No labels. An artifact name belongs in a document node, not on an arrow, and a label stating a condition means the content branches, which makes it a Decision Tree. No thick arrows, because an unbranching spine has no other path to be emphasized against.
+No labels, no dotted arrows, no thick arrows. Everything drawn is required: an optional input does not get a special arrow, it gets left out of the diagram and mentioned in the prose.
 
 ---
 
 ## 8. Length
 
-Two to four steps. One step is a sentence, not a diagram. Four steps already put eight nodes on the spine, and with a normal load of inputs and byproducts the diagram brushes twelve nodes total, which is the ceiling.
+Two to six steps. Past six, group the steps into named phases and draw one unit per phase.
 
-Past four steps, split at an artifact rather than at a step: the document that ends the first diagram is the same node that opens the second, so the two read as one pipeline with a page break instead of two unrelated pictures. The fix is never a smaller font.
+Per block: one to four inputs and one to three outputs. A step that wants more than that is two steps wearing one box, and splitting it is the fix. A block therefore never exceeds eight nodes, and the overview never exceeds six.
+
+Every output must be consumed by a later block, be the final deliverable, or earn one clause in the prose saying who outside the pipeline receives it. An output nothing receives is clutter.
 
 ---
 
-## 9. Canonical Example, Hiring Loop
+## 9. Canonical Example
 
-Three steps, two handovers, a final deliverable, and three external inputs. No color, because the prose this diagram belongs to discusses the whole loop rather than one artifact.
-
-> ```mermaid
-> flowchart TD
->     JD@{ shape: lean-r, label: "🔑 Job Description" }
->     R@{ shape: lean-r, label: "Applicant Resumes" }
->     S1@{ shape: rounded, label: "Screen Resumes" }
->     A1@{ shape: doc, label: "Shortlist" }
->     RB@{ shape: lean-r, label: "Interview Rubric" }
->     S2@{ shape: rounded, label: "Run Interviews" }
->     A2@{ shape: doc, label: "Scorecards" }
->     S3@{ shape: rounded, label: "Debrief and Decide" }
->     F@{ shape: doc, label: "📄 Offer Letter" }
+> Publishing a technical blog post, in three steps. First the overview, which is the map the IDs index into.
 >
->     JD -.-> S1
->     R -.-> S1
->     S1 --> A1 --> S2
->     RB -.-> S2
->     S2 --> A2 --> S3
->     S3 --> F
+> ```mermaid
+> flowchart LR
+>     S1@{ shape: rounded, label: "s1: Research" }
+>     S2@{ shape: rounded, label: "s2: Draft" }
+>     S3@{ shape: rounded, label: "s3: Edit and Publish" }
+>
+>     S1 --> S2 --> S3
 > ```
 >
-> The takeaway from this diagram is that the offer at the bottom is only as good as the two documents above it, so a weak shortlist cannot be repaired by a strong interview day.
-
----
-
-## 10. Canonical Example, Data Pipeline
-
-Three steps again, this time with a byproduct hanging off the first step and one artifact reused by a later step. That reuse is the dotted edge from Clean Events down to Publish Dashboard, drawn out of the original node, and it is why Clean Events carries the accent.
-
-> ```mermaid
-> flowchart TD
->     L@{ shape: lean-r, label: "🔑 Raw Event Logs" }
->     C@{ shape: lean-r, label: "Schema Config" }
->     S1@{ shape: rounded, label: "Clean and Dedupe" }
->     A1@{ shape: doc, label: "Clean Events" }
->     RJ@{ shape: doc, label: "Rejects Report" }
->     S2@{ shape: rounded, label: "Aggregate Daily" }
->     A2@{ shape: doc, label: "Daily Metrics" }
->     S3@{ shape: rounded, label: "Publish Dashboard" }
->     F@{ shape: doc, label: "📄 Live Dashboard" }
+> **s1: Research** turns the topic brief into the two documents everything downstream runs on.
 >
->     L -.-> S1
->     C -.-> S1
->     S1 --> A1 --> S2
->     S1 -.-> RJ
->     S2 --> A2 --> S3
->     A1 -.-> S3
->     S3 --> F
+> ```mermaid
+> flowchart LR
+>     T@{ shape: lean-r, label: "Topic Brief" }
+>     S1@{ shape: rounded, label: "s1: Research" }
+>     N@{ shape: doc, label: "s1: Source Notes" }
+>     O@{ shape: doc, label: "s1: Outline" }
+>
+>     T --> S1
+>     S1 --> N
+>     S1 --> O
 >
 >     classDef accent fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
->     class A1 accent
+>     class N accent
 > ```
 >
-> The takeaway from this diagram is that everything downstream is a view over Clean Events, so that one artifact is where data quality is won or lost.
+> **s2: Draft** consumes both research artifacts plus one external input. Every node on the left announces its origin: two documents marked `s1:`, one bare lean right from outside.
+>
+> ```mermaid
+> flowchart LR
+>     O@{ shape: doc, label: "s1: Outline" }
+>     N@{ shape: doc, label: "s1: Source Notes" }
+>     G@{ shape: lean-r, label: "Style Guide" }
+>     S2@{ shape: rounded, label: "s2: Draft" }
+>     D@{ shape: doc, label: "s2: Draft Post" }
+>
+>     O --> S2
+>     N --> S2
+>     G --> S2
+>     S2 --> D
+>
+>     classDef accent fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
+>     class N accent
+> ```
+>
+> **s3: Edit and Publish** reaches back past step 2: the `s1:` prefix on Source Notes says so without a wire. The snippets go to the social queue.
+>
+> ```mermaid
+> flowchart LR
+>     D@{ shape: doc, label: "s2: Draft Post" }
+>     N@{ shape: doc, label: "s1: Source Notes" }
+>     S3@{ shape: rounded, label: "s3: Edit and Publish" }
+>     P@{ shape: doc, label: "📄 s3: Published Post" }
+>     X@{ shape: doc, label: "s3: Social Snippets" }
+>
+>     D --> S3
+>     N --> S3
+>     S3 --> P
+>     S3 --> X
+>
+>     classDef accent fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
+>     class N accent
+> ```
+>
+> The takeaway from this pipeline is that Source Notes feeds every later step, so the quality of the published post is set in step 1, before a single sentence of it is written.
 
-The reuse edge is the only long line this pattern ever produces, and it is long because the content really does skip a step, not because the layout failed.
+Source Notes carries the amber in all three blocks because the takeaway is about it. That is the whole color budget, spent on one artifact three times.
+
+---
+
+## 10. Reach
+
+The example is one writer and one post, which is the smallest thing this pattern draws. It fits any process whose handovers have nouns, at any scale, and the name should not stop you: "IO" is how engineers say it, but most pipelines in this list contain no code.
+
+- **A hiring loop.** Screen, interview, decide. The scorecards block consumes the shortlist made two steps back, and the offer letter is the final 📄.
+- **An ML training run.** Prepare, train, evaluate. The eval block consumes `s1: Eval Set` next to `s2: Checkpoint`, and keeping those prefixes straight is the whole audit.
+- **A month end close.** Reconcile, adjust, report. Every input is a statement some earlier step produced, and the auditors read the provenance exactly like the prefixes do.
+- **An academic paper.** Collect, analyze, write. The revision consumes figures made in analysis, months later, which no single diagram survives drawing.
+- **A data migration.** Snapshot, transform, validate. The validation block consumes both the mapping table and the original snapshot, one step back and two.
+- **A grant application.** Gather, budget, write, submit. The submission packet block is nothing but earlier outputs converging.
+- **An incident postmortem.** Respond, investigate, review. The review consumes the timeline log written during response, and the action items are the deliverable.
+- **B2B customer onboarding.** Contract, configure, train. The training block consumes the config workbook and the signed order form, one internal and one external.
+- **A release.** Build, stage, ship. The ship block consumes the build artifact and the release notes, made by different steps.
+- **Anything at all** where every handover has a noun and at least one noun is consumed by a step that did not make it. That test, from section 2, is the only membership rule.
 
 ---
 
 ## 11. Bad Examples
 
-One artifact drawn twice.
+The whole pipeline merged into one diagram.
 
 ```mermaid
 flowchart TD
-    S1("Screen Resumes") --> O1["Shortlist"]
-    I1[/"Shortlist"/] --> S2("Run Interviews")
-    S1 --> S2
+    T[/"Topic Brief"/] --> S1("Research")
+    S1 --> N["Source Notes"]
+    S1 --> O["Outline"]
+    O --> S2("Draft")
+    N --> S2
+    G[/"Style Guide"/] --> S2
+    S2 --> D["Draft Post"]
+    D --> S3("Edit and Publish")
+    N --> S3
+    S3 --> P["Published Post"]
+    S3 --> X["Social Snippets"]
 ```
 
-The shortlist appears as an output box and again as an input box, with nothing connecting them, so the reader has to guess they are the same thing. One document, one node, arrows out to every consumer.
+Twelve nodes at three steps, the ceiling already hit, and the reuse edge from Source Notes down to the third step crosses everything between them. Every step added from here adds crossings, so the merge only ever worked as a toy. Cut one block per step and let the prefixes replace the wires.
 
-Artifacts demoted to arrow labels.
+An input with no prefix.
 
 ```mermaid
-flowchart TD
-    S1("Screen Resumes") -->|shortlist| S2("Run Interviews") -->|scorecards| S3("Debrief and Decide")
+flowchart LR
+    D@{ shape: doc, label: "Draft Post" }
+    N@{ shape: doc, label: "Source Notes" }
+    S3@{ shape: rounded, label: "Edit and Publish" }
+    P@{ shape: doc, label: "Published Post" }
+
+    D --> S3
+    N --> S3
+    S3 --> P
 ```
 
-The handovers are the content of this pattern, and here they are decorations on arrows: they cannot be consumed by a later step, cannot carry the accent, and vanish when the reader skims shapes. Promote them to document nodes.
+The document shape says these were produced earlier, but by which step? The reader has to replay every previous block to find out, which is the exact work the IDs exist to delete.
 
-A spine with bare transitions.
+Provenance by color instead of text.
 
 ```mermaid
-flowchart TD
-    S1("Collect Requirements") --> S2("Draft Spec")
-    S2 --> A["Spec v1"]
-    A --> S3("Review Spec")
-    S3 --> S4("Approve")
+flowchart LR
+    O@{ shape: doc, label: "Outline" }
+    N@{ shape: doc, label: "Source Notes" }
+    S2@{ shape: rounded, label: "Draft" }
+    D@{ shape: doc, label: "Draft Post" }
+
+    O --> S2
+    N --> S2
+    S2 --> D
+
+    classDef step1 fill:#D6E4FF,stroke:#2B6CB0,color:#1A365D
+    classDef step2 fill:#E9D8FD,stroke:#6B46C1,color:#322659
+
+    class O,N step1
+    class S2,D step2
 ```
 
-Two transitions pass through a document and two do not, so the reader cannot tell whether the bare arrows lost their artifact or never had one. Name every handover, or drop the one document and draw a Step Flow.
+One color per step means the palette grows with the pipeline: ten steps is ten colors nobody can hold in memory, each needing its own light and dark tuning, and all of it says what a three character prefix says exactly. Color marks emphasis here, never origin.
 
 ---
 
-## 12. Caption Convention
+## 12. Prose Convention
 
-Follow every IO Pipeline with one sentence in the prose beginning "The takeaway from this diagram is", stating the conclusion rather than describing the boxes. For this pattern the conclusion is usually about an artifact, not a step: which document everything depends on, or which handover is the bottleneck. If the sentence cannot be written, the diagram has no point of view and should be cut.
+One sentence above the overview naming the process and the step count. One bold lead line before each block, `**s2: Draft**` followed by a sentence saying what the step turns into what. After the last block, one sentence beginning "The takeaway from this pipeline is", stating a conclusion about an artifact rather than describing the boxes: which document everything depends on, or which handover is the bottleneck. If that sentence cannot be written, the pipeline has no point of view and a Step Flow would have done.
 
 ---
 
 ## 13. Checklist
 
-- Every step to step transition passes through a document node.
-- Every artifact appears exactly once; reuse is a second dotted arrow out of the same node.
-- Direction is `TD`.
-- 2 to 4 steps, 12 nodes total at most.
-- Spine arrows are bare solid `-->`; every off spine arrow is dotted; no labels, no thick arrows.
-- Only rounded rectangles, documents, and lean right inputs. No plain rectangles, diamonds, stadiums, hexagons, or double circles.
-- 📄 on the final deliverable only; 🔑 on at most one external input; all other nodes bare.
-- At most one `accent`, on an artifact, never on a step, with `fill`, `stroke`, and `color` all set.
-- Every input drawn is required; optional inputs live in the prose.
-- Every label is four words or fewer.
-- The caption sentence is written and states a conclusion about an artifact.
-- The diagram parses.
+- The unit is complete: one overview plus one block per step, in step order.
+- Every diagram is `LR`.
+- Step labels are `s<n>: <name>` and identical between the overview and the block.
+- Every artifact label carries the prefix of its producing step, repeated character for character everywhere it appears.
+- External inputs are lean right with no prefix; artifacts are documents with one. No other shapes.
+- 2 to 6 steps; each block has 1 to 4 inputs, 1 to 3 outputs, 8 nodes at most.
+- Every output is consumed later, is the final deliverable, or has a prose clause naming its receiver.
+- Every arrow is a bare solid `-->`.
+- No per step colors. At most one `accent` artifact, colored in every block it appears in, with `fill`, `stroke`, and `color` all set.
+- 📄 on the final deliverable only.
+- Every `<name>` is four words or fewer.
+- The lead lines and the takeaway sentence are written, and the takeaway is about an artifact.
+- Every diagram in the unit parses.
