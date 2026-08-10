@@ -94,7 +94,7 @@ The amber ground is the hinge: last node of the derivation, first node of the pl
 
 ## 7. Arrows
 
-In the derivation every arrow is `-->|requires|`, with no exceptions and no other label. Both diagrams face the same way, so the label is the only thing separating them, and without it the pair reads as two diagrams that contradict each other.
+In the derivation every arrow is `-->|requires|`, with no exceptions and no other label.
 
 In the execution every arrow is a bare `-->` with no label. Order is already carried by reading order.
 
@@ -155,8 +155,6 @@ The chain ends in two grey documents, and that cluster is the answer to "where d
 
 ## 10. Canonical Example, The Execution
 
-The same eight nodes, reflected. Nothing new is introduced and nothing is dropped, which is the whole claim: this plan was not chosen, it was forced. The documents you hold have moved to the left edge, the ground has become a stadium, the states have become imperatives, and the goal has crossed to the far side.
-
 > ```mermaid
 > flowchart LR
 >     R1@{ shape: doc, label: "📄 Three Target JDs" }
@@ -191,6 +189,8 @@ The same eight nodes, reflected. Nothing new is introduced and nothing is droppe
 >
 > The takeaway from this pair is that reaching the target roles is five moves from documents already sitting on your disk, and the reason there are five rather than fifty is that every one of them was forced by the goal rather than picked off a list of good habits.
 
+The same eight nodes, reflected. Nothing new is introduced and nothing is dropped, which is the whole claim: this plan was not chosen, it was forced. The documents you hold have moved to the left edge, the ground has become a stadium, the states have become imperatives, and the goal has crossed to the far side.
+
 ---
 
 ## 11. Reach
@@ -210,7 +210,7 @@ The pair above is one person aiming at a job, which is the smallest thing this p
 
 The unifying test is section 2 and nothing else. If `X requires Y` and `Y then X` both stay true down the whole spine, if someone other than you can tell when the goal has been met, and if the chain lands on something already in your possession, it is this pattern at any scale and in any of these.
 
-What it is not is a Step Flow in different colors. This pattern answers "why these steps and not five others", so if nobody would have asked that, the derivation is a diagram nobody needed. Draw the plan alone and let it be a Step Flow.
+What it is not is a plain plan in different colors. This pattern answers "why these steps and not five others", so if nobody would have asked that, the derivation is a diagram nobody needed. Draw the plan alone as `step-flow.md`.
 
 ---
 

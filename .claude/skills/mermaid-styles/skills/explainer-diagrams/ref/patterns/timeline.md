@@ -154,7 +154,7 @@ timeline
     Ship : Deploy to production
 ```
 
-No tick is a date, so the axis measures nothing and the spacing is fiction. This is a Step Flow.
+No tick is a date, so the axis measures nothing and the spacing is fiction. These are ordered stages, and they belong in `step-flow.md`.
 
 Four date formats in one column.
 

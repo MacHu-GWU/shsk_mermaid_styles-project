@@ -25,7 +25,7 @@ Typical fits are a release process, an onboarding sequence, a request lifecycle,
 | A chain derived backwards from a goal | `working-backwards-chain.md` |
 | Two or more parties taking turns, with replies | `exchange.md` |
 
-The third row is the one that gets confused. If you can name what each step hands over (a spec, a dataset, a build), it is an IO Pipeline and those artifacts must be drawn. If the answer is only "it moves to the next step", it is a Step Flow.
+The third row is the one that gets confused. If you can name what each step hands over (a spec, a dataset, a build), those artifacts are the content and belong in `io-pipeline.md`. If the answer is only "it moves to the next step", it is a Step Flow.
 
 ---
 
@@ -52,7 +52,7 @@ Never `RL` or `BT`.
 
 Both terminals are stadiums, and position plus color is what tells them apart.
 
-No diamonds. A diamond promises a second outgoing arrow, and this pattern has no branches however procedural a step feels. Wanting one means the content is a Decision Tree.
+No diamonds. A diamond promises a second outgoing arrow, and this pattern has no branches however procedural a step feels. Wanting one means the content branches, and this is not the pattern.
 
 No double circles. A Step Flow describes a process that runs again next week, not a goal reached once.
 
@@ -88,7 +88,7 @@ Pick the key step by asking where work can be sent backwards, not where the time
 
 ## 7. Arrows
 
-Every arrow is a bare `-->`. No dotted arrows, no thick arrows, no labels, no step numbers. In an unbranching chain a label can only repeat the node it points at, and reading order already supplies the numbering. An arrow that needs a label to state a condition is a branch, so the content is a Decision Tree.
+Every arrow is a bare `-->`. No dotted arrows, no thick arrows, no labels, no step numbers. In an unbranching chain a label can only repeat the node it points at, and reading order already supplies the numbering. An arrow that needs a label to state a condition is a branch, so the content belongs in `decision-tree.md`.
 
 ---
 
@@ -101,8 +101,6 @@ There is no hard ceiling, but past about a dozen steps a vertical chain stops re
 ---
 
 ## 9. Canonical Example, Short Form
-
-Five short labels, so the row still reads and the chain runs horizontal. No key step, because nothing needs pointing at when the whole thing is visible at once.
 
 > ```mermaid
 > flowchart LR
@@ -123,11 +121,11 @@ Five short labels, so the row still reads and the chain runs horizontal. No key 
 >
 > The takeaway from this diagram is that shipping a change is one straight line with a single human gate in the middle, and nothing on that line is optional.
 
+Five short labels, so the row still reads and the chain runs horizontal. No key step, because nothing needs pointing at when the whole thing is visible at once.
+
 ---
 
 ## 10. Canonical Example, Long Form
-
-Twelve steps, far past what a row can hold, so the chain runs vertical and two gates are marked.
 
 > ```mermaid
 > flowchart TD
@@ -157,7 +155,7 @@ Twelve steps, far past what a row can hold, so the chain runs vertical and two g
 >
 > The takeaway from this diagram is that a feature passes through two gates on its way to production, and everything between them is execution.
 
-Design Review and QA Sign Off are the only two stages where work can be sent back, which is why they carry the hexagons. Implement would have been the wrong pick: it is where the time goes, not where the risk sits.
+Twelve steps, far past what a row can hold, so the chain runs vertical and two gates are marked. Design Review and QA Sign Off are the only two stages where work can be sent back, which is why they carry the hexagons. Implement would have been the wrong pick: it is where the time goes, not where the risk sits.
 
 ---
 
@@ -182,7 +180,7 @@ flowchart TD
     C --> D
 ```
 
-This reads as the spec owning two teams rather than work splitting and rejoining. Flatten parallel work into one ordered chain, or draw it as an IO Pipeline.
+This reads as the spec owning two teams rather than work splitting and rejoining. Flatten parallel work into one ordered chain, or draw it as `io-pipeline.md`.
 
 Diamonds on steps that do not branch.
 
@@ -195,9 +193,11 @@ Each diamond promises a second outgoing arrow, and when none exists the reader s
 
 ---
 
-## 12. Caption Convention
+## 12. Prose Convention
 
-Follow every Step Flow with one sentence in the prose beginning "The takeaway from this diagram is", stating the conclusion rather than describing the boxes. "The diagram above shows the twelve steps of the release process" is weak, because the reader can already see that. If the sentence cannot be written, the diagram has no point of view and should be cut.
+**Below the diagram, one takeaway sentence** beginning "The takeaway from this diagram is", stating the conclusion rather than describing the boxes. "The diagram above shows the twelve steps of the release process" is weak, because the reader can already see that. If the sentence cannot be written, the diagram has no point of view and should be cut.
+
+Nothing is required above the diagram. The shapes carry start, gate, and end on their own, and a chain that needs a sentence to be readable is not unbranching.
 
 ---
 
@@ -213,5 +213,5 @@ Follow every Step Flow with one sentence in the prose beginning "The takeaway fr
 - Every arrow is a bare `-->` with no label.
 - Every `classDef` carries `fill`, `stroke`, and `color`.
 - Every label is four words or fewer, and none joins two steps with "and".
-- The caption sentence is written and states a conclusion.
+- The takeaway sentence is written and states a conclusion.
 - The diagram parses.

@@ -12,7 +12,7 @@ Drawn once, it is a classification. Drawn with the same items at two dates, it b
 
 You hold a set of comparable items and two independent judgments about them, each a matter of degree, and where an item lands changes what you do with it.
 
-The working test is a sentence filled four times: high on both is one situation, low on both is another, and each mixed case is a situation of its own. When all four read as situations the reader will recognize as genuinely different, each with its own verdict, the plane has earned its place. Two quieter checks follow: every point answers the same two questions, and an item could sit anywhere along each axis. The verdict check is the one that fails silently: if two corners would carry the same instruction, one axis is not earning its place.
+The working test is a sentence filled four times: high on both is one situation, low on both is another, and each mixed case is a situation of its own. When all four read as situations the reader will recognize as genuinely different, each with its own verdict, the plane has earned its place. The verdict check is the one that fails silently: if two corners would carry the same instruction, one axis is not earning its place.
 
 ---
 
@@ -45,7 +45,7 @@ It moves the x axis poles below the plane, where axis text belongs. Without it M
 
 The poles stay short because of the y axis. Its labels render rotated 90 degrees along the left edge in every Mermaid version, with no directive to change it, and rotated text gets harder to read with every word, so of the two dimensions the y axis gets the poles you can say in one word.
 
-Right and up always mean more. Never phrase a pole so the high end reads as a negation. And an item must be able to sit anywhere between the poles: ends that name two kinds, as `B2B --> B2C`, are categories wearing an axis's clothing, and a point between them means nothing.
+Right and up always mean more. Never phrase a pole so the high end reads as a negation. Every point answers both questions, and an item must be able to sit anywhere between the poles: ends that name two kinds, as `B2B --> B2C`, are categories wearing an axis's clothing, and a point between them means nothing.
 
 Coordinates run 0 to 1 in steps of 0.05, no finer, because they are judgments rather than measurements, and a judgment axis does not support two decimals of precision.
 
@@ -222,7 +222,7 @@ quadrantChart
     API platform: [0.5, 0.5]
 ```
 
-B2B and B2C are kinds, not degrees of one quality, so the API platform at the center claims to be half of each, which means nothing. Two categorical questions is a Triage Map.
+B2B and B2C are kinds, not degrees of one quality, so the API platform at the center claims to be half of each, which means nothing. A question whose answers are kinds routes rather than measures, and belongs in `triage-map.md`.
 
 Verdicts written on the chart.
 
@@ -241,7 +241,7 @@ quadrantChart
     Code review queue: [0.6, 0.5]
 ```
 
-With points present, each `quadrant-` label pins to the top edge of its quadrant, and `DELEGATE IT` prints straight across the midline point. That is the renderer working as designed, not a bug to nudge coordinates around: the verdicts go in the table below the chart, and the `quadrant-` lines go nowhere.
+`DELEGATE IT` prints straight across the midline point, for the reason section 5 gives. That is the renderer working as designed, not a bug to nudge coordinates around: the verdicts go in the table below the chart, and the `quadrant-` lines go nowhere.
 
 One axis doing all the deciding.
 

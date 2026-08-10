@@ -30,7 +30,7 @@ At least one arrow points back to an earlier state. If every instance moves stri
 | The dated history of one particular instance | `timeline.md` |
 | Steps handing named artifacts to later steps | `io-pipeline.md` |
 
-The second row is the boundary that gets confused. A decision tree is walked once by a person holding facts, and it ends. A lifecycle is occupied: events arrive on their own schedule and the same state can host the same instance twice. The tell is that a thing can wait a week inside a state, and nobody waits inside a question.
+The second row is the boundary that gets confused, and occupancy is the test. A lifecycle is occupied: events arrive on their own schedule and the same state can host the same instance twice. A thing can wait a week inside a state, and nobody waits inside a question.
 
 ---
 
@@ -51,7 +51,7 @@ Place nothing by hand. Write the entry state first and the renderer lays the for
 
 The entry state is the condition a new instance is born into. Every other state is a rectangle, including terminal ones: a state with no outgoing arrows is visibly terminal, and color says whether that ending is the good one.
 
-Labels are statuses, four words or fewer: a noun or adjective condition like `Past Due`, `Merged`, `Changes Requested`. An imperative in a box is the tell that the content is a Step Flow.
+Labels are statuses, four words or fewer: a noun or adjective condition like `Past Due`, `Merged`, `Changes Requested`. An imperative in a box is the tell that the boxes are acts rather than conditions.
 
 No diamonds. When two arrows leave a state, their event labels already say what selects between them, and a diamond would invent a questioner standing outside the system. No self loops, because an event that changes nothing is not a transition. No double circles, no hexagons, no documents, no emoji.
 
@@ -97,9 +97,9 @@ Dotted edges mark overrides: the force merge, the manual reactivation, the escap
 
 ## 8. Length
 
-Three to seven states, four to ten transitions, and at least one back edge among them.
+3 to 7 states, 4 to 10 transitions, and at least one back edge among them.
 
-Below three states, or with no back edge, there is no lifecycle: write the sentence or draw the Step Flow. Past seven states or ten transitions the crossings take over, and the fix is to merge before splitting: two states that share all their outgoing transitions are one state wearing two names. If nothing merges, the content is two lifecycles, usually a coarse one whose states each hide a finer one.
+Below three states, or with no back edge, there is no lifecycle: write the sentence or draw the plain chain. Past seven states or ten transitions the crossings take over, and the fix is to merge before splitting: two states that share all their outgoing transitions are one state wearing two names. If nothing merges, the content is two lifecycles, usually a coarse one whose states each hide a finer one.
 
 ---
 
@@ -200,7 +200,7 @@ flowchart LR
     A["Open the PR"] --> B["Request a Review"] --> C["Push Fixes"] --> D["Merge It"]
 ```
 
-Every box is an action performed once, so nothing here can be occupied or re-entered, and the loop the content actually has, pushing fixes again and again, cannot even be drawn. Statuses in the boxes, events on the arrows.
+Every box is an action performed once, so nothing here can be occupied or re-entered, and the loop the content actually has — pushing fixes again and again — cannot even be drawn. Statuses in the boxes, events on the arrows.
 
 No way back.
 
@@ -214,7 +214,7 @@ flowchart LR
     Q -->|contract signed| W
 ```
 
-Statuses and labeled events, but every arrow points forward and no state is ever re-entered, so this is a Step Flow in borrowed clothes. The back edge is what buys this pattern; without one, draw the chain.
+Statuses and labeled events, but every arrow points forward and no state is ever re-entered, so nothing here can be occupied twice. The back edge is what buys this pattern; without one, draw the chain.
 
 Bare arrows.
 

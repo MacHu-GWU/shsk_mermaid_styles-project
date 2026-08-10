@@ -29,7 +29,7 @@ Typical fits are a sign-in flow, a payment authorization, a negotiation, a revie
 | Positions something flows through, with nobody taking turns | `niche-map.md` |
 | Dated events | `timeline.md` |
 
-The first row is the live boundary, and replies are the test. If no lane ever sends anything back, the lanes are stages wearing costumes, and the artifacts they pass forward should be drawn as an IO Pipeline.
+The first row is the live boundary, and replies are the test. If no lane ever sends anything back, the lanes are stages wearing costumes, and what they pass forward is the content rather than the turns.
 
 ---
 
@@ -52,13 +52,13 @@ The choice that remains is lane order. The initiator goes leftmost, so the first
 | Reply | `A-->>C: Session cookie` | Dotted, closes an open request |
 | Invariant | `Note over A: Never sees the password` | At most 1 per diagram |
 
-`autonumber` is the pattern's indexing rule, doing the job the `s<n>:` prefixes do in an IO Pipeline: the prose below the diagram refers to messages by number, so nothing on the diagram needs restating to be discussed.
+`autonumber` is the pattern's indexing rule: the prose below the diagram refers to messages by number, so nothing on the diagram needs restating to be discussed.
 
 Declare every party up front, humans as `actor`, everything else as `participant`. Display names and message labels are four words or fewer. A message label names what crosses the wire or what is being asked, as `Authorization code` or `Scoping questions`, never a paragraph of what happened.
 
 The note is the one piece of emphasis the pattern owns. It states the invariant the diagram exists to prove, pinned over the lane or lanes it protects, and a diagram whose note merely repeats a message wastes the only highlight it has.
 
-No self messages. Work a party does alone is invisible here on purpose: if it matters, the prose says so, and if it is the story, the content is a Step Flow. No emoji anywhere.
+No self messages. Work a party does alone is invisible here on purpose: if it matters, the prose says so, and if it is the story, the content belongs in `step-flow.md`. No emoji anywhere.
 
 This pattern needs no legacy fallback. `sequenceDiagram` predates every renderer this library targets.
 
@@ -68,7 +68,7 @@ This pattern needs no legacy fallback. `sequenceDiagram` predates every renderer
 
 None. No `classDef`, no `%%{init}%%` theme variables, no per-message styling.
 
-The sequence type has no portable way to make a color mean something: theme variables parse but render differently across GitHub, Sphinx, and Obsidian, the same failure that stripped color from Timeline. Emphasis is carried by the note, by the numbers the prose can point at, and by the takeaway sentence.
+The sequence type has no portable way to make a color mean something: theme variables parse but render differently across GitHub, Sphinx, and Obsidian, and a color that silently fails is worse than none. Emphasis is carried by the note, by the numbers the prose can point at, and by the takeaway sentence.
 
 ---
 
@@ -83,7 +83,7 @@ Every dotted arrow answers an earlier solid arrow between the same two lanes, ru
 
 The reverse is allowed and is a finding: a solid arrow that no dotted arrow ever answers is a request still open when the diagram ends, and the takeaway sentence should say what that costs.
 
-No blocks: no `alt`, `opt`, `loop`, `par`, or `critical`. The diagram draws one run that succeeded. A branch means the content is a rule, which is a Decision Tree; a retry loop is one sentence of prose. No `-x`, `-)`, `<<->>`, bare `->`, or activation bars.
+No blocks: no `alt`, `opt`, `loop`, `par`, or `critical`. The diagram draws one run that succeeded. A branch means the content is a rule, which belongs in `decision-tree.md`; a retry loop is one sentence of prose. No `-x`, `-)`, `<<->>`, bare `->`, or activation bars.
 
 ---
 
@@ -199,7 +199,7 @@ sequenceDiagram
     D->>E: Draft post
 ```
 
-No lane ever replies, so nobody here is taking turns: these are stages handing artifacts forward, and the artifacts deserve their document shapes and provenance prefixes. Draw the IO Pipeline.
+No lane ever replies, so nobody here is taking turns: these are stages handing artifacts forward, and the artifacts are the content rather than the lanes. Draw it as `io-pipeline.md`.
 
 Branching inside the diagram.
 
@@ -217,7 +217,7 @@ sequenceDiagram
     end
 ```
 
-Two runs share one picture, so neither can be read straight down, and the vertical axis stops meaning time the moment the reader hits the `else`. Draw the run that succeeds; if the failure handling is itself a standing rule, it is a Decision Tree.
+Two runs share one picture, so neither can be read straight down, and the vertical axis stops meaning time the moment the reader hits the `else`. Draw the run that succeeds; if the failure handling is itself a standing rule, it belongs in `decision-tree.md`.
 
 A lane that never speaks.
 

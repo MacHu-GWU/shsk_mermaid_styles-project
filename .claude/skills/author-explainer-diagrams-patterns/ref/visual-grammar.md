@@ -6,7 +6,7 @@ This is the shared alphabet that every pattern in the library is projected from.
 
 The reason for that split is worth stating once. Consistency across patterns is settled the moment a pattern file is written, not the moment it is read. Once `step-flow.md` contains the literal string `fill:#D1F0DB`, the green is already correct, and an agent reading that file to draw one diagram gains nothing from knowing the value came from a shared table. What it would lose is real: handing it this document means handing it five shapes, four arrow forms, and two directions the pattern forbids, immediately before the pattern tells it not to use them.
 
-So this file has two jobs and neither is runtime. It fixes the vocabulary so ten pattern files agree with each other. And section 10 records where each pattern deliberately departs from that vocabulary, which is the only place the whole picture exists once the pattern files stop pointing at anything.
+So this file has two jobs and neither is runtime. It fixes the vocabulary so every pattern file agrees with the others. And section 10 records where each pattern deliberately departs from that vocabulary, which is the only place the whole picture exists once the pattern files stop pointing at anything but each other's filenames.
 
 The vocabulary is closed. Eight shapes, six emoji, three directions, four arrow forms, four color classes, and that is all of it. The point of a closed alphabet is that a reader who has seen a dozen of these diagrams can decode the thirteenth without a legend. Every shape added for the sake of one diagram costs the reader that ability across all the others.
 
@@ -27,7 +27,7 @@ Shape carries meaning, never decoration. Eight shapes, each locked to one role.
 | Artifact, evidence | Document | `@{ shape: doc }` | A document, report, or deliverable |
 | Branch point | Diamond | `@{ shape: diam }` | Only when a real branch follows |
 | Milestone, gate | Hexagon | `@{ shape: hex }` | A checkpoint in a long flow, usually `accent` |
-| Concept, static entity | Rectangle | `@{ shape: rect }` | Roles in a role map, positions in a niche map |
+| Concept, static entity | Rectangle | `@{ shape: rect }` | Anything that simply is rather than happens: a role, a position, a state |
 
 Here is the full alphabet rendered once, so you can see what each name actually looks like.
 
@@ -98,6 +98,8 @@ flowchart LR
 ```
 
 Emoji reinforce shape, they never replace it. `📄 Metrics Spec` written inside a `rounded` node is wrong, because the shape says step and the emoji says artifact, and the reader has to guess which signal to trust. Use one emoji per node at most, and leave ordinary steps bare. If every node carries an emoji, none of them is a marker any more.
+
+Most shipped patterns use no emoji at all, which is the intended resting state. As of now 🎯, 🔑, and 📄 are live in Working Backwards Chain, 📄 in IO Pipeline, and ⚠️ and ✅ in Timeline under a re-binding recorded in section 10. 💡 is claimed here and used by nothing. Do not read that as an opening: a new pattern reaches for an emoji only when it has a role none of its shapes can carry, which so far has meant marking a deliverable or a possession.
 
 ---
 
@@ -171,7 +173,7 @@ Four arrow forms, and each says something different about the connection.
 | :--- | :--- |
 | `-->` | Main line. Strong causality, strong ordering, strong ownership |
 | `-.->` | Side line. A service relationship, a weak dependency, an optional path |
-| `==>` | Emphasized trunk. Only on the happy path of a decision tree |
+| `==>` | Emphasized trunk. Only on the happy path, the route taken when nothing goes wrong |
 | `-->\|label\|` | Labeled. The label names the relationship, never the node |
 
 All three arrow weights in one small diagram, each carrying its own meaning.
@@ -289,7 +291,7 @@ These are hard numbers, not guidelines. They exist because the most common failu
 | Meanings per node | 1 |
 | Words per node label | 4 |
 
-The horizontal chain limit is about page width. Beyond roughly seven nodes the renderer shrinks the labels to fit, and on a phone the reader scrolls sideways looking for the end. A pattern may loosen this cap for a vertical layout, where height is cheap, and Step Flow does exactly that. The ceiling of 12 nodes per diagram binds everywhere and is never raised.
+The horizontal chain limit is about page width. Beyond roughly seven nodes the renderer shrinks the labels to fit, and on a phone the reader scrolls sideways looking for the end. A pattern may loosen this cap for a vertical layout, where height is cheap, and Step Flow does exactly that. The ceiling of 12 nodes per diagram binds every flowchart and is never raised; the patterns that abandon the flowchart vocabulary entirely count a different unit and set their own ceiling in their own file.
 
 Here is what breaking the limit looks like.
 
@@ -385,22 +387,24 @@ Run this against any diagram drafted straight from the grammar, and against ever
 - Every label is 4 words or fewer and holds exactly one idea.
 - The diagram still parses. Run it through a renderer before it ships.
 
-Two of these bend per pattern. The three node color budget and the seven node chain limit are both loosened by Step Flow, and section 10 says why. Check the pattern file's own rules before failing a diagram on either one.
+Several of these bend per pattern, and section 10 says where. The color budget and the label limits are the ones raised most often, the four color classes are dropped entirely by every pattern that leaves the flowchart vocabulary, and green in particular has been re-bound by six patterns to mean "the one this is about" rather than "the goal". Check the pattern file's own rules before failing a diagram on any line above, and check section 10 before writing a new one.
 
 ---
 
 ## 10. Deviation Register
 
-Every place a shipped pattern departs from the vocabulary above, and the reason. This table exists because the pattern files are self contained and reference nothing, so nothing else in the library records that a color has already been spoken for somewhere. Read it before binding a color or loosening a limit in a new pattern.
+Every place a shipped pattern departs from the vocabulary above, and the reason. This table exists because a pattern file's only outward reference is a sibling filename in its When Not To Use table, so nothing else in the library records that a color has already been spoken for somewhere. Read it before binding a color or loosening a limit in a new pattern.
 
 Narrowing is not a deviation and is not listed here. A pattern that uses three of the eight shapes is doing what patterns are for.
 
 | Pattern | Deviates on | What it does instead | Why |
 | :--- | :--- | :--- | :--- |
+| Step Flow | Stadium means start, entry point | Stadium marks both terminals, the start and the end, told apart by position and color | The pattern's claim is a bounded run, and a run has two ends of the same kind. `dbl-circ` is unavailable because a process repeated next week reaches no goal, and giving the end a `rounded` would make the chain trail off rather than close. Safe because the pattern is strictly linear, so the leftmost and rightmost stadiums can never be confused |
 | Step Flow | `goal` green, `risk` red | Green marks the start terminal, red marks the end terminal | A procedure has a beginning and an end rather than a goal, and a chain containing a hazard is not a Step Flow, so no red is competing for the meaning |
 | Step Flow | `TD` means hierarchy | `TD` is a layout choice, taken when a row would be too wide to read | The pattern is unbranching, so forward order is the only meaning available and direction is free to carry something else. Paid for by requiring the chain to be strictly linear, since a fan out under `TD` reads as containment |
 | Step Flow | 3 colored nodes per diagram | 4 allowed, being 2 terminals plus at most 2 key steps | The terminals appear in every diagram of the pattern and point at nothing, so they are structure rather than emphasis. The emphasis budget is the 2 key steps |
 | Step Flow | 7 node horizontal chain limit | No fixed count. Total label width decides `LR` against `TD` | The 7 is a proxy for a row running out of page width, and a vertical chain never hits it |
+| Working Backwards Chain | One self-contained diagram per pattern | The unit is a pair over an identical node set, the derivation and the execution, and neither ships alone | The derivation with no plan gives the reader nothing to do on Monday, and the plan with no derivation looks like steps someone made up. The argument is the reflection, which needs both halves on the page. Same structural deviation IO Pipeline makes, for a different reason: there the split avoids crossings, here it carries the claim |
 | Working Backwards Chain | `RL` means backwards reasoning | The derivation is `LR` with the goal as the leftmost node, and backwards reasoning is carried by that position plus the `requires` label on every arrow | `RL` puts the derivation's conclusion under the reader's eye before its premise, so the argument has to be read against scan order, one arrow at a time. Drawing both diagrams `LR` also makes the pair a mirror, and watching the goal move from the left end to the right end is a clearer statement of working backwards than the layout direction ever was. Paid for by requiring the `requires` label on every derivation arrow, since direction no longer distinguishes the two diagrams |
 | Working Backwards Chain | Zero labels in an unbranching chain | Every arrow in the derivation is labeled `requires` | Direction no longer separates the derivation from the plan, so the label is the only thing that does. Without it the pair reads as two diagrams contradicting each other |
 | Working Backwards Chain | `accent` amber marks milestones | Amber marks the ground node, the place the derivation bottoms out | The ground is the one node worth staring at, since it is the only one the reader can act on today. It is also the hinge, appearing as the last node of the derivation and the first of the plan, and the repeated color is what binds the two diagrams into one story |
@@ -417,6 +421,8 @@ Narrowing is not a deviation and is not listed here. A pattern that uses three o
 | Niche Map | Most nodes stay unclassed | Every node is classed, `muted` grey by default | Green against grey reads far louder than green against theme default, and the grey is what states that the rest is context rather than competition. Grey costs no emphasis budget, so this buys the contrast for free |
 | Niche Map | 4 words per label, one meaning per node | At most 2 labels carry a second line holding one quantitative anchor, as `"Card Network<br/>0.24 per 100 dollars"` | Where the value or the volume concentrates is a question the boxes cannot answer when they all look the same size. Capped at 2 because an anchor is a comparison and three comparisons is a table. Raised nowhere else, and the anchor must be a single citable figure, since a range on a box reads as precision the source never had |
 | Triage Map | `accent` amber marks milestones or the one link worth staring at | Amber marks the fallback response, the node the escalation edges converge on | The fallback is the one exit the reader must hold onto when no case matches or a handler fails. Safe because the pattern has no hexagons and no milestones, so amber is otherwise idle, and capped at one node so it never crowds the three node budget |
+| IO Pipeline | One self-contained diagram per pattern | The unit is a set: one overview plus one block per step, and no single diagram in it is publishable alone | The pattern exists because a fan-in drawn on one canvas becomes wires crossing wires. Splitting is the whole idea, and the ID prefixes below are what re-join the pieces. Paid for by the prose convention, which requires a lead line before every block so the set reads as one document |
+| IO Pipeline | 4 color classes | No color at all | Any artifact worth emphasizing is one that several blocks consume, so its highlight would repeat across the unit and become indistinguishable from color marking provenance, which the pattern bans outright. Provenance is the ID prefix, the final deliverable is 📄, and emphasis is the takeaway sentence |
 | IO Pipeline | 4 words per label | Labels carry an `s<n>:` ID prefix on top of the 4 words: steps as `s2: Draft`, artifacts prefixed with their producing step as `s1: Outline`, external inputs bare | The pattern's unit is one overview plus one block per step, and the prefix is what replaces the cross-diagram arrows: an artifact repeats its exact label in every block that consumes it, so provenance is read off the name instead of traced along a wire. A bare label on a lean-r means "from outside", so the prefix's absence is also a signal, which is why it must never be added decoratively |
 | Role Map | `goal` green marks the goal node | Green marks the subject, the one role the writing is about | The identical re-binding Niche Map made, kept identical on purpose: across the two map patterns, one green box always answers "which box is this about", and giving the two subjects two colors would be exactly the drift a closed palette exists to prevent. Safe for the same reason as there, since the pattern has no `dbl-circ` and no 🎯. This overrides the original design note that put the protagonist in amber |
 | Role Map | `accent` amber marks milestones or the one link worth staring at | Amber marks 1 to 3 people or teams chosen by dependency rather than rank | Rank is already drawn by the solid tree, so amber repeating it would say nothing the layout had not. The pattern earns its place where the two maps disagree, and a grey manager above an amber peer is the disagreement made visible |
@@ -444,14 +450,20 @@ Narrowing is not a deviation and is not listed here. A pattern that uses three o
 | Exchange | Six emoji | None at all | None of the six roles names a message, and the lane plus the number already give the prose a handle on any line worth discussing. Same argument as Proportion Pie |
 | Exchange | 12 nodes per diagram | 2 to 4 lanes and 4 to 10 numbered messages | Lanes and messages are a different unit from nodes. The binding constraints are vertical scan length and messages spanning lanes they do not concern |
 | Exchange | `TD` means hierarchy or containment | Time runs down the page, fixed by the diagram type; the only layout choice is lane order, with the initiator leftmost | A sequence diagram has no direction keyword, vertical is time by construction, and no hierarchy claim is available to collide with it |
-| Cycle | `rounded` means action, step | Rounded holds a condition written as a comparative, as `More Users`, rising or falling with each turn of the ring | A cycle's nodes are levels in motion rather than acts performed, and the static shape (`rect`) is both locked to the map patterns and a claim of stasis the content contradicts. Safe because the pattern contains no plain steps for the reading to collide with |
+| Cycle | `rounded` means action, step | Rounded holds a condition written as a comparative, as `More Users`, rising or falling with each turn of the ring | A cycle's nodes are levels in motion rather than acts performed, and `rect` would be a claim of stasis the content contradicts. Safe because the pattern contains no plain steps for the reading to collide with |
+| Cycle | `lean-r` is an input or prerequisite, knowledge or data entering from outside | Lean right holds the starter, a one-time event that set the ring moving, as `Slipped Deadline` | It is still the outside-of-the-diagram shape, which is the part that carries, but a shock is an occurrence rather than a possession. Bounded to one per diagram, always grey, always on a dotted edge, so it reads as dispensable rather than as a standing requirement |
 | Cycle | `LR` means forward execution or time order | Time on the ring is cyclic, so the leftmost node is where the telling enters rather than the earliest event | A closed ring has no earliest node, and treating the left end as one would claim a start the content denies. Paid for by a convention fixing the entry: the node the starter feeds, else the intervention, else the condition the reader already knows |
 | Cycle | `accent` amber marks milestones and the one link worth staring at | Amber marks the intervention, the one condition the reader can move directly: where to push a building ring or cut a decaying one | The intervention is the only actionable thing on a ring, the node-shaped version of the one link worth staring at. Safe because the pattern has no hexagons and no milestones, so amber is otherwise idle, and capped at one |
 | Cycle | `risk` red marks risks, traps, headwinds | Red marks at most one condition on a decaying ring, the one that ends the story if the ring keeps turning | The same closeness Decision Tree recorded: an outcome-condition rather than a hazard node. A building ring carries no red at all, so the color's presence also announces the ring's valence at a glance |
 | State Lifecycle | `goal` green marks the goal node, paired with `dbl-circ` and 🎯 | Green marks the target state, the one the lifecycle exists to move instances into and keep them in, terminal or not, with no 🎯 | The next member of the green-answers-the-headline family: Decision Tree's green exit answers "where should I end up", and this answers "where should it end up". A lifecycle has no goal reached once, since the target can be left and re-entered and holding it is the point. Safe because the pattern has no `dbl-circ` and no 🎯 |
 | State Lifecycle | `risk` red marks risks, traps, headwinds | Red marks at most one failure state, the one the lifecycle is built to keep instances out of | The same re-binding Decision Tree made for its avoided exit, kept identical on purpose. Capped at one so red keeps pointing at the single worst place an instance can land, and a lifecycle whose endings are all acceptable carries no red |
 | State Lifecycle | `accent` amber marks milestones and the one link worth staring at | Amber marks at most one stall state, the state where instances wait longest and where the outcome is usually decided | The pattern has no hexagons and no milestones, so amber is otherwise idle, the same argument Triage Map used for its fallback. Capped at one, and the three classes together stay inside the grammar's three node budget, so no budget row is needed |
-| State Lifecycle | `==>` only on the happy path of a decision tree | The thick path marks the happy path here too: the one route a typical instance takes from the entry state to the green target when nothing goes wrong | The meaning is identical and kept identical on purpose. The grammar sentence names Decision Tree only because it was the only pattern with a happy path to mark, and this row is where that stops being true |
 | State Lifecycle | `LR` means forward execution or time order | `LR` means progress toward the target state. A leftward back edge is the instance losing ground, and at least one back edge is required for the pattern to apply at all | Time cannot run backwards but progress can, and the back edge is the finding the pattern exists to draw. Paid for by requiring every edge to carry its triggering event, so a backwards arrow reads as a caused regression rather than a layout accident |
 
-Two things to watch when adding a row. If a new pattern wants to re-bind green or red, check what Step Flow already did with them, because two patterns binding the same color to two different meanings is exactly the drift a closed palette is supposed to prevent. And if a deviation cannot be written as a single row here, it is usually not a deviation but a new pattern.
+Three things to watch when adding a row.
+
+Green and red are the crowded ones. Green is bound to the goal here, to the start terminal in Step Flow, and to "the one this is about" in Niche Map, Role Map, Quadrant, Decision Tree, and State Lifecycle. That last group is a family and a new pattern joining it should say so and copy it exactly, because two patterns binding one color to two meanings is the drift a closed palette exists to prevent. Red is bound to hazards here and re-bound to an avoided outcome in Decision Tree, Cycle, and State Lifecycle, always capped at one node.
+
+Watch what a row would make false elsewhere. A deviation that widens a shape's meaning usually belongs in section 2 as a wider definition rather than here as an exception, and leaving it here lets a later row describe a shape as reserved when it no longer is.
+
+And if a deviation cannot be written as a single row, it is usually not a deviation but a new pattern.

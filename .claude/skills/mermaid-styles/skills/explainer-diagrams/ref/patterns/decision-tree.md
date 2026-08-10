@@ -12,6 +12,8 @@ The content is a rule that decides something in stages, and two tests both have 
 
 First, the order is real: a later question only makes sense after an earlier answer, so reordering the questions breaks the procedure. Second, every question is decidable: two people holding the same facts give the same answer. "Is the diff under 200 lines?" is decidable. "Is the code good?" is not.
 
+The fix for an undecidable question is never better wording, it is the checkable facts behind the judgment: "Is this change risky?" becomes "Does it touch the schema?" and "Is it under 200 lines?".
+
 Typical fits are merge and release rules, alerting thresholds, eligibility checks, and any policy that keeps getting re-litigated because it lives in someone's head instead of on a page.
 
 ---
@@ -26,13 +28,13 @@ Typical fits are merge and release rules, alerting thresholds, eligibility check
 | A role, who it answers to, and who it works with | `role-map.md` |
 | Questions no checkable fact can settle | No diagram. Write the prose |
 
-The first two rows are one boundary, and the reorder test above decides it. Questions that could be shuffled are a classification wearing a costume, however many diamonds it drew, and depth that is only "handler failed, go up" is a fallback edge, not a second question.
+The first two rows are one boundary, and the reorder test above decides it. Questions that could be shuffled are a classification wearing a costume, however many diamonds it drew, and depth that is only "handler failed, go up" is a fallback rather than a second question.
 
 ---
 
 ## 4. Direction
 
-Always `TD`. The vertical axis is the order of evaluation: the first question sits at the top, each answer either exits or falls to the next question, and the trunk drops straight down to the exit it favors. Never `LR`: a fan out of labeled cases read left to right is a Triage Map (`triage-map.md`), and the two must not look alike. Never `RL`.
+Always `TD`. The vertical axis is the order of evaluation: the first question sits at the top, each answer either exits or falls to the next question, and the trunk drops straight down to the exit it favors. Never `LR`, which is how this library draws a single question fanning out to peer cases, and the two must not look alike. Never `RL`.
 
 ---
 
@@ -45,9 +47,7 @@ Always `TD`. The vertical axis is the order of evaluation: the first question si
 
 Two shapes and no others. The root is a diamond with nothing above it, every diamond has two or three arrows leaving it, and every path ends in a rounded exit.
 
-At least two diamonds. A tree with one question is a Triage Map, whatever it calls itself.
-
-The fix for an undecidable question is never better wording, it is the checkable facts behind the judgment: "Is this change risky?" becomes "Does it touch the schema?" and "Is it under 200 lines?".
+At least two diamonds. One question fanning straight out to its responses is not a tree, and belongs in `triage-map.md`.
 
 Question labels end in a question mark. Exit labels are imperatives: `Merge to Main`, `Page the On Call`. Four words at most, either way.
 
@@ -100,8 +100,6 @@ Past three questions deep, one of two things is true. Either adjacent questions 
 
 ## 9. Canonical Example, Team Scale
 
-A merge rule with three questions, four exits, and a trunk two answers long.
-
 > Whether a pull request merges is decided in order: correctness first, blast radius second.
 >
 > ```mermaid
@@ -130,13 +128,11 @@ A merge rule with three questions, four exits, and a trunk two answers long.
 >
 > The takeaway from this diagram is that an ordinary change is two answers away from merging, and only schema changes ever need a third pair of eyes.
 
-The order is load bearing: asking about the schema before the tests pass spends review on code that does not work yet, and `Migration Reviewed?` is meaningless until `Schema Change?` answers yes.
+Three questions, four exits, and a trunk two answers long. The order is load bearing: asking about the schema before the tests pass spends review on code that does not work yet, and `Migration Reviewed?` is meaningless until `Schema Change?` answers yes.
 
 ---
 
 ## 10. Canonical Example, Personal Scale
-
-Three questions standing between a recurring chore and the decision to automate it.
 
 > Whether a task deserves automation is decided by frequency, cost, and stability, in that order.
 >
@@ -162,7 +158,7 @@ Three questions standing between a recurring chore and the decision to automate 
 >
 > The takeaway from this diagram is that automation has to clear three bars in a row, and failing any early bar sends you back to just doing the work.
 
-`Just Do It` takes arrows from two different questions, which is the shared exit rule working. There is no red, because doing a task by hand is not a failure, only the answer.
+Three questions standing between a recurring chore and the decision to automate it. `Just Do It` takes arrows from two different questions, which is the shared exit rule working. There is no red, because doing a task by hand is not a failure, only the answer.
 
 ---
 
@@ -190,7 +186,7 @@ flowchart TD
     Q2 -->|no| C["Ask Platform Support"]
 ```
 
-Swap the two questions and every answer still means the same thing, so the sequence is fake: this is one classification stretched into a ladder. Collapse it into a single diamond with three labeled edges, which is a Triage Map and belongs in `triage-map.md`.
+Swap the two questions and every answer still means the same thing, so the sequence is fake: this is one classification stretched into a ladder. Collapse it into a single diamond with three labeled edges and draw it as `triage-map.md`.
 
 A tree with no trunk.
 
@@ -206,9 +202,11 @@ Every edge carries the same weight, so the reader cannot see which route is the 
 
 ---
 
-## 12. Caption Convention
+## 12. Prose Convention
 
-Follow every Decision Tree with one sentence in the prose beginning "The takeaway from this diagram is", stating what the rule protects or what the normal case costs, rather than reciting the branches. "The diagram above shows how we decide whether to merge" is weak, because the reader can already see that. The strong version says what falls out of the structure: how short the happy path is, which single answer triggers all the ceremony, what never gets asked at all. If the sentence cannot be written, the diagram has no point of view and should be cut.
+**Above the diagram, one sentence naming what is being decided and in what order.** The diamonds show the questions but not why they are asked in that sequence.
+
+**Below, last, a takeaway sentence** beginning "The takeaway from this diagram is", stating what the rule protects or what the normal case costs, rather than reciting the branches. "The diagram above shows how we decide whether to merge" is weak, because the reader can already see that. The strong version says what falls out of the structure: how short the happy path is, which single answer triggers all the ceremony, what never gets asked at all. If the sentence cannot be written, the diagram has no point of view and should be cut.
 
 ---
 
@@ -217,7 +215,7 @@ Follow every Decision Tree with one sentence in the prose beginning "The takeawa
 - Two to four diamonds, two to six rounded exits, no other shapes, no emoji.
 - The root is a diamond, and no path is more than three questions deep.
 - Every question is decidable: two people, same facts, same answer.
-- The questions have a real order. If they could be shuffled, this is a Triage Map.
+- The questions have a real order. If they could be shuffled, this is not the pattern.
 - Every edge is labeled with the answer that selects it.
 - Each diamond's labels are exhaustive and mutually exclusive, with range boundaries that meet.
 - One unbroken thick trunk from root to the green exit, and it never forks.
@@ -225,5 +223,5 @@ Follow every Decision Tree with one sentence in the prose beginning "The takeawa
 - At most one red exit, the one the tree exists to avoid.
 - Direction is `TD`.
 - Question labels end in `?`, exit labels are imperatives, all four words or fewer.
-- The caption sentence is written and states a conclusion.
+- The scoping sentence above and the takeaway sentence below are both written.
 - The diagram parses.

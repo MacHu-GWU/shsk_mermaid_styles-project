@@ -24,7 +24,7 @@ Typical fits are who to interrupt when blocked on what, how each class of error 
 | One role, who it answers to, and who it works with | `role-map.md` |
 | Boxes that are positions something flows through | `niche-map.md` |
 
-The first two rows are the ones that get confused, and depth is the wrong way to tell them apart. "Ask the senior engineer, and if that fails, escalate" looks like a second layer but is not a second question, it is a fallback, and a fallback is drawn as a dotted edge inside this pattern. The moment a branch needs a genuine follow up question, with its own answers and its own responses, the content is a Decision Tree.
+The first two rows are the ones that get confused, and depth is the wrong way to tell them apart. "Ask the senior engineer, and if that fails, escalate" looks like a second layer but is not a second question, it is a fallback, and a fallback is drawn as a dotted edge inside this pattern. The moment a branch needs a genuine follow up question, with its own answers and its own responses, the content belongs in `decision-tree.md`.
 
 ---
 
@@ -42,7 +42,7 @@ Always `LR`. The question sits at the left, the responses line up at the right, 
 | Response | Rounded rectangle | `@{ shape: rounded }` | One per case |
 | Fallback response | Rounded rectangle | `@{ shape: rounded }` | 0 or 1 |
 
-Exactly one diamond is this pattern's defining rule. A second diamond means one of the cases needs a follow up question, and the content is a Decision Tree.
+Exactly one diamond is this pattern's defining rule. A second diamond means one of the cases needs a follow up question, and the content belongs in `decision-tree.md`.
 
 Responses are written as imperative actions: `Ask the Data Analyst`, `Retry with Backoff`. Never the bare name of a person or a team, because a box that only says who leaves the reader to guess what doing anything about it looks like.
 
@@ -91,8 +91,6 @@ Two to five cases. One case is a sentence, not a diagram, so write the sentence.
 
 ## 9. Canonical Example, System Scale
 
-Four error classes, one escalation, and a fallback that is also a direct case.
-
 > A failed API call is handled by whichever line matches its status code.
 >
 > ```mermaid
@@ -115,13 +113,11 @@ Four error classes, one escalation, and a fallback that is also a direct case.
 >
 > The takeaway from this diagram is that only persistent server errors reach a human, and every other failure has a self service fix.
 
-`Page the On Call` is both a direct case and the escalation target, which is common and fine. A fallback often earns its amber precisely by being reachable from more than one direction.
+Four error classes, one escalation, and a fallback that is also a direct case. `Page the On Call` being both is common and fine: a fallback often earns its amber precisely by being reachable from more than one direction.
 
 ---
 
 ## 10. Canonical Example, Team Scale
-
-Three kinds of blocker, two first doors, one escalation point.
 
 > A new engineer's standing rule for who to interrupt when stuck.
 >
@@ -144,6 +140,8 @@ Three kinds of blocker, two first doors, one escalation point.
 >
 > The takeaway from this diagram is that every blocker has exactly one first door to knock on, and the manager is the escalation point rather than the first stop.
 
+Three kinds of blocker, two first doors, one escalation point. The same shape as the example above at a different scale, and nothing in the rules changed to allow it.
+
 ---
 
 ## 11. Bad Examples
@@ -158,7 +156,7 @@ flowchart LR
     B -->|no| P["Escalate to Your Manager"]
 ```
 
-Three peer situations stretched into a sequence, inventing an evaluation order the content does not have. Collapse the ladder into one diamond with three labeled edges. If the order were real, meaning the second question only makes sense after the first answer, the content is a Decision Tree.
+Three peer situations stretched into a sequence, inventing an evaluation order the content does not have. Collapse the ladder into one diamond with three labeled edges. If the order were real, meaning the second question only makes sense after the first answer, the content belongs in `decision-tree.md`.
 
 A branch that asks a genuine second question.
 
@@ -185,9 +183,11 @@ The thick arrow tells the reader most blockers are code blockers, which is a fre
 
 ---
 
-## 12. Caption Convention
+## 12. Prose Convention
 
-Follow every Triage Map with one sentence in the prose beginning "The takeaway from this diagram is", stating the routing rule's point rather than reciting the cases. "The diagram above shows who to ask for each kind of problem" is weak, because the reader can already see that. The strong version says what the rule buys: who is protected, what never escalates, which door is busiest. If the sentence cannot be written, the diagram has no point of view and should be cut.
+**Above the diagram, one sentence naming what is being routed**, and whose standing rule this is where that is not obvious from the cases. Four words in a diamond cannot say who is standing in front of it.
+
+**Below, last, a takeaway sentence** beginning "The takeaway from this diagram is", stating the routing rule's point rather than reciting the cases. "The diagram above shows who to ask for each kind of problem" is weak, because the reader can already see that. The strong version says what the rule buys: who is protected, what never escalates, which door is busiest. If the sentence cannot be written, the diagram has no point of view and should be cut.
 
 ---
 
@@ -196,11 +196,11 @@ Follow every Triage Map with one sentence in the prose beginning "The takeaway f
 - Exactly one diamond, and it is the entry point.
 - Two to five cases, each leaving the diamond as a solid labeled arrow.
 - Case labels are mutually exclusive, and they cover everything or end in an explicit catch all.
-- The cases could be reordered without changing the meaning. If not, this is a Decision Tree.
+- The cases could be reordered without changing the meaning. If not, this is not the pattern.
 - Every response is an imperative action, four words or fewer.
 - Escalation edges are dotted, labeled with their trigger, one hop, converging on the fallback.
 - No thick arrows, no stadiums, no double circles, no hexagons, no emoji.
 - At most one colored node, the fallback in amber, with `fill`, `stroke`, and `color` all set.
 - Direction is `LR`.
-- The caption sentence is written and states a conclusion.
+- The scoping sentence above and the takeaway sentence below are both written.
 - The diagram parses.

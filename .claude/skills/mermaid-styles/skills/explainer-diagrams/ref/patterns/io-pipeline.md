@@ -27,7 +27,7 @@ Typical fits are a data pipeline, a hiring loop, a content production process, a
 | Static positions something flows through, with no steps | `niche-map.md` |
 | A chain derived backwards from a goal | `working-backwards-chain.md` |
 
-The first row is the mirror of Step Flow's routing here. If the answer to "what does this step hand over" is only "it moves to the next step", draw a Step Flow.
+The first row is the boundary that gets crossed. If the answer to "what does this step hand over" is only "it moves to the next step", there is no artifact to draw and the content is a plain chain.
 
 ---
 
@@ -57,7 +57,7 @@ So on the left side of any block, the reader sorts provenance without moving the
 
 The `<name>` part obeys the four word limit; the prefix rides on top and does not count.
 
-No diamonds, since a pipeline that branches is a Decision Tree. No stadiums, hexagons, double circles, or plain rectangles.
+No diamonds: a pipeline that branches is not this pattern. No stadiums, hexagons, double circles, or plain rectangles.
 
 Emoji: 📄 on the final deliverable only, in the last block. Nothing else carries one.
 
@@ -238,7 +238,7 @@ One color per step means the palette grows with the pipeline: ten steps is ten c
 
 ## 12. Prose Convention
 
-One sentence above the overview naming the process and the step count. One bold lead line before each block, `**s2: Draft**` followed by a sentence saying what the step turns into what. After the last block, one sentence beginning "The takeaway from this pipeline is", stating a conclusion about an artifact rather than describing the boxes: which document everything depends on, or which handover is the bottleneck. If that sentence cannot be written, the pipeline has no point of view and a Step Flow would have done.
+One sentence above the overview naming the process and the step count. One bold lead line before each block, `**s2: Draft**` followed by a sentence saying what the step turns into what. After the last block, one sentence beginning "The takeaway from this pipeline is", stating a conclusion about an artifact rather than describing the boxes: which document everything depends on, or which handover is the bottleneck. If that sentence cannot be written, the pipeline has no point of view and a plain chain of steps would have done.
 
 ---
 

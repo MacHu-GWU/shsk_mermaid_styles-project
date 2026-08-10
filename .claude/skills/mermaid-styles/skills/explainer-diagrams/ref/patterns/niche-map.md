@@ -34,7 +34,7 @@ Typical fits are a role among its collaborators, a library in a stack, a team in
 | Share of a total rather than a seat in a flow | `proportion-pie.md` |
 | A position derived from a goal | `working-backwards-chain.md` |
 
-The first two rows are where the confusion lives. A Role Map's solid arrows mean the box above owns the box below, and its dotted edges each carry their own label because no single word covers them. Here every solid edge carries the same one thing, and no edge needs a label. If the boxes are things a person does rather than positions that outlive the doing, it is a Step Flow.
+The first two rows are where the confusion lives, and the third test in section 2 decides both. If one word cannot fill the blank in `X hands ___ to Y` across every edge, the edges mean different things and this is not the pattern. If the boxes are things a person does rather than positions that outlive the doing, it is not the pattern either.
 
 ---
 
@@ -60,7 +60,7 @@ One shape, no exceptions. Shape variation would claim the positions differ in ki
 
 No diamonds, no double circles, no hexagons, no documents. No emoji: color already says which box is the subject, and a map of positions has no goal, no gate, and no deliverable to mark.
 
-Labels are two or three words, four at most, and every one is a noun phrase naming a position rather than an activity. Job titles, team names, layer names, and company categories all qualify. A verb in a box is the single most common way this pattern collapses into a Step Flow.
+Labels are two or three words, four at most, and every one is a noun phrase naming a position rather than an activity. Job titles, team names, layer names, and company categories all qualify. A verb in a box is the single most common way this pattern collapses into a chain of actions.
 
 **Anchors.** At most two boxes may carry a second line holding one quantitative fact, written as `label: "Card Network<br/>0.24 per 100 dollars"`. Use it only where the number changes how the map reads, which in practice means showing where the value or the volume concentrates. A single citable figure only, never a range, and a map where every box has one is a table.
 
@@ -86,7 +86,7 @@ classDef rivalNode fill:#FDE2E1,stroke:#C0392B,color:#5A1710
 
 Copy all three properties or none. Dropping `color` leaves the text to the theme, so a diagram that reads in GitHub light mode turns pale on pale in dark mode.
 
-Every node is classed and none is left at the theme default. Green against grey reads far louder than green against white, and the grey is what states that the rest is context rather than competition.
+Every node is classed and none is left at the theme default. Green against grey reads far louder than green against an unstyled box, and the grey is what states that the rest is context rather than competition.
 
 Exactly one green, always. Zero means the diagram has no point of view and is a map of a field rather than an argument about a seat in it. Two means two arguments, which is two diagrams.
 
@@ -144,8 +144,6 @@ Above 9 the fans overlap and the subject stops being the visual center, which lo
 One neighbor per side, so it draws as a straight line, and the rules did not change to allow that.
 
 The amber is the part worth studying. The direct upstream neighbor is grey and a box two hops away is amber, which looks wrong until you ask the question in section 6: a schema change by a source system owner breaks this role's week, while the data engineer next door mostly hands over tables that work. Coloring by distance instead would have produced a diagram that says nothing the arrows had not already said.
-
-No company appears anywhere in it. The positions are job families and the flow is a table rather than money, and the pattern does not notice the difference.
 
 ---
 
@@ -217,7 +215,7 @@ flowchart LR
     A["Cardholder Swipes"] --> B["Bank Authorizes"] --> C["Network Routes"] --> D["Merchant Gets Paid"]
 ```
 
-Every box is now something that happens once rather than someone still there tomorrow, so this is a Step Flow wearing a niche map's subject matter. Positions are nouns.
+Every box is now something that happens once rather than someone still there tomorrow, so the subject matter is right and the boxes are wrong. Positions are nouns.
 
 No subject.
 

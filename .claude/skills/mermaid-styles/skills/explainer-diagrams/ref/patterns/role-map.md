@@ -30,7 +30,7 @@ Exactly one box is the role the surrounding writing is about. Every box is a *wh
 | Which person to go to in which situation | `triage-map.md` |
 | What the role must become, derived from a goal | `working-backwards-chain.md` |
 
-The first row is where the confusion lives. In a Niche Map one thing flows and every solid edge carries it, so one word fills the blank in `X hands ___ to Y` across the whole diagram and no edge needs a label. Here the solid edges mean answers-to, the dotted edges mean whatever their labels say, and no single word covers them. If you can name the one flowing thing, draw the Niche Map.
+The first row is where the confusion lives, and the edges decide it. Here the solid edges mean answers-to, the dotted edges mean whatever their labels say, and no single word covers them all. If one word does cover them all — if you can name the single thing every edge carries — the content is not this pattern.
 
 ---
 
@@ -76,7 +76,7 @@ classDef contextNode fill:#EEF1F5,stroke:#8A94A6,color:#2C3440
 
 Copy all three properties or none. Dropping `color` leaves the text to the theme, and a diagram that reads in GitHub light mode turns pale on pale in dark mode.
 
-Every node is classed and none is left at the theme default. Green against grey reads far louder than green against white, and the grey is what states that the rest is context.
+Every node is classed and none is left at the theme default. Green against grey reads far louder than green against an unstyled box, and the grey is what states that the rest is context.
 
 Exactly one green, always. Zero means the diagram has no point of view and is a filing system rather than an argument about a seat. Two means two arguments, which is two diagrams.
 

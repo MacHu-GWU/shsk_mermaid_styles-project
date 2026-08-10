@@ -38,15 +38,23 @@ Every color the pattern uses is written out as a complete `classDef` line with l
 
 State rules, do not argue them. `Green marks the start, red marks the end` is an instruction. `Green normally means goal, but here it is re-bound to the start because a procedure has no goal` is a design discussion, and it belongs in section 4 of `visual-grammar.md` where the author will read it. The consumer does not need to be persuaded, only to comply. This is where most of the length savings come from.
 
-References to other pattern files are allowed and wanted. `Use Decision Tree instead (decision-tree.md)` sends the agent to a different self contained file rather than asking it to hold two files at once. That is routing, not inheritance, and the When Not To Use table should be generous with it.
+A pattern file names a sibling only as a destination, never as a source of rules. `decision-tree.md` in the right hand column of the When Not To Use table is a forwarding address: the agent goes there instead, and holds one file at a time. That is routing, and the table should be generous with it.
 
-Keep it short. The budget is roughly 1,400 words of prose, counted with the mermaid blocks excluded, which lands a finished file around 220 lines. `step-flow.md` sits at that size with two canonical examples and three bad ones, so treat it as the reference for how much room a pattern actually needs.
+What is banned is a pattern file describing how another pattern works. `A Role Map's solid arrows mean the box above owns the box below, and its dotted edges each carry their own label` is a copy of another file's rules living where nobody will maintain it, and it goes stale the moment that file changes. Every boundary can be drawn from the file's own side instead, because the thing that puts content in or out of a pattern is that pattern's own test. Write `if one word cannot fill the blank in X hands ___ to Y across every edge, this is not the pattern` and let the table say where to go.
+
+The check is mechanical. Outside the When Not To Use table, a sibling's name should appear only in the shape `belongs in <file>.md` or `draw it as <file>.md`. If a sentence explains what the other pattern does with a shape, a color, an arrow, or a direction, cut it.
+
+Keep it short. Count the prose with the mermaid blocks excluded:
 
 ```bash
 awk '/^```/{f=!f; next} !f' <file> | wc -w
 ```
 
-This is a smell test rather than a gate. A pattern file that runs long is usually doing one of three things: arguing instead of instructing, describing two patterns that should be split, or spelling out what the shape and color tables already make obvious.
+A pattern with two canonical examples, three bad ones, and no Reach section lands near 1,700 words and about 210 lines. `step-flow.md`, `triage-map.md`, and `proportion-pie.md` all sit there, so treat that as the floor for a finished file rather than a target to hit. A Reach section costs about 300 words, a required prose apparatus of bullets and sources costs a few hundred more, and a pattern carrying both runs to about 2,200.
+
+Past that the file owes you a reason you can say out loud, and only three have one. `niche-map.md` and `role-map.md` are a matched pair whose whole point is a distinction between them, so each spends words drawing its own boundary sharply. `quadrant.md` carries a mandatory verdict table inside both examples, which is specimen rather than commentary. `working-backwards-chain.md` runs longest because its unit is two diagrams and every spine arrow owes the reader a bullet. Absent a reason of that kind, a file past 2,200 is over budget rather than thorough.
+
+This is a smell test rather than a gate. A pattern file that runs long is usually doing one of four things: arguing instead of instructing, describing two patterns that should be split, spelling out what the shape and color tables already make obvious, or stating one rule in the rules section, again under an example, and a third time in the checklist. The checklist is meant to restate; the middle one is the redundancy to cut.
 
 ---
 
@@ -65,14 +73,18 @@ Every pattern file uses these sections in this order, numbered as H2 with `---` 
 ## 6. Color                 full classDef lines, and the highlight budget
 ## 7. Arrows                which arrow forms are legal here
 ## 8. Length                the floor, and where to split
-## 9. Canonical Example     copyable, correct, with its caption sentence
+## 9. Canonical Example     copyable, correct, with its prose
 ## 10. Reach                only when section 4 below calls for it
 ## 11. Bad Examples         2 to 4, each with one line on what breaks
-## 12. Caption Convention   the sentence that goes under the diagram
+## 12. Prose Convention     what must be written above and below the diagram
 ## 13. Checklist            what to verify before shipping a diagram
 ```
 
 Sections 4 through 8 are the rules and should be tight. Two to five lines each is normal. If one of them needs a long paragraph, the reason usually belongs in the visual grammar instead.
+
+Sections 4, 5, and 7 are named for the flowchart vocabulary, and a pattern built on another Mermaid diagram type renames them for what it actually has: `Axis and Window` and `Ticks and Events` in Timeline, `Time and Lanes` and `Parties and Messages` in Exchange, `Axes` and `Verdicts and Points` in Quadrant. Keep the position and the number, change the noun. Section 7 is the one that goes missing, since these types offer no arrow choice, and a pattern-specific section takes the slot instead, as Quadrant's `Movement` does.
+
+Section 12 is `Prose Convention` in every pattern, including the ones whose only requirement is the takeaway sentence, where it says so and states that nothing goes above the diagram. It carries one bolded paragraph per required piece, in the order the reader meets them: the sentence above, whatever bullets the pattern requires, then the takeaway last. The takeaway opens `The takeaway from this diagram is`, except where the pattern's unit is more than one diagram, which makes it `this pipeline` in IO Pipeline and `this pair` in Working Backwards Chain.
 
 A pattern with two distinct forms (a short horizontal one and a long vertical one, for instance) gets two canonical examples. Otherwise one is enough. Number the sections straight through whatever you end up with, so a pattern with two examples and no Reach section runs 1 to 13 with nothing skipped.
 
@@ -83,6 +95,8 @@ Each canonical example is wrapped whole in one `>` blockquote, from its opening 
 The reason is that a canonical example is not just a diagram. It carries the prose the pattern requires around a diagram, and that prose is ordinary paragraphs and bullets, indistinguishable at a glance from the pattern file's own voice. Without the quote a reader cannot tell which sentences are the specimen and which are the file explaining the specimen. The quote marks answer that question in the margin, with no words spent.
 
 The line to cut on is whether the reader could copy it. Everything inside the quote is the deliverable. The file's own commentary about the example stays outside it, below the quote, which also stops that commentary from creeping back above the diagram where the pattern's own prose rules forbid it.
+
+Below, never above. An unquoted lead-in between the section heading and the quote is the common slip, and it is the same mistake twice: it puts the file's voice where the specimen's scoping sentence belongs, and it puts a claim about the diagram in front of a reader who has not seen the diagram. `Three questions, four exits, and a trunk two answers long` reads fine underneath and reads as padding on top.
 
 Bad examples are never quoted. They are the opposite of copyable, and the prose under each one is the file's critique rather than part of a specimen.
 
@@ -106,7 +120,9 @@ Write the When To Use test with no domain nouns in it. `Every item has a date yo
 
 Stay inside the territory this library serves: the tech industry, professional and organizational life, business, startups, personal growth. An example about a harvest does not make a pattern more general, it makes it unreachable, since nobody here is drawing a harvest. Breadth comes from the unit of analysis instead — a person, a team, a company, a product, a market layer, a dataset, a protocol, a piece of content — and each of those makes a structurally different diagram. Draw the canonical examples at two of those scales, and put the one furthest from the pattern's name first, since whichever comes first is what readers pattern match against.
 
-Add a Reach section only if generalizing from those examples is the hard part. It usually is not: Step Flow's readers already know their own procedures are procedures, and ten bullets restating that teach them your sections are padding. The two cases that earn one are a name that points at a field, so outsiders stop at the title (Niche Map), and a pattern whose unit is more than one diagram, so the whole example budget goes to a single subject (Working Backwards Chain).
+Add a Reach section only if generalizing from those examples is the hard part. Three things make it hard, and a pattern needs one of them: a name that points at a field, so outsiders stop at the title (Niche Map, IO Pipeline, Role Map); a diagram type that looks like it belongs to software, so the shape reads as narrower than it is (Exchange, State Lifecycle, Quadrant); or a unit of more than one diagram, so the whole example budget goes to a single subject and the second scale never gets drawn (Working Backwards Chain).
+
+Absent all three, skip it. Step Flow's readers already know their own procedures are procedures, and ten bullets restating that teach them your sections are padding. Timeline, Cycle, Decision Tree, Triage Map, and Proportion Pie ship without one for the same reason.
 
 Reach is ten bullets, no diagrams, after the examples and before the bad ones. Each names a case, says what the boxes are there, and fills the blank the test asks about, in one line, and the last one points back at the test as the only thing deciding membership. Ten is deliberate: three reads as a list of whatever you worked on that week, and ten cannot be filled without changing scale. It widens subject matter and nothing else, so a pattern frozen into one silhouette needs a rename or a second example with a different shape, not a longer list.
 

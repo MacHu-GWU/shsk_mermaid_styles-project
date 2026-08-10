@@ -14,7 +14,7 @@ The content is a set of conditions that cause each other in a circle, and two te
 
 Every edge survives being said out loud as "the more X, the more Y", with less, worse, or fewer allowed in either slot. And the ring closes: the last condition drives the first, with no "unless" on the closing edge.
 
-The tell that fails the test is reaching for "then". A procedure that merely repeats — a sprint, an on-call rotation — has order but no compounding, and it is a Step Flow whose repetition costs one sentence of prose.
+The tell that fails the test is reaching for "then". A procedure that merely repeats — a sprint, an on-call rotation — has order but no compounding.
 
 ---
 
@@ -29,7 +29,7 @@ The tell that fails the test is reaching for "then". A procedure that merely rep
 | A next step that depends on an answer | `decision-tree.md` |
 | The ring's history as dated events | `timeline.md` |
 
-The second row is the boundary that gets crossed. Plan, build, ship, learn is a loop on a slide and a procedure in practice: no condition accumulates around it, so it draws as a chain.
+The second row is the boundary that gets crossed. Drawing something as a ring does not make it one: if no condition accumulates around the loop, it draws as a chain.
 
 ---
 
@@ -48,7 +48,7 @@ Never `TD`, which claims the top of the ring owns the bottom. Never `RL`.
 | Condition | Rounded rectangle | `@{ shape: rounded }` | 3 to 6, forming the ring |
 | Starter | Lean right | `@{ shape: lean-r }` | 0 or 1, outside the ring |
 
-Every ring label is a comparative noun phrase: More, Fewer, Better, Worse, Faster, Less, Higher, or Lower, plus a noun, four words at most. The comparative is the compounding claim, and it is what makes every edge testable. A label without one, `Ship Features`, is a step, and a ring of steps is a repeating procedure that belongs in a Step Flow.
+Every ring label is a comparative noun phrase: More, Fewer, Better, Worse, Faster, Less, Higher, or Lower, plus a noun, four words at most. The comparative is the compounding claim, and it is what makes every edge testable. A label without one, `Ship Features`, is a step, and a ring of steps is a repeating procedure that belongs in `step-flow.md`.
 
 The starter is the one-time outside push or shock that set the ring moving: `Launch Publicity`, `Slipped Deadline`. It names a thing that happened, not a condition, and a ring that has always been turning has none.
 
@@ -64,7 +64,7 @@ Below Mermaid v11.3 the `@{ shape: ... }` form is unavailable. Substitute `A("Mo
 | :--- | :--- | :--- | :--- |
 | `accent` | Amber | The intervention, the one condition the reader can move directly | 0 or 1 |
 | `risk` | Red | On a decaying ring only, the condition that ends the story if the ring keeps turning | 0 or 1 |
-| `muted` | Grey | The starter | The starter only |
+| `muted` | Grey | The starter | 0 or 1 |
 
 ```text
 classDef accent fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
@@ -171,7 +171,7 @@ flowchart LR
     A["Plan the Sprint"] --> B["Build"] --> C["Ship"] --> D["Run the Retro"] --> A
 ```
 
-The ring closes but nothing compounds: "the more shipping, the more retros" is not a sentence anyone means. This is a repeating procedure, which is a Step Flow plus one line of prose saying it repeats.
+The ring closes but nothing compounds: "the more shipping, the more retros" is not a sentence anyone means. This is a repeating procedure: draw it as `step-flow.md` plus one line of prose saying it repeats.
 
 An exit in the ring.
 
@@ -182,7 +182,7 @@ flowchart LR
     Q -->|no| F["Fix the Pipeline"]
 ```
 
-The diamond hands the ring an exit, so the picture no longer claims the set feeds itself — it claims it feeds itself as long as an inspection keeps passing, which is a different and weaker statement. Keep the ring unconditional and put the failure mode in prose, or draw the check as its own Decision Tree.
+The diamond hands the ring an exit, so the picture no longer claims the set feeds itself — it claims it feeds itself as long as an inspection keeps passing, which is a different and weaker statement. Keep the ring unconditional and put the failure mode in prose, or draw the check as its own `decision-tree.md`.
 
 The closing edge drawn as a box.
 
@@ -212,7 +212,7 @@ flowchart LR
 - Every edge survives "the more X, the more Y" said out loud, and the ring closes with no "unless".
 - Exactly one ring: each condition has one ring edge in and one out, and no node branches.
 - Every ring edge is a bare `-->`, the starter's edge is the only `-.->`, nothing carries a label, and nothing is thick.
-- Direction is `LR`, with the entry node leftmost: the starter's target, else the intervention.
+- Direction is `LR`, with the entry node leftmost: the starter's target, else the intervention, else the condition the reader already knows.
 - 0 or 1 amber intervention, movable by a decision rather than through the ring.
 - Red only on a decaying ring, 0 or 1, on the condition that ends the story.
 - The starter is grey, and every other ring node stays unclassed.
