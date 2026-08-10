@@ -50,4 +50,19 @@ Welcome to ``shsk_mermaid_styles`` Documentation
 .. .. image:: https://shsk-mermaid-styles.readthedocs.io/en/latest/_static/shsk_mermaid_styles-logo.png
     :target: https://shsk-mermaid-styles.readthedocs.io/en/latest/
 
-Documentation for ``shsk_mermaid_styles``.
+This is my personal Mermaid visual style guide, shipped as the ``mermaid-styles``
+Claude Code plugin. It is not a Mermaid syntax reference. It is a **closed
+library of canonical diagram patterns**: thirteen recognized shapes of thought,
+each one locking down its own node shapes, flow direction, arrow semantics,
+color classes, and complexity limits before a single line of Mermaid gets
+written. An agent drawing a diagram picks the one pattern that matches the
+structure of the content, then follows that pattern's file literally. Nothing is
+left to taste, which is the point: across a body of tutorials, explainers, blog
+posts, and design docs, every diagram reads as one recognizable system rather
+than a pile of generic boxes and arrows.
+
+The spec lives entirely in ``.claude/skills/mermaid-styles/``. Each pattern file
+is self-contained, carrying its own syntax, literal hex colors, copyable
+canonical examples, and annotated bad ones, so an agent loads exactly one file
+to draw one diagram. The Python package in this repository is only supporting
+tooling; the deliverable is the plugin.
