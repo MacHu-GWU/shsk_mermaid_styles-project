@@ -2,7 +2,7 @@
 
 ## 1. What It Is
 
-A set of items placed on a plane by two judgments, so the plane cuts into four zones and each zone carries its own verdict. The diagram makes one claim: these two qualities together sort the set, and where an item lands tells the reader what to do about it.
+A set of items placed on a plane by two judgments, so the plane cuts into four zones and each zone carries its own verdict. The underlying move is case analysis: ask two questions of the same set, and the four combinations of high and low are four recognizably different situations, each with its own instruction. The diagram makes one claim: these two qualities together sort the set, and where an item lands tells the reader what to do about it.
 
 Drawn once, it is a classification. Drawn with the same items at two dates, it becomes the movement form, and the argument shifts from where things sit to which lines got crossed. The two forms share every rule below except section 7, which only the movement form uses.
 
@@ -12,7 +12,7 @@ Drawn once, it is a classification. Drawn with the same items at two dates, it b
 
 You hold a set of comparable items and two independent judgments about them, each a matter of degree, and where an item lands changes what you do with it.
 
-Three tests, and all three have to pass. Every point answers the same two questions. Each axis reads as more or less of one named quality, so an item can sit anywhere along it. And the four corners get four different verdicts, which is the test that fails quietly: if two corners would carry the same instruction, one axis is not earning its place.
+The working test is a sentence filled four times: high on both is one situation, low on both is another, and each mixed case is a situation of its own. When all four read as situations the reader will recognize as genuinely different, each with its own verdict, the plane has earned its place. Two quieter checks follow: every point answers the same two questions, and an item could sit anywhere along each axis. The verdict check is the one that fails silently: if two corners would carry the same instruction, one axis is not earning its place.
 
 ---
 
@@ -33,9 +33,11 @@ There is one more exit with no pattern behind it. If the verdict follows from on
 
 ## 4. Axes
 
-Each axis is written `x-axis <low end> --> <high end>`, both ends always present, and the two end labels name the same quality at opposite degrees, as `Lightly Embedded --> Deeply Embedded`. Ends that name two different things are two categories, not one axis.
+Each axis is written `x-axis <low pole> --> <high pole>`, both ends always present. A pole is one or two words, and the pair are opposite ends of one quality: `Learning --> Skilled`, `Trivial --> Important`. The quality's full name goes in the sentence above the chart, never on the axis.
 
-Right and up always mean more. Never phrase an axis so its high end reads as a negation.
+The poles stay short because of where Mermaid puts them. The x axis labels render horizontally above the plane, one over each half, and read fine. The y axis labels render rotated 90 degrees along the left edge, and rotated text gets harder to read with every word, so of the two dimensions the y axis gets the poles you can say in one word.
+
+Right and up always mean more. Never phrase a pole so the high end reads as a negation. And an item must be able to sit anywhere between the poles: ends that name two kinds, as `B2B --> B2C`, are categories wearing an axis's clothing, and a point between them means nothing.
 
 Coordinates run 0 to 1 in steps of 0.05, no finer, because they are judgments rather than measurements, and a judgment axis does not support two decimals of precision.
 
@@ -84,6 +86,8 @@ At most three points carry green, amber, or red combined. Grey is free, because 
 
 Zero green is legitimate here, unlike in the map patterns: a chart can argue about the whole portfolio rather than one member of it. Use the green only when the surrounding writing is about one point in particular.
 
+One point, one color. When the subject sits in the quadrant being warned about, green wins, because "which one is this about" is the question the reader needs answered before any warning.
+
 ---
 
 ## 7. Movement
@@ -106,74 +110,75 @@ Below 3 there is no classification, only a placement, so write the sentence. Abo
 
 ## 9. Canonical Example, Static
 
-> The coordinates are the platform team's judgment at the January dependency review, not measurements, and the set is every third party library the payments service imports directly.
+> The coordinates are my own Monday-planning judgment of one week of incoming work, and the two dimensions are how urgent each item is against how much it actually matters.
 >
 > ```mermaid
 > quadrantChart
->     title Dependency Audit, Payments Service
->     x-axis Lightly Embedded --> Deeply Embedded
->     y-axis Failing Upstream --> Healthy Upstream
->     quadrant-1 Bet on it
->     quadrant-2 Use freely
->     quadrant-3 Swap out casually
->     quadrant-4 Plan the exit
->     Postgres driver: [0.85, 0.9]
->     HTTP client: [0.6, 0.8]
->     Retry helper: [0.2, 0.75]
->     Date formatter: [0.15, 0.3]
->     XML parser:::riskPoint: [0.8, 0.15]
->     ORM: [0.7, 0.5]
+>     title One Week of Incoming Work
+>     x-axis Can Wait --> Urgent
+>     y-axis Trivial --> Important
+>     quadrant-1 Do it now
+>     quadrant-2 Schedule it
+>     quadrant-3 Drop it
+>     quadrant-4 Delegate it
+>     Prod incident: [0.9, 0.85]
+>     Quarterly roadmap: [0.2, 0.8]
+>     Recruiting pings:::riskPoint: [0.75, 0.2]
+>     Legacy status report: [0.15, 0.15]
+>     Code review queue: [0.6, 0.5]
 >     classDef riskPoint color: #C0392B
 > ```
 >
-> - **XML parser.** Last upstream release four years ago, one maintainer, and it sits under every settlement file the service parses. The embeddedness score is the migration estimate from the Q4 spike, which is the only number behind any point here.
-> - **ORM.** On the midline deliberately: upstream is maintained but releases have slowed to two a year, and the team could not agree it belonged in either half. If it drops, it lands in the exit quadrant beside the parser.
+> - **Recruiting pings.** Urgent because candidates go cold in days, trivial here because any teammate can run the screen, which is exactly what the corner's verdict arranges.
+> - **Code review queue.** On the importance midline deliberately: the queue mixes a risky migration with typo fixes, and if that spread persists the point should split in two.
 >
-> The takeaway from this diagram is that the exit quadrant holds exactly one point, but that point is among the most deeply embedded things on the chart, so the quadrant with the fewest dots is where the quarter's work is.
+> The takeaway from this diagram is that only one point will not fight for itself: everything urgent rings on its own, so the quarterly roadmap, important and silent, is the item that gets a protected calendar slot.
 
-No green anywhere, and that is the portfolio mode working as intended: the writing is about the set, so no single point gets the subject color, and the one red is the entire emphasis spend.
+The four combinations are four situations anyone working recognizes: urgent and important, important but quiet, urgent but trivial, neither. That is the section 2 test passing at full strength, and it is why this chart needs no explaining to a reader who has never seen one.
+
+No green anywhere, and that is the portfolio mode working as intended: the writing is about the week, not one task, so no point gets the subject color, and the one red is the entire emphasis spend.
 
 ---
 
 ## 10. Canonical Example, Movement
 
-> The coordinates are my own read of the hiring market, the pairs place the same two skills in 2022 and in 2026, and the subject is prompt evals, because the surrounding piece argues for leading with it.
+> The coordinates are a manager's own read of two direct reports, placed at the start of 2025 and a year later, and the two dimensions are skill against drive. The subject is the new hire, because the surrounding piece is about how fast delegation was earned.
 >
 > ```mermaid
 > quadrantChart
->     title Two Skills, 2022 against 2026
->     x-axis Rarely Asked For --> Widely Asked For
->     y-axis Common Skill --> Scarce Skill
->     quadrant-1 Lead with it
->     quadrant-2 Keep it warm
->     quadrant-3 Let it fade
->     quadrant-4 Table stakes
->     SQL 2022:::pastPoint: [0.8, 0.6]
->     SQL 2026:::keyPoint: [0.85, 0.2]
->     Prompt evals 2022:::pastPoint: [0.25, 0.8]
->     Prompt evals 2026:::subjectPoint: [0.7, 0.75]
+>     title Two Reports, 2025 against 2026
+>     x-axis Learning --> Skilled
+>     y-axis Idle --> Driven
+>     quadrant-1 Delegate
+>     quadrant-2 Coach
+>     quadrant-3 Direct
+>     quadrant-4 Motivate
+>     New hire 2025:::pastPoint: [0.2, 0.85]
+>     New hire 2026:::subjectPoint: [0.65, 0.9]
+>     Senior dev 2025:::pastPoint: [0.85, 0.7]
+>     Senior dev 2026:::riskPoint: [0.9, 0.3]
 >     classDef pastPoint color: #8A94A6
->     classDef keyPoint color: #B8860B
 >     classDef subjectPoint color: #1B7F4B
+>     classDef riskPoint color: #C0392B
 > ```
 >
-> The takeaway from this diagram is that both skills crossed a line in four years, in opposite directions: SQL fell out of the lead quadrant into table stakes without losing any demand, and prompt evals earned the seat SQL vacated, so the resume gets reordered even though nothing was unlearned.
+> The takeaway from this diagram is that both reports crossed a line in one year and neither crossing calls for closer supervision: the new hire crossed the skill line and earned delegation, while the senior developer slid down the drive axis with no loss of skill, so the fix is not training but a reason to care again.
 
-Both pairs cross a boundary, which is what qualified them. Had SQL merely drifted rightward inside its quadrant, its pair would be cut and the drift mentioned in prose, leaving a one mover chart.
+Each quadrant is a way of managing someone, so a crossing is not a detail, it is the event: the day a report changes quadrant is the day the old management style stops being right. That is what qualified both pairs. A report who drifted inside their quadrant is managed the same as before, and is not drawn.
 
-The grey does the real work. Four points, but the eye lands on the two current ones, and the past positions read as context exactly the way muted context reads everywhere else in this library.
+What moves a point is prose material, not chart material. Skill moves with teaching and reps, drive moves with meaning and recognition, and the diagram's job is only to show which of the two moved. Note also the poles: `Idle --> Driven` and `Learning --> Skilled` are one word each end, and the dimensions' full names live in the sentence above, which is what keeps the rotated y axis readable.
 
 ---
 
 ## 11. Reach
 
-The examples above are a dependency list and a pair of skills, and the pattern's name evokes a consulting deck, which together undersell where it applies. Any set that survives the section 2 test belongs here. Read this list before deciding it does not.
+The examples above are the two most familiar quadrants in professional life, tasks and people, which risks reading the pattern as a management toy. Any set that survives the section 2 test belongs here, whatever the unit. Read this list before deciding it does not fit.
 
-- **A sprint backlog.** Points are tickets, judged on effort against user impact, and the corners are the four things a planning meeting can decide.
+- **A dependency list.** Points are the libraries a service imports, judged on how deeply embedded against upstream health, and the corners split bet on it, use freely, swap out, plan the exit.
 - **Project risks.** Points are the things that could go wrong, judged on likelihood against blast radius, and the corners split mitigate, insure, monitor, accept.
 - **Technologies on the radar.** Points are tools or platforms, judged on maturity against fit to the roadmap, and the corners split adopt, trial, assess, hold.
 - **Recurring meetings.** Points are the standing entries on a calendar, judged on preparation cost against decision value, and the corners split keep, chair it yourself, delegate, make async.
-- **Job offers.** Points are the offers on the table, judged on what each teaches against what each pays, and the corners are four different careers.
+- **Skills on a resume.** Points are the things you can do, judged on market demand against scarcity, and the corners decide what to lead with, keep warm, let fade, or treat as table stakes.
 - **Customer accounts.** Points are the names on the revenue sheet, judged on revenue against cost to serve, and the corners split protect, automate, renegotiate, let churn.
 - **Training datasets.** Points are candidate corpora, judged on signal quality against cost to acquire, and the corners split buy, sample, generate, skip.
 - **Content ideas.** Points are pieces you could write, judged on audience demand against your own edge, and the corners split write now, research first, link out, drop.
@@ -245,8 +250,8 @@ Measurement cosplay.
 ```mermaid
 quadrantChart
     title Accounts by Revenue and Cost
-    x-axis Low Revenue --> High Revenue
-    y-axis Costly to Serve --> Cheap to Serve
+    x-axis Small --> Large
+    y-axis Costly --> Cheap
     quadrant-1 Protect
     quadrant-2 Automate
     quadrant-3 Let churn
@@ -263,7 +268,7 @@ Two decimal coordinates claim these positions were computed. If the revenue real
 
 ## 13. Prose Convention
 
-**Above the diagram, one sentence naming whose judgment the coordinates are and as of when,** plus, in the movement form, the two dates. It is required rather than optional, because a quadrant chart is the library's only diagram that looks like measured data, and the sentence is what keeps it honest. Nothing else goes above.
+**Above the diagram, one sentence naming whose judgment the coordinates are, as of when, and the full names of the two dimensions,** plus, in the movement form, the two dates. It is required rather than optional, twice over: a quadrant chart is the library's only diagram that looks like measured data, and the axis poles are deliberately too short to define their dimensions, so the sentence is where the definitions live. Nothing else goes above.
 
 **Below, up to three bullets,** one for each point whose placement needs defending: a number behind a coordinate, a midline claim, a disagreement the team had. Skip points whose position the reader will accept on sight.
 
@@ -274,7 +279,7 @@ Two decimal coordinates claim these positions were computed. If the revenue real
 ## 14. Checklist
 
 - The title names the set of points, and the two dates in the movement form.
-- Both ends of each axis name the same quality at opposite degrees, and both axes are judgments of more or less, never kinds.
+- Both poles of each axis are present, one or two words each, opposite ends of one quality an item could sit anywhere along, and the y axis got the shortest poles.
 - All four quadrant labels are present, imperative, two to four words, and carry four different verdicts.
 - No verdict depends on one axis alone.
 - 3 to 8 points, labels four words or fewer, no emoji.
@@ -284,5 +289,5 @@ Two decimal coordinates claim these positions were computed. If the revenue real
 - Every `classDef` sets `color` only, and no point sets `radius`.
 - Every mover is a pair sharing a name with time suffixes, its earlier point grey, and every pair crosses at least one quadrant line.
 - At most two moments; an item at three dates is a timeline.
-- The judgment sentence above and the takeaway sentence below are both written.
+- The sentence above names the judge, the date, and both dimensions in full; the takeaway sentence below points at one corner or one crossing.
 - The diagram parses.
