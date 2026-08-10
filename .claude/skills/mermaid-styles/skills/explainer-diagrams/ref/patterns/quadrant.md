@@ -35,7 +35,15 @@ There is one more exit with no pattern behind it. If the verdict follows from on
 
 Each axis is written `x-axis <low pole> --> <high pole>`, both ends always present. A pole is one or two words, and the pair are opposite ends of one quality: `Learning --> Skilled`, `Trivial --> Important`. The quality's full name goes in the sentence above the chart, never on the axis.
 
-The poles stay short because of where Mermaid puts them. The x axis labels render horizontally above the plane, one over each half, and read fine. The y axis labels render rotated 90 degrees along the left edge, and rotated text gets harder to read with every word, so of the two dimensions the y axis gets the poles you can say in one word.
+The first line of every quadrant diagram is this directive, copied exactly:
+
+```text
+%%{init: {"quadrantChart": {"xAxisPosition": "bottom"}}}%%
+```
+
+It moves the x axis poles below the plane, where axis text belongs. Without it Mermaid stacks the title, the x poles, and the quadrant labels in three same-styled rows across the top, and the reader cannot tell the axis furniture from the verdicts. A renderer too old to know the key ignores it and falls back to the top position, which is a cosmetic regression rather than a broken diagram, so the directive is safe to ship.
+
+The poles stay short because of the y axis. Its labels render rotated 90 degrees along the left edge in every Mermaid version, with no directive to change it, and rotated text gets harder to read with every word, so of the two dimensions the y axis gets the poles you can say in one word.
 
 Right and up always mean more. Never phrase a pole so the high end reads as a negation. And an item must be able to sit anywhere between the poles: ends that name two kinds, as `B2B --> B2C`, are categories wearing an axis's clothing, and a point between them means nothing.
 
@@ -56,7 +64,9 @@ Mermaid numbers the quadrants in an order nobody guesses right, so write the lab
 | `quadrant-3` | Bottom left | Low on both |
 | `quadrant-4` | Bottom right | High x, low y |
 
-All four labels are required, and each is an imperative verdict of two to four words: `Plan the exit`, `Bet on it`. An adjective label like `High value zone` restates the corner's coordinates, which the reader already has, and withholds the instruction, which is the only thing the corner can add.
+All four labels are required, and each is an imperative verdict of two to four words, written in ALL CAPS: `PLAN THE EXIT`, `BET ON IT`. The caps are load bearing, not decoration: the verdicts render in the same font size as the axis poles, and the caps are what make a verdict read as a stamp on its zone rather than as more axis text, on every renderer. An adjective label like `HIGH VALUE ZONE` restates the corner's coordinates, which the reader already has, and withholds the instruction, which is the only thing the corner can add.
+
+The verdicts center horizontally in their quadrants on their own. Vertically they center only on an empty plane; once points exist, Mermaid pins each verdict to the top edge of its quadrant to stay out of the data's way. Do not fight this placement: keep points at 0.85 or below on the y axis in the top quadrants and the two never collide.
 
 `title` is required and names the set of points, plus the two dates in the movement form. The axes name the dimensions and the corners name the verdicts, but nothing else says what population was judged, and an unnamed set reads as a claim about everything.
 
@@ -113,14 +123,15 @@ Below 3 there is no classification, only a placement, so write the sentence. Abo
 > The coordinates are my own Monday-planning judgment of one week of incoming work, and the two dimensions are how urgent each item is against how much it actually matters.
 >
 > ```mermaid
+> %%{init: {"quadrantChart": {"xAxisPosition": "bottom"}}}%%
 > quadrantChart
 >     title One Week of Incoming Work
 >     x-axis Can Wait --> Urgent
 >     y-axis Trivial --> Important
->     quadrant-1 Do it now
->     quadrant-2 Schedule it
->     quadrant-3 Drop it
->     quadrant-4 Delegate it
+>     quadrant-1 DO IT NOW
+>     quadrant-2 SCHEDULE IT
+>     quadrant-3 DROP IT
+>     quadrant-4 DELEGATE IT
 >     Prod incident: [0.9, 0.85]
 >     Quarterly roadmap: [0.2, 0.8]
 >     Recruiting pings:::riskPoint: [0.75, 0.2]
@@ -145,16 +156,17 @@ No green anywhere, and that is the portfolio mode working as intended: the writi
 > The coordinates are a manager's own read of two direct reports, placed at the start of 2025 and a year later, and the two dimensions are skill against drive. The subject is the new hire, because the surrounding piece is about how fast delegation was earned.
 >
 > ```mermaid
+> %%{init: {"quadrantChart": {"xAxisPosition": "bottom"}}}%%
 > quadrantChart
 >     title Two Reports, 2025 against 2026
 >     x-axis Learning --> Skilled
 >     y-axis Idle --> Driven
->     quadrant-1 Delegate
->     quadrant-2 Coach
->     quadrant-3 Direct
->     quadrant-4 Motivate
->     New hire 2025:::pastPoint: [0.2, 0.85]
->     New hire 2026:::subjectPoint: [0.65, 0.9]
+>     quadrant-1 DELEGATE
+>     quadrant-2 COACH
+>     quadrant-3 DIRECT
+>     quadrant-4 MOTIVATE
+>     New hire 2025:::pastPoint: [0.2, 0.8]
+>     New hire 2026:::subjectPoint: [0.65, 0.85]
 >     Senior dev 2025:::pastPoint: [0.85, 0.7]
 >     Senior dev 2026:::riskPoint: [0.9, 0.3]
 >     classDef pastPoint color: #8A94A6
@@ -194,14 +206,15 @@ The test in section 2 is the only membership rule: two judgments of degree, one 
 Categories wearing axes' clothing.
 
 ```mermaid
+%%{init: {"quadrantChart": {"xAxisPosition": "bottom"}}}%%
 quadrantChart
     title Where Our Products Sell
     x-axis B2B --> B2C
     y-axis Self Serve --> Sales Led
-    quadrant-1 Invest
-    quadrant-2 Maintain
-    quadrant-3 Divest
-    quadrant-4 Explore
+    quadrant-1 INVEST
+    quadrant-2 MAINTAIN
+    quadrant-3 DIVEST
+    quadrant-4 EXPLORE
     Billing suite: [0.2, 0.8]
     Consumer app: [0.85, 0.25]
     API platform: [0.5, 0.5]
@@ -212,14 +225,15 @@ B2B and B2C are kinds, not degrees of one quality, so the API platform at the ce
 Adjectives in the corners.
 
 ```mermaid
+%%{init: {"quadrantChart": {"xAxisPosition": "bottom"}}}%%
 quadrantChart
     title Feature Candidates
     x-axis Low Effort --> High Effort
     y-axis Low Impact --> High Impact
-    quadrant-1 Expensive but valuable
-    quadrant-2 High value zone
-    quadrant-3 Low value zone
-    quadrant-4 Danger zone
+    quadrant-1 EXPENSIVE BUT VALUABLE
+    quadrant-2 HIGH VALUE ZONE
+    quadrant-3 LOW VALUE ZONE
+    quadrant-4 DANGER ZONE
     Dark mode: [0.3, 0.75]
     SSO: [0.8, 0.85]
     Custom reports: [0.75, 0.2]
@@ -230,14 +244,15 @@ Every corner restates its own coordinates. The reader already knows SSO is high 
 One axis doing all the deciding.
 
 ```mermaid
+%%{init: {"quadrantChart": {"xAxisPosition": "bottom"}}}%%
 quadrantChart
     title Feature Candidates
     x-axis Low Impact --> High Impact
     y-axis Hard to Build --> Easy to Build
-    quadrant-1 Do it
-    quadrant-2 Skip it
-    quadrant-3 Skip it
-    quadrant-4 Do it
+    quadrant-1 DO IT
+    quadrant-2 SKIP IT
+    quadrant-3 SKIP IT
+    quadrant-4 DO IT
     Dark mode: [0.35, 0.8]
     SSO: [0.85, 0.3]
     Custom reports: [0.6, 0.55]
@@ -248,14 +263,15 @@ Both right corners say do it and both left corners say skip it, so the vertical 
 Measurement cosplay.
 
 ```mermaid
+%%{init: {"quadrantChart": {"xAxisPosition": "bottom"}}}%%
 quadrantChart
     title Accounts by Revenue and Cost
     x-axis Small --> Large
     y-axis Costly --> Cheap
-    quadrant-1 Protect
-    quadrant-2 Automate
-    quadrant-3 Let churn
-    quadrant-4 Renegotiate
+    quadrant-1 PROTECT
+    quadrant-2 AUTOMATE
+    quadrant-3 LET CHURN
+    quadrant-4 RENEGOTIATE
     Acme: [0.83, 0.27]
     Globex: [0.41, 0.66]
     Initech: [0.58, 0.12]
@@ -278,9 +294,11 @@ Two decimal coordinates claim these positions were computed. If the revenue real
 
 ## 14. Checklist
 
+- The first line is the `xAxisPosition: bottom` init directive, copied exactly.
 - The title names the set of points, and the two dates in the movement form.
 - Both poles of each axis are present, one or two words each, opposite ends of one quality an item could sit anywhere along, and the y axis got the shortest poles.
-- All four quadrant labels are present, imperative, two to four words, and carry four different verdicts.
+- All four quadrant labels are present, imperative, ALL CAPS, two to four words, and carry four different verdicts.
+- Points in the top quadrants sit at 0.85 or below on the y axis.
 - No verdict depends on one axis alone.
 - 3 to 8 points, labels four words or fewer, no emoji.
 - Coordinates in steps of 0.05, no finer.
