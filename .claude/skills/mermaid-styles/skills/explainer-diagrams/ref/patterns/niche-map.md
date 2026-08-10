@@ -26,7 +26,7 @@ Typical fits are a role among its collaborators, a library in a stack, a team in
 
 | The content actually has | Use instead |
 | :--- | :--- |
-| Reporting lines, where the parent owns the child | `org-chart.md` |
+| Reporting lines, where the parent owns the child | `role-map.md` |
 | Actions someone performs in order | `step-flow.md` |
 | Named artifacts handed from stage to stage | `io-pipeline.md` |
 | Dated events | `timeline.md` |
@@ -34,7 +34,7 @@ Typical fits are a role among its collaborators, a library in a stack, a team in
 | Share of a total rather than a seat in a flow | `proportion-pie.md` |
 | A position derived from a goal | `working-backwards-chain.md` |
 
-The first two rows are where the confusion lives. An Org Chart's arrows mean the box above owns the box below, and no box in it is the subject. Here the arrows mean something passes, and one box always is. If the boxes are things a person does rather than positions that outlive the doing, it is a Step Flow.
+The first two rows are where the confusion lives. A Role Map's solid arrows mean the box above owns the box below, and its dotted edges each carry their own label because no single word covers them. Here every solid edge carries the same one thing, and no edge needs a label. If the boxes are things a person does rather than positions that outlive the doing, it is a Step Flow.
 
 ---
 
