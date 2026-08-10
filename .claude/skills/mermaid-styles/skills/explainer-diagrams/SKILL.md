@@ -1,6 +1,6 @@
 ---
 name: explainer-diagrams
-description: Draw Mermaid diagrams from a closed library of canonical patterns with locked-in shapes, directions, arrow semantics, and complexity limits, so every diagram across a body of writing reads as one system. Use when writing a blog post, tutorial, explainer, industry analysis, README, or design doc and a passage would land better as a picture, when asked for a Mermaid diagram, flowchart, or timeline by name, or when another authoring skill says to load it.
+description: Draws Mermaid diagrams from a closed library of canonical patterns. Use when writing a blog post, tutorial, explainer, or design doc and a diagram would carry a structure better than prose, or when a Mermaid diagram is requested.
 ---
 
 # Explainer Diagrams
