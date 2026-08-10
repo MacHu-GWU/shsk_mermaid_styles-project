@@ -8,9 +8,9 @@ A single unbranching chain of steps showing what happens first, what happens nex
 
 ## 2. When To Use
 
-The content is a procedure, a lifecycle, or a sequence of stages the reader follows in order. The test is whether you can say the whole thing out loud as "first this, then this, then this" without ever saying "unless" or "it depends".
+The content is a procedure or a sequence of stages the reader follows in order, run once from start to finish. The test is whether you can say the whole thing out loud as "first this, then this, then this" without ever saying "unless" or "it depends", and without any step being one the work can come back to.
 
-Typical fits are a release process, an onboarding sequence, a request lifecycle, a review workflow, or a project from kickoff to retrospective.
+Typical fits are a release process, an onboarding sequence, a review workflow, or a project from kickoff to retrospective.
 
 ---
 
@@ -21,6 +21,8 @@ Typical fits are a release process, an onboarding sequence, a request lifecycle,
 | Branching, where the next step depends on an answer | `decision-tree.md` |
 | A one level fan out, each situation mapped to its own response | `triage-map.md` |
 | Named artifacts handed from each step to the next | `io-pipeline.md` |
+| Named conditions a thing occupies, with any way back to an earlier one | `state-lifecycle.md` |
+| A loop where each pass leaves some level higher or lower than the last | `cycle.md` |
 | Dated events rather than ordered stages | `timeline.md` |
 | A chain derived backwards from a goal | `working-backwards-chain.md` |
 | Two or more parties taking turns, with replies | `exchange.md` |
