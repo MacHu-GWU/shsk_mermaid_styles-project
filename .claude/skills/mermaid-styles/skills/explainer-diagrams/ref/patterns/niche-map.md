@@ -191,20 +191,20 @@ The dotted line does the work here. Without it the picture says the library has 
 
 ## 11. Reach
 
-The subject can be almost anything a reader will accept as sitting somewhere, and the flow can be almost anything they will accept as moving one way. Neither has to be commercial, and neither has to be an organization. Read this list before deciding the pattern does not fit.
+The two examples above are a person and a library, which is the narrowest possible reading of what can hold the green. The subject is anything a reader will accept as sitting somewhere, at any scale from one person to an entire market layer, and the flow is anything they will accept as moving one way. Read this list before deciding the pattern does not fit.
 
-- **A job family.** Who hands work to a role and who consumes what it produces. What flows is a work item, and the subject is a title rather than an employer.
-- **An open source library.** What it is built on and what is built on it. What flows is a function call, and the rival is whatever a consumer would switch to.
-- **A service in a running system.** The hops before and after the one your team is paged for. What flows is a single request.
-- **A team inside a company.** Who it takes requests from and who it delivers to, across reporting lines rather than down them. What flows is the request.
-- **A layer of an industry.** Suppliers, the layer in question, buyers. What flows is money, changing hands at every step.
+- **A startup in its market.** The infrastructure it rents upstream, the customers it sells to downstream. What flows is the product, and the rival is the incumbent those customers would otherwise buy.
+- **A layer of an industry.** Suppliers, the layer in question, buyers. What flows is money, changing hands at every step, and the subject is a layer rather than any company in it.
+- **A marketplace.** Supply side, the marketplace, demand side. What flows is the transaction, and the rival is the two sides finding each other directly.
+- **A team inside a company.** Who it takes requests from and who it delivers to, across reporting lines rather than down them. What flows is the request, and the rival is the team that would absorb the work if this one folded.
+- **An internal platform.** The teams whose systems it wraps and the teams that ship on top of it. What flows is a deployment, and the rival is a product every one of those teams could buy instead.
 - **A dataset.** The teams it passes through between a source system and a decision. What flows is the table, narrowing each time.
-- **A grant dollar.** Funder, intermediary, grantee, beneficiary. What flows is money, and the subject is usually whoever takes overhead.
-- **A publication.** Author, editor, platform, aggregator, reader. What flows is attention, and any of the five can be the subject.
-- **A method in a field.** The disciplines a technique was borrowed from and the fields now applying it. What flows is the technique, and upstream is where it was invented rather than where it is popular.
+- **A model in an application stack.** The data and compute it sits on, the applications built against it. What flows is an inference call, and the rival is whatever a caller would swap in over a weekend.
 - **A standard or protocol.** Who writes it, who implements it, who builds on the implementations. What flows is conformance, and the subject is often a committee nobody has heard of.
+- **A tutorial or an explainer.** The sources it draws on, the readers it reaches, and the aggregator between them. What flows is attention, and the rival is what those readers read instead.
+- **An independent practitioner.** Where the work arrives from and who the deliverable serves. What flows is the referral, and the interesting box is usually the intermediary who does not do the work.
 
-The unifying test is section 2 and nothing else. If one box is the subject, every box is a position, and one word fills the blank in `X hands ___ to Y` throughout, it is this pattern whatever the subject matter. And if no box deserves the green, it is not this pattern in any subject matter, because a map with no subject is an atlas.
+The unifying test is section 2 and nothing else. If one box is the subject, every box is a position, and one word fills the blank in `X hands ___ to Y` throughout, it is this pattern whatever the subject matter and whatever its scale. And if no box deserves the green, it is not this pattern in any subject matter, because a map with no subject is an atlas.
 
 ---
 

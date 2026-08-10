@@ -16,7 +16,7 @@ The content is a plan whose credibility rests on where it came from. The reader'
 
 The test is that you can say `X requires Y` out loud for every link and have it stay true said the other way as `Y then X`. A link that survives in only one direction is not a requirement, it is a habit.
 
-Typical fits are a skill plan derived from a target role, a launch derived from a date, a design derived from a service level objective, a curriculum derived from an exam.
+Typical fits are a skill plan derived from a target role, a launch derived from a date, a design derived from a service level objective, a curriculum derived from an exam. Section 11 is there because the pair is the unit, so both examples below are locked to one subject however much room the file has.
 
 ---
 
@@ -193,7 +193,28 @@ The same eight nodes, reflected. Nothing new is introduced and nothing is droppe
 
 ---
 
-## 11. Bad Examples
+## 11. Reach
+
+The pair above is one person aiming at a job, which is the smallest thing this pattern draws. It fits anything with a goal somebody else could check and a starting position already occupied, at any scale, and the one who holds the ground can be a person, a team, or a company. Both examples run on a single subject because the pair is the unit and the budget is spent there, so read this list before deciding the shape does not fit yours.
+
+- **A funding round.** The goal is a signed term sheet by the month the runway ends, and the ground is the metrics and the deck already in hand. Investors reject on the derivation far more often than on the goal.
+- **A launch date.** The goal is general availability on a date already announced, and the ground is what is merged into the branch today. The chain is what turns an announced date from a wish into a claim.
+- **A market entry.** The goal is the first paying customers in a segment the company has never sold to, and the ground is the product and the reputation it already has. Most of these fail on a link nobody could argue for out loud.
+- **A decommission.** The goal is the old system switched off with nothing broken, and the ground is the inventory of what still calls it. Every consumer migrated is required by the shutdown, and nothing that is not required belongs on the chain.
+- **A service level objective.** The goal is a number the on call rotation can be held to by the end of a quarter, and the ground is the current error budget and the traces already collected. The derivation is what separates the work that moves the number from the work that feels responsible.
+- **A certification audit.** The goal is an auditor's opinion by a renewal date, and the ground is the policies already written down. The chain is short and the temptation to pad it with good practices is enormous.
+- **A promotion case.** The goal is a committee saying yes at the next cycle, and the ground is the work already shipped. A committee judges the derivation by construction, so drawing it is close to drawing the packet.
+- **A hiring plan.** The goal is a team of a stated size shipping by a date, and the ground is the headcount and the open requisitions already approved. Every link is a lead time, which is why this one is usually longer than anyone expects.
+- **A conference talk.** The goal is a delivered talk on a schedule someone else publishes, and the ground is the work you have already done and can speak to. The submission deadline sits mid chain rather than at the end, and forgetting that is the usual way these fail.
+- **Going independent.** The goal is a stated number of retained clients by a date you set yourself, and the ground is the network and the portfolio you already have. The goal is checkable only if you name the number, which is the entire discipline this pattern imposes.
+
+The unifying test is section 2 and nothing else. If `X requires Y` and `Y then X` both stay true down the whole spine, if someone other than you can tell when the goal has been met, and if the chain lands on something already in your possession, it is this pattern at any scale and in any of these.
+
+What it is not is a Step Flow in different colors. This pattern answers "why these steps and not five others", so if nobody would have asked that, the derivation is a diagram nobody needed. Draw the plan alone and let it be a Step Flow.
+
+---
+
+## 12. Bad Examples
 
 Both meanings in one graph.
 
@@ -252,7 +273,7 @@ The interviews have not happened yet, so drawing them as a document claims a pos
 
 ---
 
-## 12. Prose Convention
+## 13. Prose Convention
 
 The pair never ships bare. Four word labels cannot hold a reason, and a derivation whose reasons are invisible is just a chain of boxes the reader has to take on faith. Three pieces of prose, always in this order.
 
@@ -266,7 +287,7 @@ A bullet per step under the execution diagram is optional. Add it when finishing
 
 ---
 
-## 13. Checklist
+## 14. Checklist
 
 - Both diagrams are present, over the identical node set.
 - Both are `LR`, the goal is leftmost in the derivation and rightmost in the execution, and neither mixes the two meanings.
