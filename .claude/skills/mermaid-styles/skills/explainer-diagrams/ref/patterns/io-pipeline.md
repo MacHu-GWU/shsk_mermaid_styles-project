@@ -66,15 +66,11 @@ Below Mermaid v11.3 the `@{ shape: ... }` form is unavailable. Substitute `S("s1
 
 ## 6. Color
 
-Steps are never colored, and there is no such thing as a per step color. The palette here is fixed at one class, and the only permitted use is marking one artifact the surrounding writing centers on, in every block where that artifact appears. The repeated amber is what ties the blocks into one story.
+None. This pattern uses no color at all, and that is a rule rather than an omission.
 
-```text
-classDef accent fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
-```
+The reason is that color cannot be kept honest here. Any artifact worth emphasizing is one that several blocks consume, so its highlight would repeat across the unit, and a repeated highlight on one step's output is indistinguishable from color marking provenance, which is the exact misreading section 11 bans. A signal that cannot be told apart from a banned signal is not worth its ink.
 
-Copy all three properties or none. Dropping `color` leaves the text color to the theme, so a diagram that reads in GitHub light mode turns pale on pale in dark mode.
-
-Provenance is carried by the ID prefix, never by color. Section 11 shows what happens when color tries to do this job.
+Everything color could have done already has an owner: provenance is the ID prefix, the final deliverable is 📄, and emphasis is the takeaway sentence, which names the artifact that matters in words.
 
 ---
 
@@ -121,9 +117,6 @@ Every output must be consumed by a later block, be the final deliverable, or ear
 >     T --> S1
 >     S1 --> N
 >     S1 --> O
->
->     classDef accent fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
->     class N accent
 > ```
 >
 > **s2: Draft** consumes both research artifacts plus one external input. Every node on the left announces its origin: two documents marked `s1:`, one bare lean right from outside.
@@ -140,9 +133,6 @@ Every output must be consumed by a later block, be the final deliverable, or ear
 >     N --> S2
 >     G --> S2
 >     S2 --> D
->
->     classDef accent fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
->     class N accent
 > ```
 >
 > **s3: Edit and Publish** reaches back past step 2: the `s1:` prefix on Source Notes says so without a wire. The snippets go to the social queue.
@@ -159,14 +149,11 @@ Every output must be consumed by a later block, be the final deliverable, or ear
 >     N --> S3
 >     S3 --> P
 >     S3 --> X
->
->     classDef accent fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
->     class N accent
 > ```
 >
 > The takeaway from this pipeline is that Source Notes feeds every later step, so the quality of the published post is set in step 1, before a single sentence of it is written.
 
-Source Notes carries the amber in all three blocks because the takeaway is about it. That is the whole color budget, spent on one artifact three times.
+Source Notes appears in three blocks under one identical label, and the takeaway sentence is what points at it. Nothing in the diagrams needs to.
 
 ---
 
@@ -244,7 +231,7 @@ flowchart LR
     class S2,D step2
 ```
 
-One color per step means the palette grows with the pipeline: ten steps is ten colors nobody can hold in memory, each needing its own light and dark tuning, and all of it says what a three character prefix says exactly. Color marks emphasis here, never origin.
+One color per step means the palette grows with the pipeline: ten steps is ten colors nobody can hold in memory, each needing its own light and dark tuning, and all of it says what a three character prefix says exactly. Strip the classes; this pattern draws no color at all.
 
 ---
 
@@ -264,7 +251,7 @@ One sentence above the overview naming the process and the step count. One bold 
 - 2 to 6 steps; each block has 1 to 4 inputs, 1 to 3 outputs, 8 nodes at most.
 - Every output is consumed later, is the final deliverable, or has a prose clause naming its receiver.
 - Every arrow is a bare solid `-->`.
-- No per step colors. At most one `accent` artifact, colored in every block it appears in, with `fill`, `stroke`, and `color` all set.
+- No color anywhere: no `classDef`, no per step palette, no highlights.
 - 📄 on the final deliverable only.
 - Every `<name>` is four words or fewer.
 - The lead lines and the takeaway sentence are written, and the takeaway is about an artifact.
