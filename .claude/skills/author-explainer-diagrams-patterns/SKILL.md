@@ -98,7 +98,13 @@ Read `ref/visual-grammar.md` first, in full. You are about to project from it, a
 
 Decide what the pattern narrows. Pick the shapes it uses from the eight, the arrow forms from the four, the direction from the three, the colors from the four. A pattern that uses all of everything is not a pattern, it is the grammar with a title.
 
-Separate the structure from the domain you found it in. Every pattern here was noticed in one real piece of writing, and the name usually keeps that origin: Value Chain sounds like commerce, Org Chart like companies, Timeline like a press release archive. None of them is. The pattern is the structural test in section 2, and the domain is an accident of where you saw it first. Leave the accident in and the pattern gets used in one field and skipped in nine.
+Separate the structure from the case you found it in. Every pattern here was noticed in one real piece of writing, and the name tends to keep that origin. The pattern is the structural test in section 2; everything else about where you first saw it is an accident.
+
+Test the name against both kinds of accident, because it can smuggle in either. **A domain**: Org Chart sounds like it is about companies, Timeline like it is about a press release archive, and neither is. **A topology**: a name that describes what the diagram looked like the first time freezes it into that silhouette.
+
+Niche Map has already paid for this lesson. It shipped its first draft as Value Chain, and the name did both kinds of damage at once. `Value` narrowed it to commerce. `Chain` narrowed it to a line, which silently excluded every subject with three neighbors on one side, and that half cost a rewrite rather than an edit, because the shapes section, the length limits, and both canonical examples had all been written to a line. The domain trap is the obvious one. The topology trap is the expensive one.
+
+A name that survives both is built from what the diagram claims rather than from what it happened to look like. If you cannot find one, the structural test is probably not settled yet, and naming it is not the step you are actually on.
 
 Write the When To Use test with no domain nouns in it. `Every item has a date you could cite` travels; `the content is a company's recent moves` does not. Then draw the canonical examples from two different fields and put the one furthest from the pattern's name first, since whichever comes first is what readers pattern match against.
 
