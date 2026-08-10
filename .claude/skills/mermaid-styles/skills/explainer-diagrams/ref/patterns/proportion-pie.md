@@ -50,9 +50,9 @@ The `title` is required, and it does one job: it names the whole and its window,
 
 Slices render clockwise from twelve o'clock in written order, so largest-first puts the biggest share at the top and the sizes descend around the circle. `Other` goes last so the tail sits at the end of the descent instead of interrupting it.
 
-Labels are noun phrases of four words or fewer. No numbers in a label, because `showData` already prints the value and a percentage written into the label doubles it. No emoji anywhere in the diagram.
+Labels are noun phrases of four words or fewer. No numbers in a label. No emoji anywhere in the diagram.
 
-Values are raw counts whenever you have them, because a count is citable and the sum of the slices then states the whole. Use percentages only when the source publishes shares and nothing else, and then they must sum to exactly 100, because the renderer normalizes whatever it is given and will happily draw a wrong total as a clean circle.
+The value is the count of units in that slice, and there is only this one form. `showData` prints the count beside the label and the renderer computes the percentage onto the slice, so the reader always sees both, and neither is ever written into the label text, where it would go stale the moment a value changed. When a source publishes shares and nothing else, those shares are the values, they must sum to exactly 100 because the renderer normalizes whatever it is given, and the printed value and the rendered percentage simply coincide.
 
 ---
 
@@ -86,7 +86,7 @@ Any slice below 5 percent of the whole merges into `Other`. Enumerate what `Othe
 
 ---
 
-## 9. Canonical Example, Counts
+## 9. Canonical Example
 
 > The whole is the 90 pages the on-call rotation answered in Q3, each counted once under the root cause the postmortem assigned it.
 >
@@ -104,30 +104,11 @@ Any slice below 5 percent of the whole merges into `Other`. Enumerate what `Othe
 >
 > The takeaway from this diagram is that 59 of the 90 pages, about two thirds, trace to changes we made ourselves, so the paging problem is a release-discipline problem rather than a dependency problem.
 
-Counts are the preferred form. The slices sum to 90 in plain sight, and every number can be checked against the postmortem log.
+The slices sum to 90 in plain sight, every count can be checked against the postmortem log, and the percentages on the slices are computed from those same counts, so the two readings can never disagree.
 
 ---
 
-## 10. Canonical Example, Percentages
-
-> The whole is all visits to the blog over the last 12 months, each attributed to the one channel that delivered it; the analytics platform reports channel mix as shares only.
->
-> ```mermaid
-> pie showData
->     title Blog Traffic by Channel, Trailing 12 Months
->     "Organic search" : 62
->     "Newsletter" : 17
->     "Social" : 13
->     "Referrals" : 8
-> ```
->
-> The takeaway from this diagram is that search delivers 62 percent of all traffic, so one ranking change can move more readers than every channel we own combined, and the newsletter at 17 percent is the only piece of that whole under our control.
-
-Percentages are the fallback form, used because the source gives shares and nothing else. They sum to exactly 100, and no slice fell below 5 percent, so there is no `Other` and nothing to enumerate.
-
----
-
-## 11. Bad Examples
+## 10. Bad Examples
 
 Two wholes in one circle.
 
@@ -188,7 +169,7 @@ An uptime, a score, and a count share no unit and sum to nothing nameable, so th
 
 ---
 
-## 12. Prose Convention
+## 11. Prose Convention
 
 **Above the diagram, one scoping sentence, and nothing else.** It names the whole and how each unit was counted, including the rule used when a unit could have landed in two slices. The title states the whole; this sentence is where the counting method lives.
 
@@ -200,7 +181,7 @@ An uptime, a score, and a count share no unit and sum to nothing nameable, so th
 
 ---
 
-## 13. Checklist
+## 12. Checklist
 
 - The header is `pie showData`, and every slice shows its value.
 - The title names the whole and its window, and "percent of what, measured when?" is answerable from it alone.
@@ -208,7 +189,7 @@ An uptime, a score, and a count share no unit and sum to nothing nameable, so th
 - 3 to 6 slices, written largest first, `Other` written last.
 - Every slice below 5 percent is merged into `Other`, and `Other` is not the largest slice.
 - Labels are noun phrases of four words or fewer, with no numbers and no emoji.
-- Values are raw counts, or percentages summing to exactly 100 when the source gives shares only.
+- Every value is the count of units in its slice, or the share itself, summing to exactly 100, when the source gives shares only.
 - One whole per diagram: no second subject, year, or unit hiding in the slice labels.
 - No color, no `classDef`, no theme variable block.
 - One scoping sentence above the diagram, and nothing else above it.
