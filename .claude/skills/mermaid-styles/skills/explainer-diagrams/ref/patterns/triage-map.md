@@ -21,7 +21,7 @@ Typical fits are who to interrupt when blocked on what, how each class of error 
 | Questions with an order, where X is checked before Y matters | `decision-tree.md` |
 | A case that needs a second question before it reaches a response | `decision-tree.md` |
 | No branching at all, just steps in sequence | `step-flow.md` |
-| Boxes that are people and reporting lines rather than situations | `org-chart.md` |
+| One role, who it answers to, and who it works with | `role-map.md` |
 | Boxes that are positions something flows through | `niche-map.md` |
 
 The first two rows are the ones that get confused, and depth is the wrong way to tell them apart. "Ask the senior engineer, and if that fails, escalate" looks like a second layer but is not a second question, it is a fallback, and a fallback is drawn as a dotted edge inside this pattern. The moment a branch needs a genuine follow up question, with its own answers and its own responses, the content is a Decision Tree.
