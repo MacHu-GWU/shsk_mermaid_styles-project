@@ -103,24 +103,24 @@ There is no hard ceiling, but past about a dozen steps a vertical chain stops re
 
 Five short labels, so the row still reads and the chain runs horizontal. No key step, because nothing needs pointing at when the whole thing is visible at once.
 
-```mermaid
-flowchart LR
-    S@{ shape: stadium, label: "Write Code" }
-    A@{ shape: rounded, label: "Open PR" }
-    B@{ shape: rounded, label: "Code Review" }
-    C@{ shape: rounded, label: "Merge to Main" }
-    D@{ shape: stadium, label: "Deploy" }
-
-    S --> A --> B --> C --> D
-
-    classDef startNode fill:#D1F0DB,stroke:#1B7F4B,color:#0B3D24
-    classDef finishNode fill:#FDE2E1,stroke:#C0392B,color:#5A1710
-
-    class S startNode
-    class D finishNode
-```
-
-The takeaway from this diagram is that shipping a change is one straight line with a single human gate in the middle, and nothing on that line is optional.
+> ```mermaid
+> flowchart LR
+>     S@{ shape: stadium, label: "Write Code" }
+>     A@{ shape: rounded, label: "Open PR" }
+>     B@{ shape: rounded, label: "Code Review" }
+>     C@{ shape: rounded, label: "Merge to Main" }
+>     D@{ shape: stadium, label: "Deploy" }
+>
+>     S --> A --> B --> C --> D
+>
+>     classDef startNode fill:#D1F0DB,stroke:#1B7F4B,color:#0B3D24
+>     classDef finishNode fill:#FDE2E1,stroke:#C0392B,color:#5A1710
+>
+>     class S startNode
+>     class D finishNode
+> ```
+>
+> The takeaway from this diagram is that shipping a change is one straight line with a single human gate in the middle, and nothing on that line is optional.
 
 ---
 
@@ -128,35 +128,35 @@ The takeaway from this diagram is that shipping a change is one straight line wi
 
 Twelve steps, far past what a row can hold, so the chain runs vertical and two gates are marked.
 
-```mermaid
-flowchart TD
-    S@{ shape: stadium, label: "User Feedback" }
-    A@{ shape: rounded, label: "Product Spec" }
-    B@{ shape: hex, label: "Design Review" }
-    C@{ shape: rounded, label: "Technical Design Doc" }
-    D@{ shape: rounded, label: "Break Into Tickets" }
-    E@{ shape: rounded, label: "Implement" }
-    F@{ shape: rounded, label: "Code Review" }
-    G@{ shape: rounded, label: "Merge to Main" }
-    H@{ shape: rounded, label: "Deploy to Staging" }
-    I@{ shape: hex, label: "QA Sign Off" }
-    J@{ shape: rounded, label: "Production Rollout" }
-    K@{ shape: stadium, label: "Post Launch Review" }
-
-    S --> A --> B --> C --> D --> E --> F --> G --> H --> I --> J --> K
-
-    classDef startNode fill:#D1F0DB,stroke:#1B7F4B,color:#0B3D24
-    classDef keyNode fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
-    classDef finishNode fill:#FDE2E1,stroke:#C0392B,color:#5A1710
-
-    class S startNode
-    class B,I keyNode
-    class K finishNode
-```
+> ```mermaid
+> flowchart TD
+>     S@{ shape: stadium, label: "User Feedback" }
+>     A@{ shape: rounded, label: "Product Spec" }
+>     B@{ shape: hex, label: "Design Review" }
+>     C@{ shape: rounded, label: "Technical Design Doc" }
+>     D@{ shape: rounded, label: "Break Into Tickets" }
+>     E@{ shape: rounded, label: "Implement" }
+>     F@{ shape: rounded, label: "Code Review" }
+>     G@{ shape: rounded, label: "Merge to Main" }
+>     H@{ shape: rounded, label: "Deploy to Staging" }
+>     I@{ shape: hex, label: "QA Sign Off" }
+>     J@{ shape: rounded, label: "Production Rollout" }
+>     K@{ shape: stadium, label: "Post Launch Review" }
+>
+>     S --> A --> B --> C --> D --> E --> F --> G --> H --> I --> J --> K
+>
+>     classDef startNode fill:#D1F0DB,stroke:#1B7F4B,color:#0B3D24
+>     classDef keyNode fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
+>     classDef finishNode fill:#FDE2E1,stroke:#C0392B,color:#5A1710
+>
+>     class S startNode
+>     class B,I keyNode
+>     class K finishNode
+> ```
+>
+> The takeaway from this diagram is that a feature passes through two gates on its way to production, and everything between them is execution.
 
 Design Review and QA Sign Off are the only two stages where work can be sent back, which is why they carry the hexagons. Implement would have been the wrong pick: it is where the time goes, not where the risk sits.
-
-The takeaway from this diagram is that a feature passes through two gates on its way to production, and everything between them is execution.
 
 ---
 

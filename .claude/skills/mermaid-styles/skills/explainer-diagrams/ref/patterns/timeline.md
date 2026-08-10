@@ -92,26 +92,26 @@ Above 8 the axis runs off the page and the labels shrink, and the fix is the win
 
 ## 9. Canonical Example, Plain
 
-The window is the sixteen months from the first public AI move to the most recent acquisition, and everything before it is left out because this diagram is about the current turn rather than the company's history.
-
-```mermaid
-timeline
-    title Visa AI Moves, 2025-04 to 2026-08
-    2025-04 : Launched Intelligent Commerce
-    2025-09 : Published Trusted Agent Protocol
-    2025-12 : Completed first AI agent transactions
-    2026-H1 : ⚠️ Cut 7 percent of staff
-    2026-07 : Reorganized into small squads
-    2026-08 : Acquired BioCatch for 2.4B
-```
-
-Sources in order: the product launch and the protocol from the company newsroom, the December agent transactions from its investor relations announcement, the layoff figure from Yahoo Finance, the reorganization from the Q3 2026 earnings call, and the acquisition from CNBC.
-
-- **Cut 7 percent of staff.** About 2,600 people, concentrated in technology and product, with 563 million dollars of severance booked in the quarter. The tick carries the ratio because that is what makes it comparable to other companies, and the headcount and the cost do not fit on an axis.
-- **Reorganized into small squads.** The company's own framing, teams of ten or more going down to two to four. The productivity gains quoted alongside it are unverified by anyone outside the company, which is why they are not on the diagram at all.
-- **Acquired BioCatch for 2.4B.** Announced, not closed: completion is expected in fiscal 2027 and it is still subject to regulatory approval. An axis has no way to show a pending state, so every tick reads as a completed fact whether or not it is one, and catching that is what the bullets are for.
-
-The takeaway from this diagram is that five of the six moves are investment and one is a cut, all inside sixteen months, so this is a company changing shape rather than one contracting.
+> The window is the sixteen months from the first public AI move to the most recent acquisition, and everything before it is left out because this diagram is about the current turn rather than the company's history.
+>
+> ```mermaid
+> timeline
+>     title Visa AI Moves, 2025-04 to 2026-08
+>     2025-04 : Launched Intelligent Commerce
+>     2025-09 : Published Trusted Agent Protocol
+>     2025-12 : Completed first AI agent transactions
+>     2026-H1 : ⚠️ Cut 7 percent of staff
+>     2026-07 : Reorganized into small squads
+>     2026-08 : Acquired BioCatch for 2.4B
+> ```
+>
+> Sources in order: the product launch and the protocol from the company newsroom, the December agent transactions from its investor relations announcement, the layoff figure from Yahoo Finance, the reorganization from the Q3 2026 earnings call, and the acquisition from CNBC.
+>
+> - **Cut 7 percent of staff.** About 2,600 people, concentrated in technology and product, with 563 million dollars of severance booked in the quarter. The tick carries the ratio because that is what makes it comparable to other companies, and the headcount and the cost do not fit on an axis.
+> - **Reorganized into small squads.** The company's own framing, teams of ten or more going down to two to four. The productivity gains quoted alongside it are unverified by anyone outside the company, which is why they are not on the diagram at all.
+> - **Acquired BioCatch for 2.4B.** Announced, not closed: completion is expected in fiscal 2027 and it is still subject to regulatory approval. An axis has no way to show a pending state, so every tick reads as a completed fact whether or not it is one, and catching that is what the bullets are for.
+>
+> The takeaway from this diagram is that five of the six moves are investment and one is a cut, all inside sixteen months, so this is a company changing shape rather than one contracting.
 
 One detail worth copying: the scoping sentence is the only prose above the diagram, and everything else waited until the reader had seen it.
 
@@ -119,22 +119,22 @@ One detail worth copying: the scoping sentence is the only prose above the diagr
 
 ## 10. Canonical Example, Sectioned
 
-The window is the platform's whole life, from the first scheduled job to the point where analysts stopped filing tickets, so nothing is left out.
-
-```mermaid
-timeline
-    title How the Data Platform Got Here
-    section Hand Rolled
-        2023-Q1 : First cron job ships
-        2023-Q4 : ⚠️ Nightly job misses SLA
-    section Managed
-        2024-Q2 : Moved onto a scheduler
-        2024-Q4 : ✅ SLA held two quarters
-    section Self Serve
-        2025-Q3 : Analysts write their own pipelines
-```
-
-The takeaway from this diagram is that each era began where the last one failed, and the gap between the miss and the fix was three quarters both times.
+> The window is the platform's whole life, from the first scheduled job to the point where analysts stopped filing tickets, so nothing is left out.
+>
+> ```mermaid
+> timeline
+>     title How the Data Platform Got Here
+>     section Hand Rolled
+>         2023-Q1 : First cron job ships
+>         2023-Q4 : ⚠️ Nightly job misses SLA
+>     section Managed
+>         2024-Q2 : Moved onto a scheduler
+>         2024-Q4 : ✅ SLA held two quarters
+>     section Self Serve
+>         2025-Q3 : Analysts write their own pipelines
+> ```
+>
+> The takeaway from this diagram is that each era began where the last one failed, and the gap between the miss and the fix was three quarters both times.
 
 Sections earn their place because the point is not the five events, it is that the platform passed through three regimes. Drawn flat it is five dates and the reader has to find that themselves.
 

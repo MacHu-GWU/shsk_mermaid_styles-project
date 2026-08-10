@@ -114,40 +114,40 @@ At 6 the row is full. What fills it is total label width rather than the node co
 
 ## 9. Canonical Example, The Derivation
 
-Someone holds a resume, a write up of each past role, and a private note on what they want and what they will not do. They are aiming at three job descriptions whose bar they do not currently clear, and they want to know what actually stands between the two.
-
-```mermaid
-flowchart LR
-    G@{ shape: dbl-circ, label: "🎯 Meet 3 Target JDs" }
-    E@{ shape: rounded, label: "Skills at JD Standard" }
-    D@{ shape: rounded, label: "Practice Setup Built" }
-    C@{ shape: rounded, label: "Training Project Designed" }
-    B@{ shape: rounded, label: "Practitioner Paths Read" }
-    A@{ shape: lean-r, label: "🔑 Skill Gap Named" }
-    R1@{ shape: doc, label: "📄 Three Target JDs" }
-    R2@{ shape: doc, label: "📄 My Career Dossier" }
-
-    G -->|requires| E -->|requires| D -->|requires| C -->|requires| B -->|requires| A
-    A -->|requires| R1
-    A -->|requires| R2
-
-    classDef goalNode fill:#D1F0DB,stroke:#1B7F4B,color:#0B3D24
-    classDef groundNode fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
-    classDef materialNode fill:#EEF1F5,stroke:#8A94A6,color:#2C3440
-
-    class G goalNode
-    class A groundNode
-    class R1,R2 materialNode
-```
-
-Read it in the order it is drawn, one arrow at a time. Each line below asserts the requirement and says why the thing on the right is genuinely required rather than merely helpful.
-
-- **Meeting the three JDs requires the skills at the standard the JDs set.** An interviewer checks performance against a bar, so having read about a skill scores zero.
-- **Reaching that standard requires a practice setup that already exists.** Reps need a tutorial, source material, and an environment that runs, and without them the drilling stalls in the first week.
-- **Building that setup requires a project to build it around.** Materials gathered with no target are a reading list, and a reading list produces no reps.
-- **Designing that project requires having read how practitioners actually got the skill.** Designed from imagination it trains the wrong thing convincingly, which is worse than not training at all.
-- **Reading those paths requires knowing which skills are missing.** Otherwise you are researching every skill in the field rather than the four you lack.
-- **Naming the gap requires only what is already on the disk.** The three job descriptions on one side and your own resume, role write ups, and career note on the other.
+> Someone holds a resume, a write up of each past role, and a private note on what they want and what they will not do. They are aiming at three job descriptions whose bar they do not currently clear, and they want to know what actually stands between the two.
+>
+> ```mermaid
+> flowchart LR
+>     G@{ shape: dbl-circ, label: "🎯 Meet 3 Target JDs" }
+>     E@{ shape: rounded, label: "Skills at JD Standard" }
+>     D@{ shape: rounded, label: "Practice Setup Built" }
+>     C@{ shape: rounded, label: "Training Project Designed" }
+>     B@{ shape: rounded, label: "Practitioner Paths Read" }
+>     A@{ shape: lean-r, label: "🔑 Skill Gap Named" }
+>     R1@{ shape: doc, label: "📄 Three Target JDs" }
+>     R2@{ shape: doc, label: "📄 My Career Dossier" }
+>
+>     G -->|requires| E -->|requires| D -->|requires| C -->|requires| B -->|requires| A
+>     A -->|requires| R1
+>     A -->|requires| R2
+>
+>     classDef goalNode fill:#D1F0DB,stroke:#1B7F4B,color:#0B3D24
+>     classDef groundNode fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
+>     classDef materialNode fill:#EEF1F5,stroke:#8A94A6,color:#2C3440
+>
+>     class G goalNode
+>     class A groundNode
+>     class R1,R2 materialNode
+> ```
+>
+> Read it in the order it is drawn, one arrow at a time. Each line below asserts the requirement and says why the thing on the right is genuinely required rather than merely helpful.
+>
+> - **Meeting the three JDs requires the skills at the standard the JDs set.** An interviewer checks performance against a bar, so having read about a skill scores zero.
+> - **Reaching that standard requires a practice setup that already exists.** Reps need a tutorial, source material, and an environment that runs, and without them the drilling stalls in the first week.
+> - **Building that setup requires a project to build it around.** Materials gathered with no target are a reading list, and a reading list produces no reps.
+> - **Designing that project requires having read how practitioners actually got the skill.** Designed from imagination it trains the wrong thing convincingly, which is worse than not training at all.
+> - **Reading those paths requires knowing which skills are missing.** Otherwise you are researching every skill in the field rather than the four you lack.
+> - **Naming the gap requires only what is already on the disk.** The three job descriptions on one side and your own resume, role write ups, and career note on the other.
 
 The chain ends in two grey documents, and that cluster is the answer to "where do I actually stand today". Everything to the left of the amber node has to be built. Everything at it and beyond is already yours.
 
@@ -157,39 +157,39 @@ The chain ends in two grey documents, and that cluster is the answer to "where d
 
 The same eight nodes, reflected. Nothing new is introduced and nothing is dropped, which is the whole claim: this plan was not chosen, it was forced. The documents you hold have moved to the left edge, the ground has become a stadium, the states have become imperatives, and the goal has crossed to the far side.
 
-```mermaid
-flowchart LR
-    R1@{ shape: doc, label: "📄 Three Target JDs" }
-    R2@{ shape: doc, label: "📄 My Career Dossier" }
-    A@{ shape: stadium, label: "Name My Skill Gap" }
-    B@{ shape: rounded, label: "Read Practitioner Paths" }
-    C@{ shape: rounded, label: "Design Training Project" }
-    D@{ shape: rounded, label: "Build Practice Setup" }
-    E@{ shape: rounded, label: "Drill to JD Standard" }
-    G@{ shape: dbl-circ, label: "🎯 Meet 3 Target JDs" }
-
-    R1 --> A
-    R2 --> A
-    A --> B --> C --> D --> E --> G
-
-    classDef goalNode fill:#D1F0DB,stroke:#1B7F4B,color:#0B3D24
-    classDef groundNode fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
-    classDef materialNode fill:#EEF1F5,stroke:#8A94A6,color:#2C3440
-
-    class G goalNode
-    class A groundNode
-    class R1,R2 materialNode
-```
-
-Each step, and what finishing it looks like.
-
-- **Name my skill gap.** Read the three JDs against your own documents and produce one list of what is required and not yet held, split into skills that can be demonstrated and judgement that has to be shown.
-- **Read practitioner paths.** For each gap item, find how people who have it actually got it, and keep the account rather than the conclusion.
-- **Design the training project.** One project, scoped to the top few gap items, shaped like the accounts you just read.
-- **Build the practice setup.** Tutorial, source material, and a running environment, assembled until nothing stands between you and the first rep.
-- **Drill to JD standard.** Reps against the bar from the JDs, until the gap list is empty.
-
-The takeaway from this pair is that reaching the target roles is five moves from documents already sitting on your disk, and the reason there are five rather than fifty is that every one of them was forced by the goal rather than picked off a list of good habits.
+> ```mermaid
+> flowchart LR
+>     R1@{ shape: doc, label: "📄 Three Target JDs" }
+>     R2@{ shape: doc, label: "📄 My Career Dossier" }
+>     A@{ shape: stadium, label: "Name My Skill Gap" }
+>     B@{ shape: rounded, label: "Read Practitioner Paths" }
+>     C@{ shape: rounded, label: "Design Training Project" }
+>     D@{ shape: rounded, label: "Build Practice Setup" }
+>     E@{ shape: rounded, label: "Drill to JD Standard" }
+>     G@{ shape: dbl-circ, label: "🎯 Meet 3 Target JDs" }
+>
+>     R1 --> A
+>     R2 --> A
+>     A --> B --> C --> D --> E --> G
+>
+>     classDef goalNode fill:#D1F0DB,stroke:#1B7F4B,color:#0B3D24
+>     classDef groundNode fill:#FFF3CD,stroke:#B8860B,color:#3D2E00
+>     classDef materialNode fill:#EEF1F5,stroke:#8A94A6,color:#2C3440
+>
+>     class G goalNode
+>     class A groundNode
+>     class R1,R2 materialNode
+> ```
+>
+> Each step, and what finishing it looks like.
+>
+> - **Name my skill gap.** Read the three JDs against your own documents and produce one list of what is required and not yet held, split into skills that can be demonstrated and judgement that has to be shown.
+> - **Read practitioner paths.** For each gap item, find how people who have it actually got it, and keep the account rather than the conclusion.
+> - **Design the training project.** One project, scoped to the top few gap items, shaped like the accounts you just read.
+> - **Build the practice setup.** Tutorial, source material, and a running environment, assembled until nothing stands between you and the first rep.
+> - **Drill to JD standard.** Reps against the bar from the JDs, until the gap list is empty.
+>
+> The takeaway from this pair is that reaching the target roles is five moves from documents already sitting on your disk, and the reason there are five rather than fifty is that every one of them was forced by the goal rather than picked off a list of good habits.
 
 ---
 

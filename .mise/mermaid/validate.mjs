@@ -90,6 +90,9 @@ function collectMarkdown(target, out) {
   return out
 }
 
+/** A leading markdown blockquote prefix, as `> ` or nested `> > `. */
+const BLOCKQUOTE_PREFIX = /^(?:\s*>)+ ?/
+
 /**
  * Extract mermaid blocks from markdown source.
  *
@@ -97,12 +100,23 @@ function collectMarkdown(target, out) {
  * wider ````markdown fence counts as documentation rather than as a diagram to
  * parse. Returns [{ startLine, code }] with 1 based lines pointing at the
  * opening fence.
+ *
+ * A fence may also sit inside a blockquote, which is how the pattern files mark
+ * a whole worked example as quoted content. Quote markers are stripped before
+ * the fence is matched and again from every body line, so the parser sees the
+ * diagram rather than the quoting. Without this the block matches nothing, and
+ * a broken diagram inside a blockquote passes as "0 blocks, all good", which is
+ * worse than a failure because nothing reports it. Stripping is keyed to the
+ * opening fence, so a `>` at the start of a line inside an unquoted fence stays
+ * content.
  */
 function extractMermaidBlocks(source) {
   const blocks = []
   let open = null
 
-  source.split('\n').forEach((line, index) => {
+  source.split('\n').forEach((rawLine, index) => {
+    const unquoted = rawLine.replace(BLOCKQUOTE_PREFIX, '')
+    const line = open === null || open.quoted ? unquoted : rawLine
     const match = /^(\s*)(`{3,}|~{3,})\s*(\S*)/.exec(line)
     if (open === null) {
       if (match) {
@@ -111,6 +125,7 @@ function extractMermaidBlocks(source) {
           length: match[2].length,
           lang: match[3].toLowerCase(),
           startLine: index + 1,
+          quoted: unquoted !== rawLine,
           body: [],
         }
       }
@@ -124,7 +139,7 @@ function extractMermaidBlocks(source) {
       }
       open = null
     } else {
-      open.body.push(line)
+      open.body.push(open.quoted ? unquoted : rawLine)
     }
   })
 

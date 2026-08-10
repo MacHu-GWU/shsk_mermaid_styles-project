@@ -76,6 +76,20 @@ Sections 4 through 8 are the rules and should be tight. Two to five lines each i
 
 A pattern with two distinct forms (a short horizontal one and a long vertical one, for instance) gets two canonical examples. Otherwise one is enough. Number the sections straight through whatever you end up with, so a pattern with two examples and no Reach section runs 1 to 13 with nothing skipped.
 
+### Canonical examples go inside a blockquote
+
+Each canonical example is wrapped whole in one `>` blockquote, from its opening sentence through the mermaid block to its closing takeaway.
+
+The reason is that a canonical example is not just a diagram. It carries the prose the pattern requires around a diagram, and that prose is ordinary paragraphs and bullets, indistinguishable at a glance from the pattern file's own voice. Without the quote a reader cannot tell which sentences are the specimen and which are the file explaining the specimen. The quote marks answer that question in the margin, with no words spent.
+
+The line to cut on is whether the reader could copy it. Everything inside the quote is the deliverable. The file's own commentary about the example stays outside it, below the quote, which also stops that commentary from creeping back above the diagram where the pattern's own prose rules forbid it.
+
+Bad examples are never quoted. They are the opposite of copyable, and the prose under each one is the file's critique rather than part of a specimen.
+
+Blank lines inside the quote need their own `>`, or the blockquote breaks in two.
+
+`check-mermaid` strips quote markers before matching a fence, so a quoted diagram is still parsed. This is worth knowing because the failure mode it prevents is silent: before that, a fence inside a blockquote matched nothing and a broken diagram was reported as `0 blocks, all good`.
+
 ---
 
 ## 4. Authoring A New Pattern
