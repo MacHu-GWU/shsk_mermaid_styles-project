@@ -41,7 +41,7 @@ The first line of every quadrant diagram is this directive, copied exactly:
 %%{init: {"quadrantChart": {"xAxisPosition": "bottom"}}}%%
 ```
 
-It moves the x axis poles below the plane, where axis text belongs. Without it Mermaid stacks the title, the x poles, and the quadrant labels in three same-styled rows across the top, and the reader cannot tell the axis furniture from the verdicts. A renderer too old to know the key ignores it and falls back to the top position, which is a cosmetic regression rather than a broken diagram, so the directive is safe to ship.
+It moves the x axis poles below the plane, where axis text belongs. Without it Mermaid prints them at the top, directly under the title, where they read as a second heading rather than as an axis. A renderer too old to know the key ignores it and falls back to the top position, which is a cosmetic regression rather than a broken diagram, so the directive is safe to ship.
 
 The poles stay short because of the y axis. Its labels render rotated 90 degrees along the left edge in every Mermaid version, with no directive to change it, and rotated text gets harder to read with every word, so of the two dimensions the y axis gets the poles you can say in one word.
 
@@ -53,22 +53,22 @@ The midline is a claim. A point placed between 0.45 and 0.55 on an axis says "ge
 
 ---
 
-## 5. Quadrants and Points
+## 5. Verdicts and Points
 
-Mermaid numbers the quadrants in an order nobody guesses right, so write the labels against this table.
+The four verdicts are never written on the chart. Mermaid's `quadrant-1` through `quadrant-4` labels center themselves only on an empty plane; the moment points exist, each one pins to the top edge of its quadrant, which for the two lower quadrants is directly under the midline, exactly where this pattern's most deliberate points sit. A verdict printed across a data point is worse than no verdict at all, no configuration moves the labels, so no diagram in this pattern contains a `quadrant-` line.
 
-| Slot | Position | Meaning at that corner |
-| :--- | :--- | :--- |
-| `quadrant-1` | Top right | High on both |
-| `quadrant-2` | Top left | High y, low x |
-| `quadrant-3` | Bottom left | Low on both |
-| `quadrant-4` | Bottom right | High x, low y |
+The verdicts live in a table directly under the chart instead, one row per corner, always in this order: both high, high y alone, high x alone, neither.
 
-All four labels are required, and each is an imperative verdict of two to four words, written in ALL CAPS: `PLAN THE EXIT`, `BET ON IT`. The caps are load bearing, not decoration: the verdicts render in the same font size as the axis poles, and the caps are what make a verdict read as a stamp on its zone rather than as more axis text, on every renderer. An adjective label like `HIGH VALUE ZONE` restates the corner's coordinates, which the reader already has, and withholds the instruction, which is the only thing the corner can add.
+| If an item is | Verdict |
+| :--- | :--- |
+| Urgent and important | **DO IT NOW** |
+| Important but can wait | **SCHEDULE IT** |
+| Urgent but trivial | **DELEGATE IT** |
+| Neither | **DROP IT** |
 
-The verdicts center horizontally in their quadrants on their own. Vertically they center only on an empty plane; once points exist, Mermaid pins each verdict to the top edge of its quadrant to stay out of the data's way. Do not fight this placement: keep points at 0.85 or below on the y axis in the top quadrants and the two never collide.
+The left column names the poles verbatim, so mapping a row to its corner is mechanical. Each verdict is an imperative of two to four words, in ALL CAPS, so it reads as a stamp rather than a sentence, and the four must all differ. An adjective verdict like `HIGH VALUE ZONE` restates coordinates the reader already has and withholds the instruction, which is the only thing a verdict can add.
 
-`title` is required and names the set of points, plus the two dates in the movement form. The axes name the dimensions and the corners name the verdicts, but nothing else says what population was judged, and an unnamed set reads as a claim about everything.
+`title` is required and names the set of points, plus the two dates in the movement form. The axes name the dimensions and the table names the verdicts, but nothing else says what population was judged, and an unnamed set reads as a claim about everything.
 
 Point labels are four words or fewer, counting a time suffix. No emoji anywhere: color carries the emphasis here, and a marker glued to a dot's label just crowds the plane.
 
@@ -128,10 +128,6 @@ Below 3 there is no classification, only a placement, so write the sentence. Abo
 >     title One Week of Incoming Work
 >     x-axis Can Wait --> Urgent
 >     y-axis Trivial --> Important
->     quadrant-1 DO IT NOW
->     quadrant-2 SCHEDULE IT
->     quadrant-3 DROP IT
->     quadrant-4 DELEGATE IT
 >     Prod incident: [0.9, 0.85]
 >     Quarterly roadmap: [0.2, 0.8]
 >     Recruiting pings:::riskPoint: [0.75, 0.2]
@@ -139,6 +135,13 @@ Below 3 there is no classification, only a placement, so write the sentence. Abo
 >     Code review queue: [0.6, 0.5]
 >     classDef riskPoint color: #C0392B
 > ```
+>
+> | If an item is | Verdict |
+> | :--- | :--- |
+> | Urgent and important | **DO IT NOW** |
+> | Important but can wait | **SCHEDULE IT** |
+> | Urgent but trivial | **DELEGATE IT** |
+> | Neither | **DROP IT** |
 >
 > - **Recruiting pings.** Urgent because candidates go cold in days, trivial here because any teammate can run the screen, which is exactly what the corner's verdict arranges.
 > - **Code review queue.** On the importance midline deliberately: the queue mixes a risky migration with typo fixes, and if that spread persists the point should split in two.
@@ -161,10 +164,6 @@ No green anywhere, and that is the portfolio mode working as intended: the writi
 >     title Two Reports, 2025 against 2026
 >     x-axis Learning --> Skilled
 >     y-axis Idle --> Driven
->     quadrant-1 DELEGATE
->     quadrant-2 COACH
->     quadrant-3 DIRECT
->     quadrant-4 MOTIVATE
 >     New hire 2025:::pastPoint: [0.2, 0.8]
 >     New hire 2026:::subjectPoint: [0.65, 0.85]
 >     Senior dev 2025:::pastPoint: [0.85, 0.7]
@@ -173,6 +172,13 @@ No green anywhere, and that is the portfolio mode working as intended: the writi
 >     classDef subjectPoint color: #1B7F4B
 >     classDef riskPoint color: #C0392B
 > ```
+>
+> | If a report is | Verdict |
+> | :--- | :--- |
+> | Skilled and driven | **DELEGATE** |
+> | Driven, still learning | **COACH** |
+> | Skilled but idle | **MOTIVATE** |
+> | Neither | **DIRECT** |
 >
 > The takeaway from this diagram is that both reports crossed a line in one year and neither crossing calls for closer supervision: the new hire crossed the skill line and earned delegation, while the senior developer slid down the drive axis with no loss of skill, so the fix is not training but a reason to care again.
 
@@ -211,10 +217,6 @@ quadrantChart
     title Where Our Products Sell
     x-axis B2B --> B2C
     y-axis Self Serve --> Sales Led
-    quadrant-1 INVEST
-    quadrant-2 MAINTAIN
-    quadrant-3 DIVEST
-    quadrant-4 EXPLORE
     Billing suite: [0.2, 0.8]
     Consumer app: [0.85, 0.25]
     API platform: [0.5, 0.5]
@@ -222,43 +224,35 @@ quadrantChart
 
 B2B and B2C are kinds, not degrees of one quality, so the API platform at the center claims to be half of each, which means nothing. Two categorical questions is a Triage Map.
 
-Adjectives in the corners.
+Verdicts written on the chart.
 
 ```mermaid
 %%{init: {"quadrantChart": {"xAxisPosition": "bottom"}}}%%
 quadrantChart
-    title Feature Candidates
-    x-axis Low Effort --> High Effort
-    y-axis Low Impact --> High Impact
-    quadrant-1 EXPENSIVE BUT VALUABLE
-    quadrant-2 HIGH VALUE ZONE
-    quadrant-3 LOW VALUE ZONE
-    quadrant-4 DANGER ZONE
-    Dark mode: [0.3, 0.75]
-    SSO: [0.8, 0.85]
-    Custom reports: [0.75, 0.2]
+    title One Week of Incoming Work
+    x-axis Can Wait --> Urgent
+    y-axis Trivial --> Important
+    quadrant-1 DO IT NOW
+    quadrant-2 SCHEDULE IT
+    quadrant-3 DROP IT
+    quadrant-4 DELEGATE IT
+    Prod incident: [0.9, 0.85]
+    Quarterly roadmap: [0.2, 0.8]
+    Code review queue: [0.6, 0.5]
 ```
 
-Every corner restates its own coordinates. The reader already knows SSO is high effort and high impact, because that is where the dot is; the corner's one job was to say what to do about it.
+With points present, each `quadrant-` label pins to the top edge of its quadrant, and `DELEGATE IT` prints straight across the midline point. That is the renderer working as designed, not a bug to nudge coordinates around: the verdicts go in the table below the chart, and the `quadrant-` lines go nowhere.
 
 One axis doing all the deciding.
 
-```mermaid
-%%{init: {"quadrantChart": {"xAxisPosition": "bottom"}}}%%
-quadrantChart
-    title Feature Candidates
-    x-axis Low Impact --> High Impact
-    y-axis Hard to Build --> Easy to Build
-    quadrant-1 DO IT
-    quadrant-2 SKIP IT
-    quadrant-3 SKIP IT
-    quadrant-4 DO IT
-    Dark mode: [0.35, 0.8]
-    SSO: [0.85, 0.3]
-    Custom reports: [0.6, 0.55]
-```
+| If a feature is | Verdict |
+| :--- | :--- |
+| High impact and easy | **DO IT** |
+| Easy, low impact | **SKIP IT** |
+| High impact but hard | **DO IT** |
+| Neither | **SKIP IT** |
 
-Both right corners say do it and both left corners say skip it, so the vertical axis never changes a verdict. This is a ranking by impact, and a ranked list says it without the ceremony.
+Two verdicts across four corners: ease never changes the instruction, so the second axis decides nothing. This is a ranking by impact, and a ranked list says it without the ceremony.
 
 Measurement cosplay.
 
@@ -268,10 +262,6 @@ quadrantChart
     title Accounts by Revenue and Cost
     x-axis Small --> Large
     y-axis Costly --> Cheap
-    quadrant-1 PROTECT
-    quadrant-2 AUTOMATE
-    quadrant-3 LET CHURN
-    quadrant-4 RENEGOTIATE
     Acme: [0.83, 0.27]
     Globex: [0.41, 0.66]
     Initech: [0.58, 0.12]
@@ -286,6 +276,8 @@ Two decimal coordinates claim these positions were computed. If the revenue real
 
 **Above the diagram, one sentence naming whose judgment the coordinates are, as of when, and the full names of the two dimensions,** plus, in the movement form, the two dates. It is required rather than optional, twice over: a quadrant chart is the library's only diagram that looks like measured data, and the axis poles are deliberately too short to define their dimensions, so the sentence is where the definitions live. Nothing else goes above.
 
+**Directly under the diagram, the verdict table,** before anything else. The chart deliberately carries no verdicts, so until the table appears the plane is only dots; the two are one unit and nothing may separate them.
+
 **Below, up to three bullets,** one for each point whose placement needs defending: a number behind a coordinate, a midline claim, a disagreement the team had. Skip points whose position the reader will accept on sight.
 
 **Below, last, a takeaway sentence** beginning "The takeaway from this diagram is". It points at one corner or one crossing. Reciting the whole plane back is not a takeaway, because the plane is already visible.
@@ -297,8 +289,8 @@ Two decimal coordinates claim these positions were computed. If the revenue real
 - The first line is the `xAxisPosition: bottom` init directive, copied exactly.
 - The title names the set of points, and the two dates in the movement form.
 - Both poles of each axis are present, one or two words each, opposite ends of one quality an item could sit anywhere along, and the y axis got the shortest poles.
-- All four quadrant labels are present, imperative, ALL CAPS, two to four words, and carry four different verdicts.
-- Points in the top quadrants sit at 0.85 or below on the y axis.
+- No `quadrant-` line anywhere in the diagram.
+- The verdict table sits directly under the chart: four rows in the fixed order, poles named verbatim, each verdict imperative, ALL CAPS, two to four words, all four different.
 - No verdict depends on one axis alone.
 - 3 to 8 points, labels four words or fewer, no emoji.
 - Coordinates in steps of 0.05, no finer.
