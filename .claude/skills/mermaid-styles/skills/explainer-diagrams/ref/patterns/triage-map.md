@@ -168,7 +168,7 @@ flowchart LR
     Q -->|deploy| D["Roll Back"]
 ```
 
-The second diamond is not a fallback, it is a real judgment with its own answers, so this content is a Decision Tree and belongs in `decision-tree.md`.
+The second diamond is not a fallback, it is a real judgment with its own answers, so this content belongs in `decision-tree.md`.
 
 A thick arrow electing a main case.
 
